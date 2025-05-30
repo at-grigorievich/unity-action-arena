@@ -1,5 +1,7 @@
 ﻿using System;
 using ATG.Character;
+using ATG.OtusHW.Inventory;
+using UnityEngine;
 
 namespace ATG.Items
 {
@@ -126,13 +128,17 @@ namespace ATG.Items
     [Serializable]
     public class HeroEquipmentComponent : IItemComponent
     {
-        public EquipType Tag;
+        public EquipType Type;
+        public Mesh Mesh;
+        public Material Material;
         
         public IItemComponent Clone()
         {
             return new HeroEquipmentComponent()
             {
-                Tag = this.Tag
+                Type = this.Type,
+                Mesh = this.Mesh,
+                Material = this.Material
             };
         }
     }

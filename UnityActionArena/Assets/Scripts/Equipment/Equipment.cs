@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using ATG.OtusHW.Inventory;
+using Sirenix.OdinInspector;
 
 namespace ATG.Items.Equipment
 {
     [Serializable]
     public class Equipment
     {
-        public List<Item> ItemsDebug = new(); // only for editor debug
+        [ShowInInspector]
         public readonly Dictionary<EquipType, Item> Items = new();
 
         public event Action<Item> OnItemTakeOn;

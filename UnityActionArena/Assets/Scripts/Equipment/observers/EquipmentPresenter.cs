@@ -2,7 +2,7 @@
 
 namespace ATG.Items.Equipment
 {
-    public class EquipmentPresenter: IEquipmentObserver, IDisposable
+    /*public class EquipmentPresenter: IEquipmentObserver, IDisposable
     {
         private readonly Equipment _equipment;
         private readonly EquipmentSetView _view;
@@ -32,5 +32,5 @@ namespace ATG.Items.Equipment
             _equipment.OnItemTakeOn -= OnItemTakeOn;
             _equipment.OnItemTakeOff -= OnItemTakeOff;
         }
-    }
+    }*/
 }

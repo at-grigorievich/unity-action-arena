@@ -8,13 +8,12 @@
             
             if(item.TryGetComponent(out HeroEquipmentComponent component) == false) return;
 
-            if (equipment.Items.ContainsKey(component.Tag) == true)
+            if (equipment.Items.ContainsKey(component.Type) == true)
             {
                 TakeOffItem(equipment, item);
             }
             
-            equipment.Items.Add(component.Tag, item);
-            equipment.ItemsDebug.Add(item);
+            equipment.Items.Add(component.Type, item);
             
             equipment.NotifyItemTakeOn(item);
         }
@@ -25,12 +24,11 @@
             
             if(item.TryGetComponent(out HeroEquipmentComponent component) == false) return null;
 
-            if (equipment.Items.ContainsKey(component.Tag) == true)
+            if (equipment.Items.ContainsKey(component.Type) == true)
             {
-                Item result = equipment.Items[component.Tag];
+                Item result = equipment.Items[component.Type];
                 
-                equipment.Items.Remove(component.Tag);
-                equipment.ItemsDebug.Remove(result);
+                equipment.Items.Remove(component.Type);
                 
                 equipment.NotifyItemTakeOff(result);
 

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using ATG.Character;
 
 namespace ATG.Items.Equipment
 {
     public sealed class HeroEquipEffectObserver: IEquipmentObserver, IDisposable
     {
         private readonly Equipment _equipment;
-        private readonly Hero _hero;
+        private readonly CharacterModel _hero;
 
-        public HeroEquipEffectObserver(Equipment equipment, Hero hero)
+        public HeroEquipEffectObserver(Equipment equipment, CharacterModel hero)
         {
             _equipment = equipment;
             _hero = hero;
