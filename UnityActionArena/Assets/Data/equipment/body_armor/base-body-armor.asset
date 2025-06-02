@@ -36,7 +36,7 @@ MonoBehaviour:
     - rid: 7637649362196627457
       type: {class: HeroSpeedEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        SpeedEffect: 10
+        SpeedEffect: 0
     - rid: 7637649362196627459
       type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

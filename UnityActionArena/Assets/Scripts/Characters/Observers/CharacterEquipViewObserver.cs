@@ -1,4 +1,7 @@
-﻿namespace ATG.Items.Equipment
+﻿using ATG.Items;
+using ATG.Items.Equipment;
+
+namespace ATG.Character
 {
     public sealed class CharacterEquipViewObserver: IEquipmentObserver
     {

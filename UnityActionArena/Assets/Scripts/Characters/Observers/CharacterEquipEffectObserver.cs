@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using ATG.Character;
+using ATG.Items;
+using ATG.Items.Equipment;
 
-namespace ATG.Items.Equipment
+namespace ATG.Character
 {
     public sealed class CharacterEquipEffectObserver: IEquipmentObserver
     {

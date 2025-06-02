@@ -1,4 +1,5 @@
-﻿using ATG.Items;
+﻿using ATG.Input;
+using ATG.Items;
 using ATG.Items.Equipment;
 using UnityEngine;
 using VContainer;
@@ -14,6 +15,7 @@ namespace Scopes
         {
             builder.RegisterInstance(itemsSetConfig).As<ItemsSetConfig>();
             builder.Register<UserAtBattleEquipmentSource>(Lifetime.Singleton).AsSelf();
+            builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }

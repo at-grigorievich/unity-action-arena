@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ATG.Character.Animator;
 using ATG.Character.Attack;
 using ATG.Character.Health;
+using ATG.Character.Move;
 using ATG.Items;
 using ATG.Items.Equipment;
 using UnityEngine;
@@ -39,6 +40,8 @@ namespace ATG.Character
         protected readonly IEquipmentObserver _equipmentModelObserver;
         protected readonly IEquipmentObserver _equipmentViewObserver;
         
+        protected readonly IMoveableService _moveService;
+        
         protected CharacterPresenter(CharacterView view)
         {
             _view = view;
@@ -47,9 +50,11 @@ namespace ATG.Character
             _equipment = new Equipment();
             _equipmentModelObserver = new CharacterEquipEffectObserver(_equipment, _characterModel);
             _equipmentViewObserver = new CharacterEquipViewObserver(_equipment, _view);
+
+            _moveService = new NavMeshMoveService(_view.NavAgent, _characterModel.Speed);
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             _view.Initialize();
             
@@ -57,7 +62,7 @@ namespace ATG.Character
             _equipmentViewObserver.Initialize();
         }
         
-        public void Dispose()
+        public virtual void Dispose()
         {
             _equipmentModelObserver.Dispose();
             _equipmentViewObserver.Dispose();
