@@ -10,10 +10,11 @@ namespace Scopes
     public sealed class ArenaScope: LifetimeScope
     {
         [SerializeField] private PlayerCharacterCreator playerCreator;
-
+        [SerializeField] private StaticEquipmentSourceCreator staticEquipmentSourceCreator;
+        
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<RandomEquipmentSource>(Lifetime.Singleton).AsSelf();
+            staticEquipmentSourceCreator.Create(builder);
             playerCreator.Create(builder);
 
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();
