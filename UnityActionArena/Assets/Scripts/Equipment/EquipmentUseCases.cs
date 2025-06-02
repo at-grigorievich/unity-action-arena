@@ -2,7 +2,7 @@
 {
     public static class EquipmentUseCases
     {
-        public static void TakeOnItem(Equipment equipment, Item item)
+        public static void TakeOnItem(this Equipment equipment, Item item)
         {
             if(item.CanEquip() == false) return;
             
@@ -10,7 +10,7 @@
 
             if (equipment.Items.ContainsKey(component.Type) == true)
             {
-                TakeOffItem(equipment, item);
+                equipment.TakeOffItem(item);
             }
             
             equipment.Items.Add(component.Type, item);
@@ -18,7 +18,7 @@
             equipment.NotifyItemTakeOn(item);
         }
 
-        public static Item TakeOffItem(Equipment equipment, Item item)
+        public static Item TakeOffItem(this Equipment equipment, Item item)
         {
             if(item.CanEquip() == false) return null;
             
