@@ -1,3 +1,4 @@
+using ATG.Animator;
 using ATG.Items.Equipment;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +13,7 @@ namespace ATG.Character
         private Collider _collider;
         private CharacterEquipmentView _equipment;
 
-        [field: SerializeField] public UnityEngine.Animator Animator { get; private set; }
+        [field: SerializeField] public AnimatorWrapperCreator AnimatorWrapperCreator { get; set; }
         [field: SerializeField] public NavMeshAgent NavAgent { get; private set; }
 
         public Vector3 Position => transform.position;

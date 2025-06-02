@@ -1,6 +1,6 @@
 ﻿using System;
-using ATG.Character.Animator;
-using ATG.Character.Move;
+using ATG.Animator;
+using ATG.Move;
 using ATG.Input;
 using UnityEngine;
 using VContainer.Unity;
@@ -14,12 +14,12 @@ namespace Characters.Observers
         private readonly Transform _characterTransform;
         
         private readonly IMoveableService _moveService;
-        private readonly IAnimatorService _animatorService;
+        private readonly IAnimatorWrapper _animatorService;
         
         private readonly Transform _cameraTransform;
         
         public CharacterInputObserver(Transform characterTransform, IInputable input,
-            IMoveableService moveService, IAnimatorService animatorService)
+            IMoveableService moveService, IAnimatorWrapper animatorService)
         {
             _characterTransform = characterTransform;
             
@@ -28,8 +28,7 @@ namespace Characters.Observers
             _moveService = moveService;
             _animatorService = animatorService;
 
-            if (Camera.main != null) 
-                _cameraTransform = Camera.main.transform;
+            if (Camera.main != null) _cameraTransform = Camera.main.transform;
             else throw new NullReferenceException("Camera.main is null");
         }
         
@@ -42,33 +41,38 @@ namespace Characters.Observers
         {
             Vector2 input = _input.GetDirection();
             
-            float sqrMagnitude = input.sqrMagnitude;
-
-            if (sqrMagnitude > float.Epsilon)
+            if (input.sqrMagnitude > float.Epsilon)
             {
-                Vector3 camForward = _cameraTransform.forward;
-                Vector3 camRight = _cameraTransform.right;
-                
-                camForward.y = camRight.y = 0f;
-
-                camForward.Normalize();
-                camRight.Normalize();
-                
-                Vector3 moveDirection = (camForward * input.y + camRight * input.x).normalized;
-                
-                Vector3 targetPoint = _characterTransform.position + moveDirection;
+                Vector3 targetPoint = CalculateTargetPoint(input);
                 
                 _moveService.MoveTo(targetPoint);
+                _animatorService.SelectState(AnimatorTag.Run);
             }
             else
             {
                 _moveService.Stop();
+                _animatorService.SelectState(AnimatorTag.Idle);
             }
         }
         
         public void Dispose()
         {
             // TODO release managed resources here
+        }
+
+        private Vector3 CalculateTargetPoint(Vector2 input)
+        {
+            Vector3 camForward = _cameraTransform.forward;
+            Vector3 camRight = _cameraTransform.right;
+                
+            camForward.y = camRight.y = 0f;
+
+            camForward.Normalize();
+            camRight.Normalize();
+                
+            Vector3 moveDirection = (camForward * input.y + camRight * input.x).normalized;
+                
+            return _characterTransform.position + moveDirection;
         }
     }
 }

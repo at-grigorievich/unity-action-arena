@@ -8743,10 +8743,10 @@ Animator:
   m_GameObject: {fileID: 1440407420}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
-  m_Controller: {fileID: 9100000, guid: f5a5df21e2ce72749aab436d5667e57b, type: 2}
+  m_Controller: {fileID: 9100000, guid: a852f1427d46d1046b6c0ec63245e956, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -13857,7 +13857,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbcfdf5392cfef46aac22270eb04dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Animator>k__BackingField: {fileID: 1430967126}
+  <AnimatorWrapperCreator>k__BackingField:
+    animatorSet: {fileID: 11400000, guid: deac8f515f31b3547bd521bb7d5cb78f, type: 2}
+    animator: {fileID: 1430967126}
   <NavAgent>k__BackingField: {fileID: 1440660877}
 --- !u!195 &1440660877
 NavMeshAgent:

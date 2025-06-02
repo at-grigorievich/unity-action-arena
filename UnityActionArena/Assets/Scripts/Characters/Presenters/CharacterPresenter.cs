@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using ATG.Character.Animator;
+using ATG.Animator;
 using ATG.Character.Attack;
 using ATG.Character.Health;
-using ATG.Character.Move;
 using ATG.Items;
 using ATG.Items.Equipment;
+using ATG.Move;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -37,10 +37,11 @@ namespace ATG.Character
         
         protected readonly Equipment _equipment;
         
-        protected readonly IEquipmentObserver _equipmentModelObserver;
-        protected readonly IEquipmentObserver _equipmentViewObserver;
+        private readonly IEquipmentObserver _equipmentModelObserver;
+        private readonly IEquipmentObserver _equipmentViewObserver;
         
         protected readonly IMoveableService _moveService;
+        protected readonly IAnimatorWrapper _animator;
         
         protected CharacterPresenter(CharacterView view)
         {
@@ -52,6 +53,7 @@ namespace ATG.Character
             _equipmentViewObserver = new CharacterEquipViewObserver(_equipment, _view);
 
             _moveService = new NavMeshMoveService(_view.NavAgent, _characterModel.Speed);
+            _animator = _view.AnimatorWrapperCreator.Create();
         }
 
         public virtual void Initialize()
@@ -60,6 +62,8 @@ namespace ATG.Character
             
             _equipmentModelObserver.Initialize();
             _equipmentViewObserver.Initialize();
+            
+            _animator.SetActive(true);
         }
         
         public virtual void Dispose()

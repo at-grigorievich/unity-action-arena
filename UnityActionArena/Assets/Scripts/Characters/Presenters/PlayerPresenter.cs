@@ -10,7 +10,7 @@ namespace ATG.Character
         
         public PlayerPresenter(CharacterView view, IInputable input) : base(view)
         {
-            _inputObserver = new CharacterInputObserver(_view.transform, input, _moveService, null);
+            _inputObserver = new CharacterInputObserver(_view.transform, input, _moveService, _animator);
         }
 
         public override void Initialize()

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace ATG.Character.Move
+namespace ATG.Move
 {
     public class NavMeshMoveService: IMoveableService
     {

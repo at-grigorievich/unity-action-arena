@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ATG.Character.Move
+namespace ATG.Move
 {
     public interface IMoveableService
     {
