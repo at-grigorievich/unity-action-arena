@@ -1,21 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ATG.Character;
 
 namespace ATG.Items.Equipment
 {
-    public sealed class HeroEquipEffectObserver: IEquipmentObserver, IDisposable
+    public sealed class CharacterEquipEffectObserver: IEquipmentObserver
     {
         private readonly Equipment _equipment;
-        private readonly CharacterModel _hero;
+        private readonly CharacterModel _model;
 
-        public HeroEquipEffectObserver(Equipment equipment, CharacterModel hero)
+        public CharacterEquipEffectObserver(Equipment equipment, CharacterModel model)
         {
             _equipment = equipment;
-            _hero = hero;
-            
+            _model = model;
+        }
+        
+        public void Initialize()
+        {
             _equipment.OnItemTakeOn += OnItemTakeOn;
             _equipment.OnItemTakeOff += OnItemTakeOff;
+        }
+        
+        public void Dispose()
+        {
+            _equipment.OnItemTakeOn -= OnItemTakeOn;
+            _equipment.OnItemTakeOff -= OnItemTakeOff;
         }
         
         public void OnItemTakeOn(Item item)
@@ -24,7 +32,7 @@ namespace ATG.Items.Equipment
 
             foreach (var heroEffect in effects)
             {
-                heroEffect.AddEffect(_hero);
+                heroEffect.AddEffect(_model);
             }
         }
 
@@ -34,14 +42,8 @@ namespace ATG.Items.Equipment
 
             foreach (var heroEffect in effects)
             {
-                heroEffect.RemoveEffect(_hero);
+                heroEffect.RemoveEffect(_model);
             }
-        }
-        
-        public void Dispose()
-        {
-            _equipment.OnItemTakeOn -= OnItemTakeOn;
-            _equipment.OnItemTakeOff -= OnItemTakeOff;
         }
     }
 }

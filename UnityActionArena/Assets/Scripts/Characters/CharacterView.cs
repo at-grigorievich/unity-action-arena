@@ -47,6 +47,7 @@ namespace ATG.Character
 
         public void PutOn(EquipmentViewData data)
         {
+            Debug.Log(data.Type);
             _equipment.PutOn(data);
         }
     }

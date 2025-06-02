@@ -8351,7 +8351,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dccf8e44ede71db42b49378af93c5fb7, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8376,7 +8376,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300716, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 1440686002}
   - {fileID: 1440655944}
@@ -17289,7 +17289,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440412712}
-  m_Mesh: {fileID: 4300878, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!33 &1441514090
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17529,7 +17529,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440392444}
-  m_Mesh: {fileID: 4300154, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!33 &1441528414
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18850,7 +18850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dccf8e44ede71db42b49378af93c5fb7, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21550,7 +21550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dccf8e44ede71db42b49378af93c5fb7, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23642,6 +23642,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1466689841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466689842}
+  - component: {fileID: 1466689843}
+  m_Layer: 0
+  m_Name: '[ARENA-SCOPE]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466689842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466689841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.490513, y: 0.46637386, z: 1.227707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466689843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466689841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ca18fd0e414c1f9798f76e861d72b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Scopes.ProjectScope
+  autoRun: 1
+  autoInjectGameObjects: []
+  playerCreator:
+    view: {fileID: 1440660876}
 --- !u!1001 &1492684928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28333,6 +28383,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1598941299}
+  - {fileID: 1466689842}
   - {fileID: 107512103}
   - {fileID: 527009805}
   - {fileID: 1437154345}
