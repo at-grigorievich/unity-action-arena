@@ -4,11 +4,11 @@ namespace ATG.Move
 {
     public class TargetNavigationPointSet: MonoBehaviour, INavigatablePoint
     {
-        private TargetNavigationPoint[] _set;
+        private INavigatablePoint[] _set;
 
         private void Awake()
         {
-            _set = GetComponentsInChildren<TargetNavigationPoint>();
+            _set = GetComponentsInChildren<INavigatablePoint>();
         }
 
         public Vector3 GetRandomPointInRadiusXZ()

@@ -2,7 +2,9 @@
 using ATG.Items.Equipment;
 using ATG.Move;
 using Entry_Points;
+using Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,8 +12,10 @@ namespace Scopes
 {
     public sealed class ArenaScope: LifetimeScope
     {
+        [SerializeField] private ArenaSettings arenaSettings;
+        
         [SerializeField] private PlayerCharacterCreator playerCreator;
-        [SerializeField] private BotCharacterCreator botCreator;
+        [SerializeField] private BotCharactersPoolCreator botPoolCreator;
         [SerializeField] private StaticEquipmentSourceCreator staticEquipmentSourceCreator;
         
         [SerializeField] private TargetNavigationPointSet targetNavigationPointSet;
@@ -20,8 +24,9 @@ namespace Scopes
         {
             staticEquipmentSourceCreator.Create(builder);
             playerCreator.Create(builder);
-            botCreator.Create(builder);
+            botPoolCreator.Create(builder);
 
+            builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();

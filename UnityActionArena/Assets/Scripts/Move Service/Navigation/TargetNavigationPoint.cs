@@ -3,9 +3,14 @@ using Random = UnityEngine.Random;
 
 namespace ATG.Move
 {
+    public interface INavigatablePoint
+    {
+        Vector3 GetRandomPointInRadiusXZ();
+    }
+    
     public class TargetNavigationPoint : MonoBehaviour, INavigatablePoint
     {
-        [field: SerializeField] public float Radius { get; private set; }
+        [field: SerializeField] public virtual float Radius { get; private set; }
         
         public Vector3 Center => transform.position;
         
@@ -17,7 +22,7 @@ namespace ATG.Move
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, Radius);
         }
     }

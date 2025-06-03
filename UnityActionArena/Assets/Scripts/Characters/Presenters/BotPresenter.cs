@@ -13,6 +13,8 @@ namespace ATG.Character
             NavigationPoints = navigationSet;
         }
 
+        public void SetActive(bool isActive) => _view.SetActive(isActive);
+        
         public void Idle()
         {
             _moveService.Stop();
