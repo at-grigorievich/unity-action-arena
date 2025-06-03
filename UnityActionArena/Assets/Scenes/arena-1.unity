@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 119929729}
   - component: {fileID: 119929728}
   - component: {fileID: 119929727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119929725}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 189244253}
   - component: {fileID: 189244252}
   - component: {fileID: 189244251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189244249}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 284272575}
   - component: {fileID: 284272574}
   - component: {fileID: 284272573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1159,7 +1159,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284272571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1638,7 +1638,7 @@ GameObject:
   - component: {fileID: 382192342}
   - component: {fileID: 382192341}
   - component: {fileID: 382192340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1688,7 +1688,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382192338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2288,7 +2288,7 @@ GameObject:
   - component: {fileID: 500863336}
   - component: {fileID: 500863335}
   - component: {fileID: 500863334}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2338,7 +2338,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500863332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2756,7 +2756,7 @@ GameObject:
   - component: {fileID: 588335705}
   - component: {fileID: 588335704}
   - component: {fileID: 588335703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2806,7 +2806,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588335701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3419,7 +3419,7 @@ MonoBehaviour:
   m_XDamping: 0.5
   m_YDamping: 1
   m_ZDamping: 0.5
-  m_TargetMovementOnly: 1
+  m_TargetMovementOnly: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 5
@@ -3486,7 +3486,7 @@ GameObject:
   - component: {fileID: 797734157}
   - component: {fileID: 797734156}
   - component: {fileID: 797734155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3536,7 +3536,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797734153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4206,7 +4206,7 @@ GameObject:
   - component: {fileID: 966600233}
   - component: {fileID: 966600232}
   - component: {fileID: 966600231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4256,7 +4256,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966600229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4493,7 +4493,7 @@ GameObject:
   - component: {fileID: 1092233010}
   - component: {fileID: 1092233009}
   - component: {fileID: 1092233008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4543,7 +4543,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092233006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4991,6 +4991,10 @@ PrefabInstance:
       value: Tower_C (1)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c73c37430c8ac1e43831ddacfa77c180, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c73c37430c8ac1e43831ddacfa77c180, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5188,6 +5192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1207939190}
   - component: {fileID: 1207939189}
+  - component: {fileID: 1207939191}
   m_Layer: 0
   m_Name: CM_TopDown
   m_TagString: Untagged
@@ -5251,6 +5256,36 @@ Transform:
   - {fileID: 1598941299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
+--- !u!114 &1207939191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207939188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 64
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 3
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 100
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 1.6
+  m_Strategy: 1
+  m_MaximumEffort: 5
+  m_SmoothingTime: 0.2
+  m_Damping: 1
+  m_DampingWhenOccluded: 1
+  m_OptimalTargetDistance: 10000
 --- !u!1 &1230241225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,13 +5296,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1230241226}
   - component: {fileID: 1230241227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[NOT_WALKABLE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1230241226
 Transform:
   m_ObjectHideFlags: 0
@@ -6237,7 +6272,7 @@ GameObject:
   - component: {fileID: 1504684052}
   - component: {fileID: 1504684051}
   - component: {fileID: 1504684050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6287,7 +6322,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504684048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6798,6 +6833,10 @@ PrefabInstance:
       value: Tower_C (2)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c73c37430c8ac1e43831ddacfa77c180, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c73c37430c8ac1e43831ddacfa77c180, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7091,7 +7130,7 @@ GameObject:
   - component: {fileID: 1660886322}
   - component: {fileID: 1660886321}
   - component: {fileID: 1660886320}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7141,7 +7180,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660886318}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8754,7 +8793,7 @@ GameObject:
   - component: {fileID: 2138096343}
   - component: {fileID: 2138096342}
   - component: {fileID: 2138096341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8804,7 +8843,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138096339}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
