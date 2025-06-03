@@ -15,9 +15,9 @@ namespace ATG.Character
     [Serializable]
     public abstract class CharacterCreator<T> where T : CharacterPresenter
     {
-        [SerializeField] private CharacterView view;
+        [SerializeField] protected CharacterView view;
 
-        public void Create(IContainerBuilder builder)
+        public virtual void Create(IContainerBuilder builder)
         {
             builder.Register<T>(Lifetime.Singleton)
                 .WithParameter<CharacterView>(view)
@@ -28,7 +28,7 @@ namespace ATG.Character
     
     [Serializable] public sealed class LobbyCharacterCreator: CharacterCreator<LobbyCharacterPresenter> {}
     [Serializable] public sealed class PlayerCharacterCreator: CharacterCreator<PlayerPresenter> {}
-    [Serializable] public sealed class BotCharacterCreator:  CharacterCreator<BotPresenter> {}
+    [Serializable] public sealed class BotCharacterCreator: CharacterCreator<BotPresenter> {}
     
     public abstract class CharacterPresenter: IInitializable, IDisposable
     {
@@ -58,7 +58,7 @@ namespace ATG.Character
 
         public virtual void Initialize()
         {
-            _view.Initialize();
+            _view.Initialize(this);
             
             _equipmentModelObserver.Initialize();
             _equipmentViewObserver.Initialize();

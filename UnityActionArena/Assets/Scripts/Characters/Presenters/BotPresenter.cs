@@ -1,9 +1,28 @@
-﻿namespace ATG.Character
+﻿using ATG.Animator;
+using ATG.Move;
+using UnityEngine;
+
+namespace ATG.Character
 {
     public sealed class BotPresenter: CharacterPresenter
     {
-        public BotPresenter(CharacterView view) : base(view)
+        public readonly TargetNavigationPointSet NavigationPoints;
+        
+        public BotPresenter(CharacterView view, TargetNavigationPointSet navigationSet) : base(view)
         {
+            NavigationPoints = navigationSet;
+        }
+
+        public void Idle()
+        {
+            _moveService.Stop();
+            _animator.SelectState(AnimatorTag.Idle);
+        }
+        
+        public void MoveTo(Vector3 position)
+        {
+            _moveService.MoveTo(position);
+            _animator.SelectState(AnimatorTag.Run);
         }
     }
 }
