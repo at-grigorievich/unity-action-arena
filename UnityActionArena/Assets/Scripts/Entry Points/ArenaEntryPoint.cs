@@ -18,6 +18,8 @@ namespace Entry_Points
         
         private readonly ISpawnService _spawnService;
         
+        private readonly CancellationTokenSource _cts;
+        
         public ArenaEntryPoint(PlayerPresenter player, BotPool botPool, StaticEquipmentSource equipmentSrc,
             ISpawnService spawnService)
         {
@@ -26,6 +28,8 @@ namespace Entry_Points
             
             _equipmentSrc = equipmentSrc;
             _spawnService = spawnService;
+            
+            _cts = new CancellationTokenSource();
         }
         
         public void PostInitialize()
@@ -42,8 +46,8 @@ namespace Entry_Points
         
         public void Dispose()
         {
-            _player?.Dispose();
-            _botPool?.Dispose();
+            _cts.Cancel();
+            _cts.Dispose();
         }
         
         private async UniTask UniTaskSpawnAsync()
@@ -56,7 +60,8 @@ namespace Entry_Points
         {
             _player.TakeOnEquipments(_equipmentSrc.GetItems());
             _player.SetPhysActive(true);
-            await UniTask.Yield();
+            
+            await UniTask.Yield(cancellationToken: _cts.Token);
             
             _spawnService.SpawnInstantly(_player);
         }
@@ -66,7 +71,9 @@ namespace Entry_Points
             foreach (var bot in _botPool.Set)
             {
                 bot.SetPhysActive(true);
-                await UniTask.Yield();
+                
+                await UniTask.Yield(cancellationToken: _cts.Token);
+                
                 _spawnService.SpawnInstantly(bot);
             }
         }
