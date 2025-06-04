@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ATG.OtusHW.Inventory;
-using UnityEngine;
 
 namespace ATG.Items.Equipment
 {

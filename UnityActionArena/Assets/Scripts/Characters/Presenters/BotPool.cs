@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using ATG.Items.Equipment;
 using ATG.Move;
 using ATG.Spawn;
 using Settings;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using Random = UnityEngine.Random;
 
 namespace ATG.Character
 {
@@ -26,17 +28,20 @@ namespace ATG.Character
     {
         private readonly CharacterView _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
-
+        private readonly RandomEquipmentSource _equipmentSource;
+        
         private readonly Transform _root;
         
         private List<BotPresenter> _botSet;
 
         public IEnumerable<BotPresenter> Set => _botSet;
         
-        public BotPool(CharacterView prefab, IArenaSize arenaSize, TargetNavigationPointSet pointSet)
+        public BotPool(CharacterView prefab, IArenaSize arenaSize, RandomEquipmentSource equipmentSource,
+            TargetNavigationPointSet pointSet)
         {
             _prefab = prefab;
             _botSet = new List<BotPresenter>(arenaSize.PlayersOnArena - 1);
+            _equipmentSource = equipmentSource;
             
             _targetPointSet = pointSet;
             
@@ -53,6 +58,7 @@ namespace ATG.Character
                 _botSet.Add(bot);
                 
                 bot.Initialize();
+                bot.TakeOnEquipments(_equipmentSource.GetItems());
             }
         }
 

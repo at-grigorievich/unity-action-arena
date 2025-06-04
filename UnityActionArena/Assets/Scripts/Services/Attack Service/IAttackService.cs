@@ -1,4 +1,4 @@
-﻿namespace ATG.Character.Attack
+﻿namespace ATG.Attack
 {
     public interface IAttackService
     {

@@ -1,4 +1,4 @@
-﻿namespace ATG.Character.Health
+﻿namespace ATG.Health
 {
     public interface IHealthService
     {

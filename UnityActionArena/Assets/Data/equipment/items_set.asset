@@ -13,6 +13,30 @@ MonoBehaviour:
   m_Name: items_set
   m_EditorClassIdentifier: 
   items:
+  - {fileID: 11400000, guid: 0dbf7e78e468ad941be92e49124ffe0c, type: 2}
   - {fileID: 11400000, guid: 8dce541b96d59494e83f7d7b3445ce03, type: 2}
+  - {fileID: 11400000, guid: 50b0ffad3cd3f3a439aa5c9e89313fea, type: 2}
+  - {fileID: 11400000, guid: f6d6481616ab55c45805235c07c813dc, type: 2}
+  - {fileID: 11400000, guid: 4eae6892c8d988b418cd7ba0b0cb003e, type: 2}
+  - {fileID: 11400000, guid: 16c493ed63a4d4345942fb9e67fb4cf8, type: 2}
+  - {fileID: 11400000, guid: 0922a573137437c4eaa06c4b6549d6a5, type: 2}
   - {fileID: 11400000, guid: 0528a4ef180eab14bb50fef0a5516c20, type: 2}
+  - {fileID: 11400000, guid: 813bba5cf2d2a094e87ea4e4ee740fe6, type: 2}
+  - {fileID: 11400000, guid: adf93a068ffec6044a0e5b8455bd4030, type: 2}
+  - {fileID: 11400000, guid: 224cb37597acb694384bec332e91c425, type: 2}
+  - {fileID: 11400000, guid: e27ac1904cbd16643a46acf9ca42f11b, type: 2}
+  - {fileID: 11400000, guid: 24731dc69d8db1c4ab99be107fda54d6, type: 2}
+  - {fileID: 11400000, guid: 702fd9ea96708e348960e7564f6218ef, type: 2}
+  - {fileID: 11400000, guid: 13522187d75ac974080a557e83aba54d, type: 2}
+  - {fileID: 11400000, guid: 192d3d6daedceb545b45e732d6a96880, type: 2}
+  - {fileID: 11400000, guid: 27607ceb1bdab3d4388cd114a6da5631, type: 2}
   - {fileID: 11400000, guid: 7d0d8e49f84552a44a3e9cee5884c20c, type: 2}
+  - {fileID: 11400000, guid: 02fb33e7fcec4984990339e2a5606891, type: 2}
+  - {fileID: 11400000, guid: ce6befd52216b9f42b538dd024b128fd, type: 2}
+  - {fileID: 11400000, guid: 7bfe6e8ffc6af7c45b144aba7baa0b1d, type: 2}
+  - {fileID: 11400000, guid: c25470637dc766747bbf27216e94181a, type: 2}
+  - {fileID: 11400000, guid: 09f08e5f1ae14b04b97b0795a9127b0c, type: 2}
+  - {fileID: 11400000, guid: 2ca50c3ab6bad504385f713d4c6ea28f, type: 2}
+  - {fileID: 11400000, guid: a3311b7a93936ae478bedbbcb6902039, type: 2}
+  - {fileID: 11400000, guid: 3676708b6efc80a478bc88f104941b8e, type: 2}
+  - {fileID: 11400000, guid: 57b1bb6a51fed484dadf9ca75c4a0c95, type: 2}

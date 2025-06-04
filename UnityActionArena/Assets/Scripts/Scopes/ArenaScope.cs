@@ -3,7 +3,6 @@ using ATG.Character;
 using ATG.Items.Equipment;
 using ATG.Move;
 using ATG.Spawn;
-using Entry_Points;
 using Settings;
 using UnityEngine;
 using VContainer;
@@ -19,6 +18,7 @@ namespace Scopes
         
         [SerializeField] private PlayerCharacterCreator playerCreator;
         [SerializeField] private BotCharactersPoolCreator botPoolCreator;
+        
         [SerializeField] private StaticEquipmentSourceCreator staticEquipmentSourceCreator;
         
         [SerializeField] private TargetNavigationPointSet targetNavigationPointSet;
@@ -34,6 +34,8 @@ namespace Scopes
             
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
+            
+            builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();
         }

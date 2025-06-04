@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbc6bc906c44982bfdfd01ee7803e11, type: 3}
-  m_Name: base-body-armor
+  m_Name: axe-arm
   m_EditorClassIdentifier: 
   Prototype:
-    Id: base-body-armor
+    Id: axe-arm
     MetaData:
-      Name: "\u0421\u0432\u0438\u043D\u0430\u044F \u0445\u0430\u0440\u044F"
+      Name: "\u0442\u043E\u043F\u043E\u0440 \u0441\u0435\u043B\u044E\u043A\u0430"
       Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
         \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
       Icon: {fileID: 21300000, guid: fd5fe12220ecc22468101e28449b9cbe, type: 3}
@@ -44,10 +44,10 @@ MonoBehaviour:
     - rid: 7637649362196627460
       type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        RangeEffect: 15
+        RangeEffect: 5
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        Type: 5
-        Mesh: {fileID: 4300728, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+        Type: 2
+        Mesh: {fileID: 4300482, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
         Material: {fileID: 2100000, guid: dccf8e44ede71db42b49378af93c5fb7, type: 2}

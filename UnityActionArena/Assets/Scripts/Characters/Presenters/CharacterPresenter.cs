@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using ATG.Animator;
-using ATG.Character.Attack;
-using ATG.Character.Health;
+using ATG.Attack;
+using ATG.Health;
 using ATG.Items;
 using ATG.Items.Equipment;
 using ATG.Move;
