@@ -1,6 +1,8 @@
-﻿using ATG.Camera;
+﻿using ATG.Attack;
+using ATG.Camera;
 using ATG.Input;
 using Characters.Observers;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace ATG.Character
@@ -10,8 +12,10 @@ namespace ATG.Character
         private readonly CharacterInputObserver _inputObserver;
         private readonly CinemachineWrapper _cinemachine;
         
-        public PlayerPresenter(CharacterView view, IInputable input, CinemachineWrapper cinemachine) : base(view)
+        public PlayerPresenter(CharacterView view, IInputable input, CinemachineWrapper cinemachine, RaycastPool raycastPool) 
+            : base(raycastPool, view)
         {
+            Debug.Log(raycastPool == null);
             _inputObserver = new CharacterInputObserver(_view.transform, input, _moveService, _animator);
             _cinemachine = cinemachine;
         }

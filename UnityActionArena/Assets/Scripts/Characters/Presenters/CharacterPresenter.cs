@@ -43,10 +43,11 @@ namespace ATG.Character
         
         protected readonly IMoveableService _moveService;
         protected readonly IAnimatorWrapper _animator;
-
+        protected readonly IAttackService _attackService;
+        
         protected bool _isActive;
         
-        protected CharacterPresenter(CharacterView view)
+        protected CharacterPresenter(RaycastPool raycastPool, CharacterView view)
         {
             _view = view;
             _characterModel = new CharacterModel(100, 100, 1, 3, 1);
@@ -56,6 +57,8 @@ namespace ATG.Character
             _equipmentViewObserver = new CharacterEquipViewObserver(_equipment, _view);
 
             _moveService = new NavMeshMoveService(_view.NavAgent, _characterModel.Speed);
+
+            _attackService = _view.AttackServiceCreator.Create(raycastPool, _characterModel.Range);
             _animator = _view.AnimatorWrapperCreator.Create();
         }
         

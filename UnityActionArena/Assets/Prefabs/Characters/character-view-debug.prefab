@@ -4325,6 +4325,8 @@ MonoBehaviour:
   <AnimatorWrapperCreator>k__BackingField:
     animatorSet: {fileID: 11400000, guid: deac8f515f31b3547bd521bb7d5cb78f, type: 2}
     animator: {fileID: 8435229629466206944}
+  <AttackServiceCreator>k__BackingField:
+    attackPoint: {fileID: 8831652956062976320}
   <NavAgent>k__BackingField: {fileID: 1102965821646041692}
 --- !u!1 &1898892484548872201
 GameObject:
@@ -18012,6 +18014,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8613582374098914060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4060140096176188551}
+  - component: {fileID: 8831652956062976320}
+  m_Layer: 0
+  m_Name: '[ATTACK-POINT'
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4060140096176188551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613582374098914060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.27733207, y: -0.65863085, z: -0.2666305, w: 0.64668417}
+  m_LocalPosition: {x: 0.00000020565196, y: 0.00000078183507, z: 0.00000056925546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2501315124838883169}
+  m_LocalEulerAnglesHint: {x: 0.428, y: -91.227, z: -45.25}
+--- !u!114 &8831652956062976320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613582374098914060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf70201f78f74d478256eb9067d3b1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8668167635174530614
 GameObject:
   m_ObjectHideFlags: 0
@@ -19221,6 +19267,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4060140096176188551}
   - {fileID: 2777002143300847963}
   - {fileID: 661369156659686617}
   - {fileID: 7171885472042042599}

@@ -1,4 +1,5 @@
 ﻿using ATG.Animator;
+using ATG.Attack;
 using ATG.Move;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ namespace ATG.Character
     {
         public readonly TargetNavigationPointSet NavigationPoints;
         
-        public BotPresenter(CharacterView view, TargetNavigationPointSet navigationSet) : base(view)
+        public BotPresenter(CharacterView view, TargetNavigationPointSet navigationSet, RaycastPool raycastPool) 
+            : base(raycastPool, view)
         {
             NavigationPoints = navigationSet;
         }

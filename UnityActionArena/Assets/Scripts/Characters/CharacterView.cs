@@ -1,4 +1,5 @@
 using ATG.Animator;
+using ATG.Attack;
 using ATG.Items.Equipment;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,7 @@ namespace ATG.Character
         private CharacterEquipmentView _equipmentView;
 
         [field: SerializeField] public AnimatorWrapperCreator AnimatorWrapperCreator { get; set; }
+        [field: SerializeField] public RaycastAttackServiceCreator AttackServiceCreator { get; set; }
         [field: SerializeField] public NavMeshAgent NavAgent { get; private set; }
         
         public Vector3 Position => transform.position;

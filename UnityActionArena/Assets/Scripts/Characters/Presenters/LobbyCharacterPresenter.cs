@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ATG.Attack;
 using ATG.Items;
 using ATG.Items.Inventory;
 
@@ -10,7 +11,8 @@ namespace ATG.Character
         
         public IEnumerable<Item> EquippedItems => _equipment.Items.Values;
         
-        public LobbyCharacterPresenter(CharacterView view) : base(view)
+        public LobbyCharacterPresenter(CharacterView view, RaycastPool raycastPool) 
+            : base(raycastPool, view)
         {
             _inventory = new Inventory();
         }

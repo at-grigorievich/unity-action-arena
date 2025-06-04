@@ -1,0 +1,60 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+using VContainer.Unity;
+
+namespace ATG.Attack
+{
+    public sealed class RaycastAttack: ITickable
+    {
+        private readonly AttackPoint _attackPoint;
+        private readonly HashSet<IAttackable> _attackablesByLast;
+        private readonly RaycastPool _raycastPool;
+        
+        private float _range;
+
+        private bool _allowAttack = false;
+
+        public RaycastAttack(AttackPoint attackPoint, RaycastPool raycastPool)
+        {
+            _allowAttack = attackPoint;
+            _attackablesByLast = new HashSet<IAttackable>();
+            _raycastPool = raycastPool;
+        }
+        
+        public void Start(float range)
+        {
+            _attackablesByLast.Clear();
+            
+            _range = range;
+            _allowAttack = true;
+        }
+
+        public IEnumerable<IAttackable> EndAndGetResult()
+        {
+            _allowAttack = false;
+            return _attackablesByLast;
+        }
+        
+        public void Tick()
+        {
+            if(_allowAttack == false) return;
+
+            RaycastHit[] hits;
+
+            int hitCount = _raycastPool.Hit(_attackPoint.Position, _attackPoint.Forward, _range, out hits);
+            
+            if(hitCount <= 0) return;
+            
+            for (int i = 0; i < hitCount; i++)
+            {
+                RaycastHit hit = hits[i];
+                
+                Debug.Log("Hit: " + hit.collider.name + " at distance " + hit.distance);
+
+                Transform hitTransform = hit.collider.transform;
+                if(hitTransform.root.TryGetComponent(out IAttackable attackable) == false) continue;
+                _attackablesByLast.Add(attackable);
+            }
+        }
+    }
+}
