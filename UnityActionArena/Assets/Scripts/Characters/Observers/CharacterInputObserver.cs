@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace Characters.Observers
 {
-    public sealed class CharacterInputObserver: IInitializable, IDisposable, ITickable
+    public sealed class CharacterInputObserver: ITickable
     {
         private readonly IInputable _input;
         
@@ -32,11 +32,18 @@ namespace Characters.Observers
             else throw new NullReferenceException("Camera.main is null");
         }
         
-        public void Initialize()
+        public void SetActive(bool isActive)
         {
-            
+            if (isActive == true)
+            {
+                _input.OnLMBClicked += OnLMBClicked;
+            }
+            else
+            {
+                _input.OnLMBClicked -= OnLMBClicked;
+            }
         }
-        
+
         public void Tick()
         {
             Vector2 input = _input.GetDirection();
@@ -55,11 +62,11 @@ namespace Characters.Observers
             }
         }
         
-        public void Dispose()
+        private void OnLMBClicked(bool obj)
         {
-            // TODO release managed resources here
+            Debug.Log("attack clicked");
         }
-
+        
         private Vector3 CalculateTargetPoint(Vector2 input)
         {
             Vector3 camForward = _cameraTransform.forward;

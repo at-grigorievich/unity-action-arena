@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ATG.Move;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ATG.Spawn
@@ -14,6 +15,8 @@ namespace ATG.Spawn
     [RequireComponent(typeof(SphereCollider))]
     public class SpawnPoint: TargetNavigationPoint, ISpawnPoint
     {
+        [SerializeField, ReadOnly] private bool isFreeDebug;
+        
         private SphereCollider _collider;
 
         private HashSet<GameObject> _objectsOnPoint = new();
@@ -22,7 +25,7 @@ namespace ATG.Spawn
         public Quaternion Rotation => transform.rotation;
         
         public override float Radius => _collider.radius;
-
+        
         public bool IsFree => _objectsOnPoint.Count == 0;
         
         private void Awake()
@@ -43,6 +46,7 @@ namespace ATG.Spawn
         
         private void OnDrawGizmosSelected()
         {
+            isFreeDebug = _objectsOnPoint.Count <= 0;
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, Radius);
         }

@@ -6,6 +6,7 @@ using ATG.Character.Health;
 using ATG.Items;
 using ATG.Items.Equipment;
 using ATG.Move;
+using ATG.Spawn;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -30,7 +31,7 @@ namespace ATG.Character
     [Serializable] public sealed class PlayerCharacterCreator: CharacterCreator<PlayerPresenter> {}
     [Serializable] public sealed class BotCharacterCreator: CharacterCreator<BotPresenter> {}
     
-    public abstract class CharacterPresenter: IInitializable, IDisposable
+    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable
     {
         protected readonly CharacterView _view;
         protected readonly CharacterModel _characterModel;
@@ -42,6 +43,8 @@ namespace ATG.Character
         
         protected readonly IMoveableService _moveService;
         protected readonly IAnimatorWrapper _animator;
+
+        protected bool _isActive;
         
         protected CharacterPresenter(CharacterView view)
         {
@@ -55,15 +58,13 @@ namespace ATG.Character
             _moveService = new NavMeshMoveService(_view.NavAgent, _characterModel.Speed);
             _animator = _view.AnimatorWrapperCreator.Create();
         }
-
+        
         public virtual void Initialize()
         {
             _view.Initialize(this);
             
             _equipmentModelObserver.Initialize();
             _equipmentViewObserver.Initialize();
-            
-            _animator.SetActive(true);
         }
         
         public virtual void Dispose()
@@ -72,6 +73,21 @@ namespace ATG.Character
             _equipmentViewObserver.Dispose();
         }
 
+        public virtual void SetActive(bool isActive)
+        {
+            _isActive = isActive;
+            
+            _moveService.Stop();
+            
+            _view.SetActive(_isActive);
+            _animator.SetActive(_isActive);
+        }
+        
+        public virtual void Spawn(Vector3 spawnPosition, Quaternion spawnRotation)
+        {
+            _moveService.PlaceTo(spawnPosition, spawnRotation);
+        }
+        
         public void TakeOnEquipments(IEnumerable<Item> items)
         {
             foreach (var item in items)

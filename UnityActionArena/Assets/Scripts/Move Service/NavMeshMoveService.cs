@@ -32,6 +32,13 @@ namespace ATG.Move
             RotateToPosition(position);
         }
 
+        public void PlaceTo(Vector3 position, Quaternion rotation)
+        {
+            _agent.isStopped = true;
+            _agent.transform.position = position;
+            _agent.transform.rotation = rotation;
+        }
+
         public void Stop()
         {
             _agent.speed = 0f;

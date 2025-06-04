@@ -13,21 +13,22 @@ namespace ATG.Character
             _inputObserver = new CharacterInputObserver(_view.transform, input, _moveService, _animator);
         }
 
-        public override void Initialize()
+        public override void SetActive(bool isActive)
         {
-            base.Initialize();
-            _inputObserver.Initialize();
+            base.SetActive(isActive);
+            _inputObserver.SetActive(isActive);
         }
 
         public void Tick()
         {
-            _inputObserver.Tick();
+            if(_isActive == false) return;
+                _inputObserver.Tick();
         }
         
         public override void Dispose()
         {
             base.Dispose();
-            _inputObserver.Dispose();
+            _inputObserver.SetActive(false);
         }
     }
 }

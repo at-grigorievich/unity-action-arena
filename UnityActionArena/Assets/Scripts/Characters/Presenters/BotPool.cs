@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ATG.Move;
+using ATG.Spawn;
 using Settings;
 using UnityEngine;
 using VContainer;
@@ -15,13 +16,13 @@ namespace ATG.Character
 
         public void Create(IContainerBuilder builder)
         {
-            builder.Register<BotCharactersPool>(Lifetime.Singleton)
+            builder.Register<BotPool>(Lifetime.Singleton)
                 .WithParameter(botPrefab)
                 .AsSelf().AsImplementedInterfaces();
         }
     }     
     
-    public sealed class BotCharactersPool: IInitializable, IDisposable 
+    public sealed class BotPool: IInitializable, IDisposable 
     {
         private readonly CharacterView _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
@@ -30,7 +31,9 @@ namespace ATG.Character
         
         private List<BotPresenter> _botSet;
 
-        public BotCharactersPool(CharacterView prefab, IArenaSize arenaSize, TargetNavigationPointSet pointSet)
+        public IEnumerable<BotPresenter> Set => _botSet;
+        
+        public BotPool(CharacterView prefab, IArenaSize arenaSize, TargetNavigationPointSet pointSet)
         {
             _prefab = prefab;
             _botSet = new List<BotPresenter>(arenaSize.PlayersOnArena - 1);
@@ -48,8 +51,8 @@ namespace ATG.Character
                 BotPresenter bot = new BotPresenter(view, _targetPointSet);
                 
                 _botSet.Add(bot);
-                bot.Initialize();
                 
+                bot.Initialize();
                 bot.SetActive(false);
             }
         }

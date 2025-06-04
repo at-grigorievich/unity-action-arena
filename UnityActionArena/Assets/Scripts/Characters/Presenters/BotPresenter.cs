@@ -13,7 +13,11 @@ namespace ATG.Character
             NavigationPoints = navigationSet;
         }
 
-        public void SetActive(bool isActive) => _view.SetActive(isActive);
+        public override void SetActive(bool isActive)
+        {
+            Idle();
+            base.SetActive(isActive);
+        }
         
         public void Idle()
         {
