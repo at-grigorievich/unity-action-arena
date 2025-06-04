@@ -10,7 +10,7 @@ namespace ATG.Character
     {
         private Rigidbody _rb;
         private Collider _collider;
-        private CharacterEquipmentView _equipment;
+        private CharacterEquipmentView _equipmentView;
 
         [field: SerializeField] public AnimatorWrapperCreator AnimatorWrapperCreator { get; set; }
         [field: SerializeField] public NavMeshAgent NavAgent { get; private set; }
@@ -26,24 +26,19 @@ namespace ATG.Character
             
             _rb = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
-            _equipment = GetComponent<CharacterEquipmentView>();
+            _equipmentView = GetComponent<CharacterEquipmentView>();
 
             _rb.isKinematic = true;
             _collider.isTrigger = false;
             
-            _equipment.Initialize();
+            _equipmentView.Initialize();
         }
         
-        public void SetName(string newName)
+        public void SetVisible(bool isVisible)
         {
-            gameObject.name = newName;
+            _equipmentView.SetVisible(isVisible);
         }
-
-        public void SetActive(bool isActive)
-        {
-            gameObject.SetActive(isActive);
-        }
-
+        
         public void SetPhysActive(bool isActive)
         {
             _collider.enabled = isActive;
@@ -51,7 +46,7 @@ namespace ATG.Character
 
         public void PutOn(EquipmentViewData data)
         {
-            _equipment.PutOn(data);
+            _equipmentView.PutOn(data);
         }
     }
 }

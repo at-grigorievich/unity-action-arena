@@ -79,9 +79,14 @@ namespace ATG.Character
             
             _moveService.Stop();
             
-            _view.SetActive(_isActive);
             _animator.SetActive(_isActive);
+            
+            SetVisible(isActive);
+            SetPhysActive(isActive);
         }
+
+        public void SetVisible(bool isVisible) => _view.SetVisible(isVisible);
+        public void SetPhysActive(bool isActive) => _view.SetPhysActive(isActive);
         
         public virtual void Spawn(Vector3 spawnPosition, Quaternion spawnRotation)
         {

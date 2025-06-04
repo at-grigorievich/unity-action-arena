@@ -1,4 +1,5 @@
-﻿using ATG.Character;
+﻿using ATG.Camera;
+using ATG.Character;
 using ATG.Items.Equipment;
 using ATG.Move;
 using ATG.Spawn;
@@ -14,6 +15,7 @@ namespace Scopes
     {
         [SerializeField] private ArenaSettings arenaSettings;
         [SerializeField] private SpawnServiceCreator spawnServiceCreator;
+        [SerializeField] private CinemachineWrapperCreator cinemachineCreator;
         
         [SerializeField] private PlayerCharacterCreator playerCreator;
         [SerializeField] private BotCharactersPoolCreator botPoolCreator;
@@ -23,12 +25,13 @@ namespace Scopes
         
         protected override void Configure(IContainerBuilder builder)
         {
+            cinemachineCreator.Create(builder);
             staticEquipmentSourceCreator.Create(builder);
             playerCreator.Create(builder);
             botPoolCreator.Create(builder);
             
             spawnServiceCreator.Create(builder);
-
+            
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
             

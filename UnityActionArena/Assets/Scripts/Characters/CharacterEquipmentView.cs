@@ -23,6 +23,13 @@ namespace ATG.Character
                 { EquipType.RightHand, arm }
             };
         }
+
+        public void SetVisible(bool isActive)
+        {
+            body.SetVisible(isActive);
+            head.SetVisible(isActive);
+            arm.SetVisible(isActive);
+        }
         
         public void PutOn(EquipmentViewData data)
         {

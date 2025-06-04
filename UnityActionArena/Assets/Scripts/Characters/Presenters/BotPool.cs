@@ -53,7 +53,14 @@ namespace ATG.Character
                 _botSet.Add(bot);
                 
                 bot.Initialize();
-                bot.SetActive(false);
+            }
+        }
+
+        public void SetActiveAll(bool isActive)
+        {
+            foreach (var bot in _botSet)
+            {
+                bot.SetActive(isActive);
             }
         }
         

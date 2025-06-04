@@ -14,6 +14,11 @@ namespace ATG.Items.Equipment
             _renderer = GetComponent<MeshRenderer>();
         }
 
+        public void SetVisible(bool isActive)
+        {
+            _renderer.enabled = isActive;
+        }
+        
         public void PutOn(EquipmentViewData data)
         {
             Mesh meshCopy = Instantiate(data.Mesh);

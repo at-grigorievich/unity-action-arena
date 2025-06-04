@@ -20,7 +20,6 @@ namespace ATG.Move
         public void SetActive(bool isActive)
         {
             _agent.enabled = isActive;
-            _agent.isStopped = true;
         }
 
         public void MoveTo(Vector3 position)
@@ -34,9 +33,10 @@ namespace ATG.Move
 
         public void PlaceTo(Vector3 position, Quaternion rotation)
         {
-            _agent.isStopped = true;
+            SetActive(false);
             _agent.transform.position = position;
             _agent.transform.rotation = rotation;
+            SetActive(true);
         }
 
         public void Stop()

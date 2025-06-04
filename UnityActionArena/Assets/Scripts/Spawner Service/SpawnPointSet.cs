@@ -25,14 +25,14 @@ namespace ATG.Spawn
                     freePoints.Add(spawnPoint);
                 }
             }
-
+            
             return GetRndPoint(freePoints.Count == 0 ? _set : freePoints.ToArray());
         }
         
         private ISpawnPoint GetRndPoint(ISpawnPoint[] spawnPoints)
         {
             int rndIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
-            return _set[rndIndex];
+            return spawnPoints[rndIndex];
         }
     }
 }

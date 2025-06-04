@@ -11,6 +11,11 @@ namespace ATG.Items.Equipment
         {
             _skin = GetComponent<SkinnedMeshRenderer>();
         }
+
+        public void SetVisible(bool isActive)
+        {
+            _skin.enabled = isActive;
+        }
         
         public void PutOn(EquipmentViewData data)
         {

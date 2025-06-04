@@ -15,7 +15,7 @@ namespace ATG.Spawn
     [RequireComponent(typeof(SphereCollider))]
     public class SpawnPoint: TargetNavigationPoint, ISpawnPoint
     {
-        [SerializeField, ReadOnly] private bool isFreeDebug;
+        [SerializeField, ReadOnly] private bool isFreeDebug = true;
         
         private SphereCollider _collider;
 
@@ -23,10 +23,8 @@ namespace ATG.Spawn
 
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
-        
-        public override float Radius => _collider.radius;
-        
-        public bool IsFree => _objectsOnPoint.Count == 0;
+
+        public bool IsFree { get; private set; } = true;
         
         private void Awake()
         {
@@ -37,17 +35,20 @@ namespace ATG.Spawn
         private void OnTriggerEnter(Collider other)
         {
             _objectsOnPoint.Add(other.gameObject);
+            IsFree = false;
+            isFreeDebug = IsFree;
         }
 
         private void OnTriggerExit(Collider other)
         {
             _objectsOnPoint.Remove(other.gameObject);
+            IsFree = _objectsOnPoint.Count <= 0;
+            isFreeDebug = IsFree;
         }
         
         private void OnDrawGizmosSelected()
         {
-            isFreeDebug = _objectsOnPoint.Count <= 0;
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.green / 2.0f;
             Gizmos.DrawWireSphere(transform.position, Radius);
         }
     }
