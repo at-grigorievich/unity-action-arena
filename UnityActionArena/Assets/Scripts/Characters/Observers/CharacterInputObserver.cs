@@ -1,5 +1,6 @@
 ﻿using System;
 using ATG.Animator;
+using ATG.Attack;
 using ATG.Move;
 using ATG.Input;
 using UnityEngine;
@@ -15,11 +16,12 @@ namespace Characters.Observers
         
         private readonly IMoveableService _moveService;
         private readonly IAnimatorWrapper _animatorService;
+        private readonly IAttackService _attacker;
         
         private readonly Transform _cameraTransform;
         
         public CharacterInputObserver(Transform characterTransform, IInputable input,
-            IMoveableService moveService, IAnimatorWrapper animatorService)
+            IMoveableService moveService, IAttackService attackService, IAnimatorWrapper animatorService)
         {
             _characterTransform = characterTransform;
             
@@ -27,6 +29,7 @@ namespace Characters.Observers
             
             _moveService = moveService;
             _animatorService = animatorService;
+            _attacker = attackService;
 
             if (Camera.main != null) _cameraTransform = Camera.main.transform;
             else throw new NullReferenceException("Camera.main is null");
@@ -64,7 +67,7 @@ namespace Characters.Observers
         
         private void OnLMBClicked(bool obj)
         {
-            Debug.Log("attack clicked");
+            _attacker.TakeSwing();
         }
         
         private Vector3 CalculateTargetPoint(Vector2 input)

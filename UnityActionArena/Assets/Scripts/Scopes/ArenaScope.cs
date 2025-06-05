@@ -37,7 +37,6 @@ namespace Scopes
             builder.RegisterInstance(targetNavigationPointSet);
             
             builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
-            builder.Register<RaycastPool>(Lifetime.Singleton).WithParameter(15);
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();
         }

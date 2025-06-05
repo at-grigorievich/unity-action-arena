@@ -13,5 +13,10 @@ namespace ATG.Animator
         {
             return new AnimatorWrapper(animator, animatorSet);
         }
+        
+        public IAnimatorWrapper Create(UnityEngine.Animator overrideAnimator)
+        {
+            return new AnimatorWrapper(overrideAnimator, animatorSet);
+        }
     }
 }

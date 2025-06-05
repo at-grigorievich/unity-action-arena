@@ -2,21 +2,22 @@
 
 namespace ATG.Attack
 {
-    public sealed class RaycastPool
+    public static class RaycastPool
     {
-        private readonly RaycastHit[] _hits;
+        private static int BUFFER_SIZE = 25;
+        private static RaycastHit[] _hits;
 
-        public RaycastPool(int hitBufferSize)
+        static RaycastPool()
         {
-            _hits = new RaycastHit[hitBufferSize];
+            _hits = new RaycastHit[BUFFER_SIZE];
         }
 
-        public int Hit(Vector3 origin, Vector3 direction, float range, out RaycastHit[] hits)
+        public static int Hit(Vector3 origin, Vector3 direction, float range, out RaycastHit[] hits)
         {
             Debug.DrawRay(origin, direction * range, Color.red);
             
             int hitCount = Physics.RaycastNonAlloc(origin, direction, _hits, range);
-            
+
             hits = _hits;
             return hitCount;
         }

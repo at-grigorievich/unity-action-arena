@@ -5,14 +5,17 @@ using UnityEngine;
 
 namespace ATG.Character
 {
-    public sealed class BotPresenter: CharacterPresenter
+    public sealed class BotPresenter: ArenaCharacterPresenter
     {
         public readonly TargetNavigationPointSet NavigationPoints;
         
-        public BotPresenter(CharacterView view, TargetNavigationPointSet navigationSet, RaycastPool raycastPool) 
-            : base(raycastPool, view)
+        public BotPresenter(CharacterView view, CharacterModel model, 
+            IAnimatorWrapper animator, IMoveableService move, 
+            IAttackService attack, 
+            TargetNavigationPointSet navigationPoints) 
+            : base(view, model, animator, move, attack)
         {
-            NavigationPoints = navigationSet;
+            NavigationPoints = navigationPoints;
         }
 
         public override void SetActive(bool isActive)
@@ -23,13 +26,13 @@ namespace ATG.Character
         
         public void Idle()
         {
-            _moveService.Stop();
+            _move.Stop();
             _animator.SelectState(AnimatorTag.Idle);
         }
         
         public void MoveTo(Vector3 position)
         {
-            _moveService.MoveTo(position);
+            _move.MoveTo(position);
             _animator.SelectState(AnimatorTag.Run);
         }
     }

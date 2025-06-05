@@ -1,4 +1,4 @@
-using ATG.Animator;
+using System;
 using ATG.Attack;
 using ATG.Items.Equipment;
 using UnityEngine;
@@ -7,18 +7,18 @@ using UnityEngine.AI;
 namespace ATG.Character
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(CharacterEquipmentView))]
-    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable
+    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable, IAttackable
     {
         private Rigidbody _rb;
         private Collider _collider;
         private CharacterEquipmentView _equipmentView;
-
-        [field: SerializeField] public AnimatorWrapperCreator AnimatorWrapperCreator { get; set; }
-        [field: SerializeField] public RaycastAttackServiceCreator AttackServiceCreator { get; set; }
+        
         [field: SerializeField] public NavMeshAgent NavAgent { get; private set; }
         
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
+
+        public event Action<object> OnAttacked; 
         
         public CharacterPresenter MyPresenter { get; private set; }
         
@@ -49,6 +49,11 @@ namespace ATG.Character
         public void PutOn(EquipmentViewData data)
         {
             _equipmentView.PutOn(data);
+        }
+
+        public void TakeHitByAttacker(object attacker)
+        {
+            OnAttacked?.Invoke(attacker);
         }
     }
 }

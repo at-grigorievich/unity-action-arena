@@ -1,23 +1,26 @@
-﻿using ATG.Attack;
+﻿using ATG.Animator;
+using ATG.Attack;
 using ATG.Camera;
 using ATG.Input;
+using ATG.Move;
 using Characters.Observers;
-using UnityEngine;
-using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public sealed class PlayerPresenter: CharacterPresenter, ITickable
+    public sealed class PlayerPresenter: ArenaCharacterPresenter
     {
-        private readonly CharacterInputObserver _inputObserver;
         private readonly CinemachineWrapper _cinemachine;
         
-        public PlayerPresenter(CharacterView view, IInputable input, CinemachineWrapper cinemachine, RaycastPool raycastPool) 
-            : base(raycastPool, view)
+        private readonly CharacterInputObserver _inputObserver;
+        
+        public PlayerPresenter(CharacterView view, CharacterModel model,
+            IAnimatorWrapper animator, IMoveableService move, 
+            IAttackService attack, CinemachineWrapper cinemachine, 
+            IInputable input) 
+            : base(view, model, animator, move, attack)
         {
-            Debug.Log(raycastPool == null);
-            _inputObserver = new CharacterInputObserver(_view.transform, input, _moveService, _animator);
             _cinemachine = cinemachine;
+            _inputObserver = new CharacterInputObserver(_view.transform, input, _move, _attack, _animator);;
         }
 
         public override void SetActive(bool isActive)
@@ -27,10 +30,11 @@ namespace ATG.Character
             _cinemachine.SelectPlayerTarget(isActive);
         }
 
-        public void Tick()
+        public override void Tick()
         {
+            base.Tick();
             if(_isActive == false) return;
-                _inputObserver.Tick();
+            _inputObserver.Tick();
         }
         
         public override void Dispose()

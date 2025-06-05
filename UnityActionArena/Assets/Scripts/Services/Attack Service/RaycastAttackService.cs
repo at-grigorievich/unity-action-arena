@@ -11,26 +11,27 @@ namespace ATG.Attack
     {
         [SerializeField] private AttackPoint attackPoint;
 
-        public IAttackService Create(RaycastPool raycastPool, IReadOnlyObservableVar<float> range)
+        public IAttackService Create(IReadOnlyObservableVar<float> range)
         {
-            return new RaycastAttackService(attackPoint, raycastPool, range);
+            return new RaycastAttackService(attackPoint, range);
         }
     }
     
-    public sealed class RaycastAttackService: IAttackService, ITickable
+    public sealed class RaycastAttackService: IAttackService
     {
         private readonly IReadOnlyObservableVar<float> _range;
 
         private readonly RaycastAttack _attack;
 
-        public RaycastAttackService(AttackPoint attackPoint, RaycastPool raycastPool, IReadOnlyObservableVar<float> range)
+        public RaycastAttackService(AttackPoint attackPoint, IReadOnlyObservableVar<float> range)
         {
             _range = range;
-            _attack = new RaycastAttack(attackPoint, raycastPool);
+            _attack = new RaycastAttack(attackPoint);
         }
 
         public void TakeSwing()
         {
+            Debug.Log("take swing");
             _attack.Start(_range.Value);
         }
 

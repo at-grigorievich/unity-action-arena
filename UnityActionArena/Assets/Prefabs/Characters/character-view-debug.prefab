@@ -4322,9 +4322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbcfdf5392cfef46aac22270eb04dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AnimatorWrapperCreator>k__BackingField:
-    animatorSet: {fileID: 11400000, guid: deac8f515f31b3547bd521bb7d5cb78f, type: 2}
-    animator: {fileID: 8435229629466206944}
   <AttackServiceCreator>k__BackingField:
     attackPoint: {fileID: 8831652956062976320}
   <NavAgent>k__BackingField: {fileID: 1102965821646041692}
@@ -18025,7 +18022,7 @@ GameObject:
   - component: {fileID: 4060140096176188551}
   - component: {fileID: 8831652956062976320}
   m_Layer: 0
-  m_Name: '[ATTACK-POINT'
+  m_Name: '[ATTACK-POINT]'
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

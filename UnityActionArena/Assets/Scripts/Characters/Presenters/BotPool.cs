@@ -1,36 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using ATG.Attack;
 using ATG.Items.Equipment;
 using ATG.Move;
-using ATG.Spawn;
 using Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
-using Random = UnityEngine.Random;
 
 namespace ATG.Character
 {
     [Serializable]
     public sealed class BotCharactersPoolCreator
     {
-        [SerializeField] private CharacterView botPrefab;
+        [SerializeField] private BotPresenterCreator botPresenterCreator;
 
         public void Create(IContainerBuilder builder)
         {
             builder.Register<BotPool>(Lifetime.Singleton)
-                .WithParameter(botPrefab)
+                .WithParameter(botPresenterCreator)
                 .AsSelf().AsImplementedInterfaces();
         }
     }     
     
     public sealed class BotPool: IInitializable, IDisposable 
     {
-        private readonly CharacterView _prefab;
+        private readonly BotPresenterCreator _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
         
-        private readonly RaycastPool _raycastPool;
         private readonly RandomEquipmentSource _equipmentSource;
         
         private readonly Transform _root;
@@ -39,13 +36,13 @@ namespace ATG.Character
 
         public IEnumerable<BotPresenter> Set => _botSet;
         
-        public BotPool(CharacterView prefab, IArenaSize arenaSize, RandomEquipmentSource equipmentSource,
-            TargetNavigationPointSet pointSet, RaycastPool raycastPool)
+        public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize, RandomEquipmentSource equipmentSource,
+            TargetNavigationPointSet pointSet)
         {
             _prefab = prefab;
+            
             _botSet = new List<BotPresenter>(arenaSize.PlayersOnArena - 1);
             
-            _raycastPool = raycastPool;
             _equipmentSource = equipmentSource;
             
             _targetPointSet = pointSet;
@@ -57,8 +54,8 @@ namespace ATG.Character
         {
             for (var i = 0; i < _botSet.Capacity; i++)
             {
-                CharacterView view = GameObject.Instantiate(_prefab, _root);
-                BotPresenter bot = new BotPresenter(view, _targetPointSet, _raycastPool);
+                BotPresenterCreator instance = GameObject.Instantiate(_prefab, _root);
+                BotPresenter bot = instance.Create(_targetPointSet);
                 
                 _botSet.Add(bot);
                 

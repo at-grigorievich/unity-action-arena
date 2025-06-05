@@ -8,17 +8,15 @@ namespace ATG.Attack
     {
         private readonly AttackPoint _attackPoint;
         private readonly HashSet<IAttackable> _attackablesByLast;
-        private readonly RaycastPool _raycastPool;
         
         private float _range;
 
         private bool _allowAttack = false;
 
-        public RaycastAttack(AttackPoint attackPoint, RaycastPool raycastPool)
+        public RaycastAttack(AttackPoint attackPoint)
         {
-            _allowAttack = attackPoint;
+            _attackPoint = attackPoint;
             _attackablesByLast = new HashSet<IAttackable>();
-            _raycastPool = raycastPool;
         }
         
         public void Start(float range)
@@ -40,8 +38,8 @@ namespace ATG.Attack
             if(_allowAttack == false) return;
 
             RaycastHit[] hits;
-
-            int hitCount = _raycastPool.Hit(_attackPoint.Position, _attackPoint.Forward, _range, out hits);
+            
+            int hitCount = RaycastPool.Hit(_attackPoint.Position, _attackPoint.Forward, _range, out hits);
             
             if(hitCount <= 0) return;
             
@@ -49,7 +47,7 @@ namespace ATG.Attack
             {
                 RaycastHit hit = hits[i];
                 
-                Debug.Log("Hit: " + hit.collider.name + " at distance " + hit.distance);
+                //Debug.Log("Hit: " + hit.collider.name + " at distance " + hit.distance);
 
                 Transform hitTransform = hit.collider.transform;
                 if(hitTransform.root.TryGetComponent(out IAttackable attackable) == false) continue;

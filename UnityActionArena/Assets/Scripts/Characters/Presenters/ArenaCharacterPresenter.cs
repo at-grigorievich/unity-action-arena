@@ -1,0 +1,26 @@
+﻿using ATG.Animator;
+using ATG.Attack;
+using ATG.Move;
+using VContainer.Unity;
+
+namespace ATG.Character
+{
+    public abstract class ArenaCharacterPresenter: CharacterPresenter, ITickable
+    {
+        protected readonly IAttackService _attack;
+        
+        protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
+            IAnimatorWrapper animator, IMoveableService move, IAttackService attack) 
+            : base(view, model, animator, move)
+        {
+            _attack = attack;
+        }
+
+        public virtual void Tick()
+        {
+            if(_isActive == false) return;
+            
+            _attack.Tick();
+        }
+    }
+}
