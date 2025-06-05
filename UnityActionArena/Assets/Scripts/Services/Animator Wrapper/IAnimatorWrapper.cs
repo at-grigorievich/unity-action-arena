@@ -1,4 +1,6 @@
-﻿namespace ATG.Animator
+﻿using ATG.Animator.Event_Dispatcher;
+
+namespace ATG.Animator
 {
     public readonly struct StateData
     {
@@ -14,6 +16,8 @@
     
     public interface IAnimatorWrapper
     {
+        AnimatorEventDispatcher EventDispatcher { get; }
+        
         void SetActive(bool isActive);
 
         void SelectState(AnimatorTag tag);

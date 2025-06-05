@@ -9,6 +9,13 @@ namespace Characters.Observers
         private readonly IInputable _input;
         private readonly IAttackService _attack;
         private readonly IAnimatorWrapper _animator;
+
+        public AttackByInputObserver(IInputable input, IAttackService attack, IAnimatorWrapper animator)
+        {
+            _input = input;
+            _attack = attack;
+            _animator = animator;
+        }
         
         public void SetActive(bool isActive)
         {

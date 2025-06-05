@@ -10,7 +10,7 @@ namespace ATG.Animator
         private Dictionary<AnimatorTag, IAnimatorState> _statesByTag;
         
         [CanBeNull]
-        public readonly AnimatorEventDispatcher EventDispatcher;
+        public AnimatorEventDispatcher EventDispatcher { get; private set; }
         
         public AnimatorWrapper(UnityEngine.Animator animator, AnimatorStateSet data,
             AnimatorEventDispatcher eventDispatcher):this(animator, data)

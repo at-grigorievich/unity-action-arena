@@ -11,7 +11,8 @@ namespace ATG.Character
     {
         private readonly CinemachineWrapper _cinemachine;
         
-        private readonly MoveByInputObserver _inputObserver;
+        private readonly MoveByInputObserver _moveObserver;
+        private readonly AttackByInputObserver _attackObserver;
         
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
@@ -20,13 +21,14 @@ namespace ATG.Character
             : base(view, model, animator, move, attack)
         {
             _cinemachine = cinemachine;
-            _inputObserver = new MoveByInputObserver(_view.transform, input, _move, _attack, _animator);;
+            _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);
+            _attackObserver = new AttackByInputObserver(input, _attack, _animator);
         }
 
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
-            _inputObserver.SetActive(isActive);
+            _moveObserver.SetActive(isActive);
             _cinemachine.SelectPlayerTarget(isActive);
         }
 
@@ -34,13 +36,13 @@ namespace ATG.Character
         {
             base.Tick();
             if(_isActive == false) return;
-            _inputObserver.Tick();
+            _moveObserver.Tick();
         }
         
         public override void Dispose()
         {
             base.Dispose();
-            _inputObserver.SetActive(false);
+            _moveObserver.SetActive(false);
         }
     }
 }
