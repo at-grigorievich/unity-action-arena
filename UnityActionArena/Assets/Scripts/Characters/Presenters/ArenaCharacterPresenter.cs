@@ -14,6 +14,7 @@ namespace ATG.Character
             : base(view, model, animator, move)
         {
             _attack = attack;
+            _attack.InitOwner(_view);
         }
 
         public virtual void Tick()

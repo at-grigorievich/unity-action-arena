@@ -44,7 +44,7 @@ MonoBehaviour:
     - rid: 7637649362196627460
       type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        RangeEffect: 5
+        RangeEffect: 2
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

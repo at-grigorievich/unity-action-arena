@@ -8,6 +8,8 @@ namespace ATG.Attack
     {
         private readonly AttackPoint _attackPoint;
         private readonly HashSet<IAttackable> _attackablesByLast;
+
+        private IAttackable _owner;
         
         private float _range;
 
@@ -19,6 +21,8 @@ namespace ATG.Attack
             _attackablesByLast = new HashSet<IAttackable>();
         }
         
+        public void InitOwner(IAttackable owner) => _owner = owner;
+        
         public void Start(float range)
         {
             _attackablesByLast.Clear();
@@ -26,7 +30,7 @@ namespace ATG.Attack
             _range = range;
             _allowAttack = true;
         }
-
+        
         public IEnumerable<IAttackable> EndAndGetResult()
         {
             _allowAttack = false;
@@ -50,7 +54,12 @@ namespace ATG.Attack
                 //Debug.Log("Hit: " + hit.collider.name + " at distance " + hit.distance);
 
                 Transform hitTransform = hit.collider.transform;
-                if(hitTransform.root.TryGetComponent(out IAttackable attackable) == false) continue;
+
+                if(hitTransform.TryGetComponent(out IAttackable attackable) == false) continue;
+                if(ReferenceEquals(_owner, attackable) == true) continue;
+                
+                //Debug.Log($"{hitTransform.name} is attackable");
+                
                 _attackablesByLast.Add(attackable);
             }
         }

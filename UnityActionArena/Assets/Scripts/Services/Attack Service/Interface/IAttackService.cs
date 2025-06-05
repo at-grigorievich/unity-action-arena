@@ -5,6 +5,7 @@ namespace ATG.Attack
 {
     public interface IAttackService: ITickable
     {
+        void InitOwner(IAttackable owner);
         void TakeSwing();
         IEnumerable<IAttackable> EndSwing();
     }

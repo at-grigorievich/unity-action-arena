@@ -29,6 +29,8 @@ namespace ATG.Attack
             _attack = new RaycastAttack(attackPoint);
         }
 
+        public void InitOwner(IAttackable owner) => _attack.InitOwner(owner);
+
         public void TakeSwing()
         {
             Debug.Log("take swing");
@@ -37,6 +39,7 @@ namespace ATG.Attack
 
         public IEnumerable<IAttackable> EndSwing()
         {
+            Debug.Log("end swing");
             return _attack.EndAndGetResult();
         }
         
