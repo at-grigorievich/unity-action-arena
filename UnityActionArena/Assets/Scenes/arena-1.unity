@@ -2448,6 +2448,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbcfdf5392cfef46aac22270eb04dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &433729973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 321331456851620199, guid: f6476dd946eef2c41aa36266211f8299,
+    type: 3}
+  m_PrefabInstance: {fileID: 433729971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f40db7380d04530935d7e4f00d14ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &452934385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7116,10 +7128,12 @@ MonoBehaviour:
     animatorCreator:
       animatorSet: {fileID: 11400000, guid: deac8f515f31b3547bd521bb7d5cb78f, type: 2}
       animator: {fileID: 1629385592}
+      withEventDispatcher: 1
+      animatorEventDispatcher: {fileID: 433729973}
     attackCreator:
       attackPoint: {fileID: 953428823}
   botPoolCreator:
-    botCreator: {fileID: 6371186653383767649, guid: 63e5b5a5657d7c542b6c9dbad9fefcd3,
+    botPresenterCreator: {fileID: 6371186653383767649, guid: 63e5b5a5657d7c542b6c9dbad9fefcd3,
       type: 3}
   staticEquipmentSourceCreator:
     configs:

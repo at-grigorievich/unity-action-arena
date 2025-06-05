@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using ATG.Animator.Event_Dispatcher;
+using JetBrains.Annotations;
 
 namespace ATG.Animator
 {
@@ -6,7 +8,16 @@ namespace ATG.Animator
     {
         private readonly UnityEngine.Animator _animator;
         private Dictionary<AnimatorTag, IAnimatorState> _statesByTag;
-
+        
+        [CanBeNull]
+        public readonly AnimatorEventDispatcher EventDispatcher;
+        
+        public AnimatorWrapper(UnityEngine.Animator animator, AnimatorStateSet data,
+            AnimatorEventDispatcher eventDispatcher):this(animator, data)
+        {
+            EventDispatcher = eventDispatcher;
+        }
+        
         public AnimatorWrapper(UnityEngine.Animator animator, AnimatorStateSet data)
         {
             _animator = animator;

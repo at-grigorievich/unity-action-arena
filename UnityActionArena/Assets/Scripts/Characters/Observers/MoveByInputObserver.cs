@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace Characters.Observers
 {
-    public sealed class CharacterInputObserver: ITickable
+    public sealed class MoveByInputObserver: ITickable
     {
         private readonly IInputable _input;
         
@@ -20,7 +20,7 @@ namespace Characters.Observers
         
         private readonly Transform _cameraTransform;
         
-        public CharacterInputObserver(Transform characterTransform, IInputable input,
+        public MoveByInputObserver(Transform characterTransform, IInputable input,
             IMoveableService moveService, IAttackService attackService, IAnimatorWrapper animatorService)
         {
             _characterTransform = characterTransform;

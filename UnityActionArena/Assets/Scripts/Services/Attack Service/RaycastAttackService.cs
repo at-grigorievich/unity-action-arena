@@ -23,23 +23,27 @@ namespace ATG.Attack
 
         private readonly RaycastAttack _attack;
 
+        public bool IsAvailable { get; private set; } = true;
+        
         public RaycastAttackService(AttackPoint attackPoint, IReadOnlyObservableVar<float> range)
         {
             _range = range;
             _attack = new RaycastAttack(attackPoint);
         }
-
+        
         public void InitOwner(IAttackable owner) => _attack.InitOwner(owner);
 
         public void TakeSwing()
         {
             Debug.Log("take swing");
+            IsAvailable = false;
             _attack.Start(_range.Value);
         }
 
         public IEnumerable<IAttackable> EndSwing()
         {
             Debug.Log("end swing");
+            IsAvailable = true;
             return _attack.EndAndGetResult();
         }
         

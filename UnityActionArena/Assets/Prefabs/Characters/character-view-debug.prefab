@@ -4117,6 +4117,7 @@ GameObject:
   - component: {fileID: 3744269980395747893}
   - component: {fileID: 470008005982950936}
   - component: {fileID: 1102965821646041692}
+  - component: {fileID: 4423955010596800519}
   - component: {fileID: 457258127578026973}
   - component: {fileID: 6011075441666007143}
   m_Layer: 0
@@ -4295,6 +4296,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4423955010596800519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791764202888956869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f40db7380d04530935d7e4f00d14ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &457258127578026973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4322,8 +4335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbcfdf5392cfef46aac22270eb04dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AttackServiceCreator>k__BackingField:
-    attackPoint: {fileID: 8831652956062976320}
   <NavAgent>k__BackingField: {fileID: 1102965821646041692}
 --- !u!1 &1898892484548872201
 GameObject:

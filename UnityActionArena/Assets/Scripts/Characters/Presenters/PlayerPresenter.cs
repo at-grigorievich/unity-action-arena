@@ -11,7 +11,7 @@ namespace ATG.Character
     {
         private readonly CinemachineWrapper _cinemachine;
         
-        private readonly CharacterInputObserver _inputObserver;
+        private readonly MoveByInputObserver _inputObserver;
         
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
@@ -20,7 +20,7 @@ namespace ATG.Character
             : base(view, model, animator, move, attack)
         {
             _cinemachine = cinemachine;
-            _inputObserver = new CharacterInputObserver(_view.transform, input, _move, _attack, _animator);;
+            _inputObserver = new MoveByInputObserver(_view.transform, input, _move, _attack, _animator);;
         }
 
         public override void SetActive(bool isActive)
