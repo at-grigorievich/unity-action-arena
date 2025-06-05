@@ -32,7 +32,6 @@ public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisp
 
     public void PostInitialize()
     {
-        _player.Initialize();
         _player.TakeOnEquipments(_equipmentSrc.GetItems());
         _player.SetActive(false);
         

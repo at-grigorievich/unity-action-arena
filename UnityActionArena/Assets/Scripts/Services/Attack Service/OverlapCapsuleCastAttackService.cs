@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ATG.Observable;
 using UnityEngine;
-using VContainer.Unity;
 
 namespace ATG.Attack
 {
@@ -13,36 +12,36 @@ namespace ATG.Attack
 
         public IAttackService Create(IReadOnlyObservableVar<float> range)
         {
-            return new RaycastAttackService(attackPoint, range);
+            return new OverlapCapsuleCastAttackService(attackPoint, range);
         }
     }
     
-    public sealed class RaycastAttackService: IAttackService
+    public sealed class OverlapCapsuleCastAttackService: IAttackService
     {
         private readonly IReadOnlyObservableVar<float> _range;
 
-        private readonly RaycastAttack _attack;
+        private readonly OverlapCapsuleCastAttack _attack;
 
         public bool IsAvailable { get; private set; } = true;
         
-        public RaycastAttackService(AttackPoint attackPoint, IReadOnlyObservableVar<float> range)
+        public OverlapCapsuleCastAttackService(AttackPoint attackPoint, IReadOnlyObservableVar<float> range)
         {
             _range = range;
-            _attack = new RaycastAttack(attackPoint);
+            _attack = new OverlapCapsuleCastAttack(attackPoint);
         }
         
         public void InitOwner(IAttackable owner) => _attack.InitOwner(owner);
 
         public void TakeSwing()
         {
-            Debug.Log("take swing");
+            //Debug.Log("take swing");
             IsAvailable = false;
             _attack.Start(_range.Value);
         }
 
-        public IEnumerable<IAttackable> EndSwing()
+        public IReadOnlyCollection<IAttackable> EndSwing()
         {
-            Debug.Log("end swing");
+            //Debug.Log("end swing");
             IsAvailable = true;
             return _attack.EndAndGetResult();
         }

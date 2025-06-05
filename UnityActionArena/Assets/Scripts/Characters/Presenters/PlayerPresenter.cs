@@ -1,4 +1,5 @@
-﻿using ATG.Animator;
+﻿using System.Collections.Generic;
+using ATG.Animator;
 using ATG.Attack;
 using ATG.Camera;
 using ATG.Input;
@@ -25,10 +26,20 @@ namespace ATG.Character
             _attackObserver = new AttackByInputObserver(input, _attack, _animator);
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            _attackObserver.OnAttackCompleted += OnAttackCompleted;
+        }
+
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
+            
             _moveObserver.SetActive(isActive);
+            _attackObserver.SetActive(isActive);
+            
             _cinemachine.SelectPlayerTarget(isActive);
         }
 
@@ -42,7 +53,18 @@ namespace ATG.Character
         public override void Dispose()
         {
             base.Dispose();
+            
             _moveObserver.SetActive(false);
+            _attackObserver.OnAttackCompleted -= OnAttackCompleted;
+        }
+        
+        private void OnAttackCompleted(IReadOnlyCollection<IAttackable> attackables)
+        {
+            //Debug.Log(attackables.Count());
+            foreach (var attackable in attackables)
+            {
+                attackable.TakeHitByAttacker(this);
+            }
         }
     }
 }

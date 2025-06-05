@@ -4,21 +4,23 @@ using VContainer.Unity;
 
 namespace ATG.Attack
 {
-    public sealed class RaycastAttack: ITickable
+    public sealed class OverlapCapsuleCastAttack: ITickable
     {
         private readonly AttackPoint _attackPoint;
         private readonly HashSet<IAttackable> _attackablesByLast;
-
+        private readonly int _mask;
+        
         private IAttackable _owner;
         
         private float _range;
 
         private bool _allowAttack = false;
 
-        public RaycastAttack(AttackPoint attackPoint)
+        public OverlapCapsuleCastAttack(AttackPoint attackPoint)
         {
             _attackPoint = attackPoint;
             _attackablesByLast = new HashSet<IAttackable>();
+            _mask = LayerMask.GetMask("Default");
         }
         
         public void InitOwner(IAttackable owner) => _owner = owner;
@@ -31,7 +33,7 @@ namespace ATG.Attack
             _allowAttack = true;
         }
         
-        public IEnumerable<IAttackable> EndAndGetResult()
+        public IReadOnlyCollection<IAttackable> EndAndGetResult()
         {
             _allowAttack = false;
             return _attackablesByLast;
@@ -41,24 +43,22 @@ namespace ATG.Attack
         {
             if(_allowAttack == false) return;
 
-            RaycastHit[] hits;
+            Collider[] hits;
             
-            int hitCount = RaycastPool.Hit(_attackPoint.Position, _attackPoint.Forward, _range, out hits);
+            int hitCount = OverlapCapsuleCastPool.Hit(_attackPoint.Position, _attackPoint.Forward, _range, _mask, out hits);
             
             if(hitCount <= 0) return;
             
             for (int i = 0; i < hitCount; i++)
             {
-                RaycastHit hit = hits[i];
+                Collider hit = hits[i];
                 
-                //Debug.Log("Hit: " + hit.collider.name + " at distance " + hit.distance);
-
-                Transform hitTransform = hit.collider.transform;
+                Transform hitTransform = hit.transform;
 
                 if(hitTransform.TryGetComponent(out IAttackable attackable) == false) continue;
                 if(ReferenceEquals(_owner, attackable) == true) continue;
                 
-                //Debug.Log($"{hitTransform.name} is attackable");
+                //Debug.Log("Hit: " + hit.name);
                 
                 _attackablesByLast.Add(attackable);
             }

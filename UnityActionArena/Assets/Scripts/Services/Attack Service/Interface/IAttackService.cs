@@ -9,6 +9,6 @@ namespace ATG.Attack
         
         void InitOwner(IAttackable owner);
         void TakeSwing();
-        IEnumerable<IAttackable> EndSwing();
+        IReadOnlyCollection<IAttackable> EndSwing();
     }
 }

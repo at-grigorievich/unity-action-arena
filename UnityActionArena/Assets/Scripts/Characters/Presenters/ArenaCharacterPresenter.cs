@@ -16,7 +16,7 @@ namespace ATG.Character
             _attack = attack;
             _attack.InitOwner(_view);
         }
-
+        
         public virtual void Tick()
         {
             if(_isActive == false) return;

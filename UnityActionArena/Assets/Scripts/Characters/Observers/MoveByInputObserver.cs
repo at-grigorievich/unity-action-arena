@@ -34,17 +34,6 @@ namespace Characters.Observers
         
         public void SetActive(bool isActive)
         {
-            if(_animatorService.EventDispatcher == null)
-                throw new Exception("Animator event dispatcher is null");
-
-            if (isActive == true)
-            {
-                
-            }
-            else
-            {
-                
-            }
         }
 
         public void Tick()
