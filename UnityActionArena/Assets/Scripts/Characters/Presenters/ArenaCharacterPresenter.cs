@@ -50,7 +50,6 @@ namespace ATG.Character
         private void RequestToGetDamageHandle(AttackDamageData obj)
         {
             _animator.SelectState(AnimatorTag.GetDamage);
-            Debug.Log("AUCHHhhh...");
         }
     }
 }
