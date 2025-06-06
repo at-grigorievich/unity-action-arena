@@ -6,6 +6,7 @@
         Walk,
         Run,
         Attack,
-        Death
+        Death,
+        GetDamage
     }
 }

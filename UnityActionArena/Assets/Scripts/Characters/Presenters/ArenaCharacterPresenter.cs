@@ -21,12 +21,17 @@ namespace ATG.Character
         public override void Initialize()
         {
             base.Initialize();
+            
+            _view.OnAttacked += RequestToGetDamageHandle;
             _attack.OnRequestToDealDamage += RequestToDealDamageHandle;
         }
+        
 
         public override void Dispose()
         {
             base.Dispose();
+            
+            _view.OnAttacked -= RequestToGetDamageHandle;
             _attack.OnRequestToDealDamage -= RequestToDealDamageHandle;
         }
 
@@ -40,6 +45,12 @@ namespace ATG.Character
         private void RequestToDealDamageHandle(IAttackable obj)
         {
             obj.TakeHitByAttacker(new AttackDamageData(_characterModel.Damage.Value));
+        }
+        
+        private void RequestToGetDamageHandle(AttackDamageData obj)
+        {
+            _animator.SelectState(AnimatorTag.GetDamage);
+            Debug.Log("AUCHHhhh...");
         }
     }
 }

@@ -69,7 +69,8 @@ namespace ATG.Character
     [Serializable]
     public sealed class LobbyCharacterCreator : CharacterCreator<LobbyCharacterPresenter> { }
     
-    [Serializable] public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter> { }
+    [Serializable] 
+    public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter> { }
 
     [Serializable]
     public sealed class BotCharacterCreator : ArenaCharacterCreator<BotPresenter>
