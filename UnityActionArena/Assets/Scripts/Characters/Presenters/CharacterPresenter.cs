@@ -73,7 +73,7 @@ namespace ATG.Character
             _move.PlaceTo(spawnPosition, spawnRotation);
         }
         
-        public void TakeOnEquipments(IEnumerable<Item> items)
+        public virtual void TakeOnEquipments(IEnumerable<Item> items)
         {
             foreach (var item in items)
             {
