@@ -61,20 +61,21 @@ namespace ATG.Character
             _health.Initialize();
         }
 
-        private void RequestToDealDamageHandle(IAttackable obj)
+        protected virtual void RequestToDealDamageHandle(IAttackable obj)
         {
             obj.TakeHitByAttacker(new AttackDamageData(_characterModel.Damage.Value));
         }
         
-        private void RequestToGetDamageHandle(AttackDamageData damageData)
+        protected virtual void RequestToGetDamageHandle(AttackDamageData damageData)
         {
             _animator.SelectState(AnimatorTag.GetDamage);
             _health.Reduce(damageData.Damage);
         }
         
-        private void OnHealthIsOverHandle()
+        protected virtual void OnHealthIsOverHandle()
         {
-            //_health.Reset();
+            _animator.SetActive(false);
+            // _health.Reset();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using ATG.Attack;
 using ATG.Items.Equipment;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -50,10 +51,23 @@ namespace ATG.Character
         {
             _equipmentView.PutOn(data);
         }
-
+        
         public void TakeHitByAttacker(AttackDamageData damageData)
         {
             OnAttacked?.Invoke(damageData);
         }
+
+        #region DEBUG ONLY
+
+#if UNITY_EDITOR
+        [Button("Get Damage")]
+        public void GetDamage(int damage)
+        {
+            TakeHitByAttacker(new AttackDamageData(damage));
+        }
+#endif
+        
+
+        #endregion
     }
 }

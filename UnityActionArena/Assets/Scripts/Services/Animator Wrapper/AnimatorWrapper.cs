@@ -9,6 +9,8 @@ namespace ATG.Animator
         private readonly UnityEngine.Animator _animator;
         private Dictionary<AnimatorTag, IAnimatorState> _statesByTag;
         
+        public bool IsActive { get; private set; }
+        
         [CanBeNull]
         public AnimatorEventDispatcher EventDispatcher { get; private set; }
         
@@ -26,7 +28,18 @@ namespace ATG.Animator
         
         public void SetActive(bool isActive)
         {
-            _animator.enabled = isActive;
+            IsActive = isActive;
+            _animator.enabled = IsActive;
+
+            if (EventDispatcher != null)
+            {
+                EventDispatcher.SetActive(IsActive);
+            }
+            
+            if (IsActive)
+            {
+                SelectState(AnimatorTag.Idle);
+            }
         }
 
         public void SelectState(AnimatorTag tag)

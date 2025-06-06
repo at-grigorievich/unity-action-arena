@@ -9,6 +9,13 @@ namespace ATG.Animator.Event_Dispatcher
     {
         private readonly Dictionary<AnimatorEventType, Action> _eventTable = new();
         
+        public bool IsActive { get; private set; }
+        
+        public void SetActive(bool isActive)
+        {
+            IsActive = isActive;
+        }
+        
         public void Subscribe(AnimatorEventType eventType, Action callback)
         {
             if (_eventTable.TryGetValue(eventType, out var existing))
@@ -34,6 +41,8 @@ namespace ATG.Animator.Event_Dispatcher
         
         public void OnEvent(string eventName)
         {
+            if(IsActive == false) return;
+            
             string eventNameFormatted = eventName.ToUpperInvariant();
             
             //Debug.Log(eventNameFormatted);
