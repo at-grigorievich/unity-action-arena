@@ -61,10 +61,10 @@ namespace ATG.Character
         private void OnAttackCompleted(IReadOnlyCollection<IAttackable> attackables)
         {
             //Debug.Log(attackables.Count());
-            foreach (var attackable in attackables)
+            /*foreach (var attackable in attackables)
             {
-                attackable.TakeHitByAttacker(this);
-            }
+                
+            }*/
         }
     }
 }

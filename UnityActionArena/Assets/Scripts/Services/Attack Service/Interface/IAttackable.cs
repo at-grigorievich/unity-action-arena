@@ -2,6 +2,6 @@
 {
     public interface IAttackable
     {
-        void TakeHitByAttacker(object attacker);
+        void TakeHitByAttacker(AttackDamageData damageData);
     }
 }

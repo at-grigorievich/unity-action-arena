@@ -24,6 +24,12 @@ namespace ATG.Attack
 
         public bool IsAvailable { get; private set; } = true;
         
+        public event Action<IAttackable> OnRequestToDealDamage
+        {
+            add => _attack.OnRequestToDealDamage += value;
+            remove => _attack.OnRequestToDealDamage -= value;
+        }
+
         public OverlapCapsuleCastAttackService(AttackPoint attackPoint, IReadOnlyObservableVar<float> range)
         {
             _range = range;

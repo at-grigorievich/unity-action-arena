@@ -18,7 +18,7 @@ namespace ATG.Character
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
 
-        public event Action<object> OnAttacked; 
+        public event Action<AttackDamageData> OnAttacked; 
         
         public CharacterPresenter MyPresenter { get; private set; }
         
@@ -51,9 +51,9 @@ namespace ATG.Character
             _equipmentView.PutOn(data);
         }
 
-        public void TakeHitByAttacker(object attacker)
+        public void TakeHitByAttacker(AttackDamageData damageData)
         {
-            OnAttacked?.Invoke(attacker);
+            OnAttacked?.Invoke(damageData);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -16,6 +17,8 @@ namespace ATG.Attack
 
         private bool _allowAttack = false;
 
+        public event Action<IAttackable> OnRequestToDealDamage; 
+        
         public OverlapCapsuleCastAttack(AttackPoint attackPoint)
         {
             _attackPoint = attackPoint;
@@ -60,6 +63,10 @@ namespace ATG.Attack
                 
                 //Debug.Log("Hit: " + hit.name);
                 
+                if (_attackablesByLast.Contains(attackable) == false)
+                {
+                    OnRequestToDealDamage?.Invoke(attackable);
+                }
                 _attackablesByLast.Add(attackable);
             }
         }
