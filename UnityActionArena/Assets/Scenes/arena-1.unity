@@ -4797,18 +4797,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.2630715, y: 3.0000024, z: 5.370811}
   m_Center: {x: -0.010902285, y: -0.00000023856276, z: 2.9214678}
---- !u!114 &953428823 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4864106912440627232, guid: f6476dd946eef2c41aa36266211f8299,
-    type: 3}
-  m_PrefabInstance: {fileID: 433729971}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf70201f78f74d478256eb9067d3b1e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &966600229
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,6 +6450,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Radius>k__BackingField: 3
+--- !u!114 &1317374997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4864106912440627232, guid: f6476dd946eef2c41aa36266211f8299,
+    type: 3}
+  m_PrefabInstance: {fileID: 433729971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf70201f78f74d478256eb9067d3b1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1329962097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7108,7 +7108,7 @@ MonoBehaviour:
       withEventDispatcher: 1
       animatorEventDispatcher: {fileID: 433729973}
     attackCreator:
-      attackPoint: {fileID: 953428823}
+      attackPoint: {fileID: 1317374997}
   botPoolCreator:
     botPresenterCreator: {fileID: 6371186653383767649, guid: 63e5b5a5657d7c542b6c9dbad9fefcd3,
       type: 3}
