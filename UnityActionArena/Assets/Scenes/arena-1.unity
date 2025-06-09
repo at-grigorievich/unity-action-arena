@@ -7109,6 +7109,8 @@ MonoBehaviour:
       animatorEventDispatcher: {fileID: 433729973}
     attackCreator:
       attackPoint: {fileID: 1317374997}
+    staminaCreator:
+      config: {fileID: 11400000, guid: 41794cf5e422e0b42b8614e326c8c35b, type: 2}
   botPoolCreator:
     botPresenterCreator: {fileID: 6371186653383767649, guid: 63e5b5a5657d7c542b6c9dbad9fefcd3,
       type: 3}

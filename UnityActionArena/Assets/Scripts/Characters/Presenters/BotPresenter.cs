@@ -1,7 +1,7 @@
 ﻿using ATG.Animator;
 using ATG.Attack;
 using ATG.Move;
-using Settings;
+using ATG.Stamina;
 using UnityEngine;
 
 namespace ATG.Character
@@ -12,9 +12,9 @@ namespace ATG.Character
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
-            IAttackService attack, IStaminaReset staminaReset,
+            IAttackService attack, IStaminaService stamina,
             TargetNavigationPointSet navigationPoints) 
-            : base(view, model, animator, move, attack, staminaReset)
+            : base(view, model, animator, move, attack, stamina)
         {
             NavigationPoints = navigationPoints;
         }

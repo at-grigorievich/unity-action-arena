@@ -4,8 +4,8 @@ using ATG.Attack;
 using ATG.Camera;
 using ATG.Input;
 using ATG.Move;
+using ATG.Stamina;
 using Characters.Observers;
-using Settings;
 
 namespace ATG.Character
 {
@@ -19,8 +19,8 @@ namespace ATG.Character
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, CinemachineWrapper cinemachine, 
-            IInputable input, IStaminaReset staminaReset) 
-            : base(view, model, animator, move, attack, staminaReset)
+            IInputable input, IStaminaService stamina) 
+            : base(view, model, animator, move, attack, stamina)
         {
             _cinemachine = cinemachine;
             _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);

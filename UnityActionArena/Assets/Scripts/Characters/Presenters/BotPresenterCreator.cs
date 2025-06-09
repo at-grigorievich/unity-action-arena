@@ -1,5 +1,4 @@
 ﻿using ATG.Move;
-using Settings;
 using UnityEngine;
 
 namespace ATG.Character
@@ -9,7 +8,7 @@ namespace ATG.Character
     {
         [SerializeField] private BotCharacterCreator creator;
 
-        public BotPresenter Create(TargetNavigationPointSet navigationPointSet, IStaminaReset staminaReset) => 
-            creator.Create(navigationPointSet, staminaReset);
+        public BotPresenter Create(TargetNavigationPointSet navigationPointSet) => 
+            creator.Create(navigationPointSet);
     }
 }

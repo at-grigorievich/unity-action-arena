@@ -1,9 +1,20 @@
-﻿using ATG.Observable;
-using Settings;
+﻿using System;
+using ATG.Observable;
 using UnityEngine;
 
 namespace ATG.Stamina
 {
+    [Serializable]
+    public sealed class AutoResetStaminaServiceCreator
+    {
+        [SerializeField] private StaminaConfig config;
+
+        public IStaminaService Create(IObservableVar<int> stamina)
+        {
+            return new AutoResetStaminaService(stamina, config);
+        }
+    }
+    
     public sealed class AutoResetStaminaService: IStaminaService
     {
         private readonly IObservableVar<int> _stamina;
@@ -24,7 +35,7 @@ namespace ATG.Stamina
         public int DefaultReduceAmount => _defaultReduceAmount;
         
         
-        public AutoResetStaminaService(IObservableVar<int> stamina, IStaminaReset config)
+        public AutoResetStaminaService(IObservableVar<int> stamina, StaminaConfig config)
         {
             _stamina = stamina;
             _defaultReduceAmount = config.DefaultReduceAmount;

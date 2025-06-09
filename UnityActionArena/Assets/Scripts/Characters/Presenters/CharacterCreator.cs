@@ -1,11 +1,9 @@
 ﻿using System;
 using ATG.Animator;
 using ATG.Attack;
-using ATG.Camera;
-using ATG.Input;
 using ATG.Move;
 using ATG.Observable;
-using Settings;
+using ATG.Stamina;
 using UnityEngine;
 using VContainer;
 
@@ -42,6 +40,7 @@ namespace ATG.Character
     public abstract class ArenaCharacterCreator<T> : CharacterCreator<T> where T : CharacterPresenter
     {
         [SerializeField] protected RaycastAttackServiceCreator attackCreator;
+        [SerializeField] protected AutoResetStaminaServiceCreator staminaCreator;
         
         public override void Create(IContainerBuilder builder)
         {
@@ -50,6 +49,7 @@ namespace ATG.Character
             IAnimatorWrapper animatorWrapper = GetAnimator();
             IMoveableService moveService = GetMove(model.Speed);
             IAttackService attackService = GetAttack(model.Range);
+            IStaminaService staminaService = GetStamina(model.Stamina);
             
             builder.Register<T>(Lifetime.Singleton)
                 .WithParameter<CharacterView>(view)
@@ -57,6 +57,7 @@ namespace ATG.Character
                 .WithParameter<IAnimatorWrapper>(animatorWrapper)
                 .WithParameter<IMoveableService>(moveService)
                 .WithParameter<IAttackService>(attackService)
+                .WithParameter<IStaminaService>(staminaService)
                 .AsSelf()
                 .AsImplementedInterfaces();
         }
@@ -65,6 +66,7 @@ namespace ATG.Character
             new NavMeshMoveService(view.NavAgent, speed);
         
         protected IAttackService GetAttack(IReadOnlyObservableVar<float> range) => attackCreator.Create(range);
+        protected IStaminaService GetStamina(IObservableVar<int> stamina) => staminaCreator.Create(stamina);
     }
 
     [Serializable]
@@ -76,14 +78,15 @@ namespace ATG.Character
     [Serializable]
     public sealed class BotCharacterCreator : ArenaCharacterCreator<BotPresenter>
     {
-        public BotPresenter Create(TargetNavigationPointSet navigationPointSet, IStaminaReset staminaReset)
+        public BotPresenter Create(TargetNavigationPointSet navigationPointSet)
         {
             CharacterModel model = GetModel();
             IAnimatorWrapper animator = GetAnimator();
             IMoveableService move = GetMove(model.Speed);
             IAttackService attack = GetAttack(model.Range);
+            IStaminaService stamina = GetStamina(model.Stamina);
 
-            return new BotPresenter(view, model, animator, move, attack, staminaReset, navigationPointSet);
+            return new BotPresenter(view, model, animator, move, attack, stamina, navigationPointSet);
         }
     }
 }

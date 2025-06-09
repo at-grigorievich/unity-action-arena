@@ -5,7 +5,6 @@ using ATG.Health;
 using ATG.Items;
 using ATG.Move;
 using ATG.Stamina;
-using Settings;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -18,13 +17,12 @@ namespace ATG.Character
         protected readonly IStaminaService _stamina;
         
         protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
-            IAnimatorWrapper animator, IMoveableService move, IAttackService attack,
-            IStaminaReset staminaReset) 
+            IAnimatorWrapper animator, IMoveableService move, IAttackService attack, IStaminaService stamina) 
             : base(view, model, animator, move)
         {
             _attack = attack;
             _health = new HealthService(model.Health);
-            _stamina = new AutoResetStaminaService(model.Stamina, staminaReset);
+            _stamina = stamina;
         }
 
         public override void Initialize()

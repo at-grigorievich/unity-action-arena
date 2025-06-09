@@ -26,7 +26,6 @@ namespace ATG.Character
     {
         private readonly BotPresenterCreator _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
-        private readonly IStaminaReset _staminaReset;
         
         private readonly RandomEquipmentSource _equipmentSource;
         
@@ -36,7 +35,7 @@ namespace ATG.Character
 
         public IEnumerable<BotPresenter> Set => _botSet;
         
-        public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize, IStaminaReset staminaService,
+        public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize,
             RandomEquipmentSource equipmentSource, TargetNavigationPointSet pointSet)
         {
             _prefab = prefab;
@@ -46,7 +45,6 @@ namespace ATG.Character
             _equipmentSource = equipmentSource;
             
             _targetPointSet = pointSet;
-            _staminaReset = staminaService;
             
             _root = new GameObject("bots-root").transform;
         }
@@ -56,7 +54,7 @@ namespace ATG.Character
             for (var i = 0; i < _botSet.Capacity; i++)
             {
                 BotPresenterCreator instance = GameObject.Instantiate(_prefab, _root);
-                BotPresenter bot = instance.Create(_targetPointSet, _staminaReset);
+                BotPresenter bot = instance.Create(_targetPointSet);
                 
                 _botSet.Add(bot);
                 
