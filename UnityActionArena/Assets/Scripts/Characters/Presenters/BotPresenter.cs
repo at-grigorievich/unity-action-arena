@@ -12,6 +12,7 @@ namespace ATG.Character
         public readonly TargetNavigationPointSet NavigationPoints;
 
         public readonly IObservableVar<bool> IsGetDamage;
+        public IObservableVar<int> Health => _characterModel.Health;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -22,11 +23,6 @@ namespace ATG.Character
             NavigationPoints = navigationPoints;
             
             IsGetDamage = new ObservableVar<bool>(false);
-        }
-
-        public override void SetActive(bool isActive)
-        {
-            base.SetActive(isActive);
         }
         
         public void Stop()

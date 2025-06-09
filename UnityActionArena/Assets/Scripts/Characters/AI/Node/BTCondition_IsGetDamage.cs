@@ -6,7 +6,7 @@ namespace ATG.Character.AI
 {
     [AddComponentMenu("")]
     [MBTNode("Bot Conditions/Is Get Damage")]
-    public class BTCondition_IsGetDamage: BTBot_Condition<bool>
+    public sealed class BTCondition_IsGetDamage: BTBot_Condition<bool>
     {
         protected override IObservableVar<bool> InitializeVariable(BotPresenter presenter)
         {

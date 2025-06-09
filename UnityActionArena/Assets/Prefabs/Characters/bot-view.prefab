@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 8307907481850506623}
   - component: {fileID: 2032633666486325669}
   - component: {fileID: 7156929680363290368}
+  - component: {fileID: 9026806060835026794}
+  - component: {fileID: 3954861273546968034}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -63,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 7156929680363290368}
+  selectedEditorNode: {fileID: 9026806060835026794}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -113,6 +115,7 @@ MonoBehaviour:
     height: 44
   parent: {fileID: 7890395075382638807}
   children:
+  - {fileID: 9026806060835026794}
   - {fileID: 2032633666486325669}
   - {fileID: 8307907481850506623}
   behaviourTree: {fileID: 0}
@@ -160,8 +163,8 @@ MonoBehaviour:
   title: Is Get Damage
   rect:
     serializedVersion: 2
-    x: 108
-    y: 411
+    x: 100.79999
+    y: 418.19998
     width: 160
     height: 44
   parent: {fileID: 6772464606663016082}
@@ -188,8 +191,8 @@ MonoBehaviour:
   title: Stay In Shock
   rect:
     serializedVersion: 2
-    x: 108
-    y: 492
+    x: 100
+    y: 491.19998
     width: 160
     height: 44
   parent: {fileID: 2032633666486325669}
@@ -199,6 +202,59 @@ MonoBehaviour:
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   shockDuration: 0.4
+--- !u!114 &9026806060835026794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ac286175e5484299c2f76d13676701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Health Is Over
+  rect:
+    serializedVersion: 2
+    x: -89.59998
+    y: 417.6
+    width: 160
+    height: 44
+  parent: {fileID: 6772464606663016082}
+  children:
+  - {fileID: 3954861273546968034}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 1
+  abort: 1
+  healthLevel: 0
+--- !u!114 &3954861273546968034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Nothing
+  rect:
+    serializedVersion: 2
+    x: -87.999985
+    y: 488.79996
+    width: 160
+    height: 44
+  parent: {fileID: 9026806060835026794}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0
