@@ -25,6 +25,8 @@ namespace ATG.Character
         
         protected bool _isActive;
         
+        public event Action<ISpawnable> OnSpawnRequired;
+        
         protected CharacterPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move)
         {
@@ -58,19 +60,19 @@ namespace ATG.Character
             _isActive = isActive;
             
             _move.Stop();
-            
             _animator.SetActive(_isActive);
             
-            SetVisible(isActive);
+            //SetVisible(isActive);
             SetPhysActive(isActive);
         }
         
         public void SetVisible(bool isVisible) => _view.SetVisible(isVisible);
         public void SetPhysActive(bool isActive) => _view.SetPhysActive(isActive);
-        
+
         public virtual void Spawn(Vector3 spawnPosition, Quaternion spawnRotation)
         {
             _move.PlaceTo(spawnPosition, spawnRotation);
+            SetActive(true);
         }
         
         public virtual void TakeOnEquipments(IEnumerable<Item> items)
@@ -80,5 +82,7 @@ namespace ATG.Character
                 _equipment.TakeOnItem(item);               
             }
         }
+
+        protected void RequireSpawn() => OnSpawnRequired?.Invoke(this);
     }
 }

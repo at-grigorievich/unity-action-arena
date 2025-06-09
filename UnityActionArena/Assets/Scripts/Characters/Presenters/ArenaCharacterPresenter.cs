@@ -32,6 +32,11 @@ namespace ATG.Character
             _health.OnHealthIsOver += OnHealthIsOverHandle;
         }
 
+        public override void SetActive(bool isActive)
+        {
+            base.SetActive(isActive);
+            _animator.SetActive(isActive);
+        }
 
         public override void Dispose()
         {
@@ -74,8 +79,8 @@ namespace ATG.Character
         
         protected virtual void OnHealthIsOverHandle()
         {
-            _animator.SetActive(false);
-            // _health.Reset();
+            SetActive(false);
+            RequireSpawn();
         }
     }
 }

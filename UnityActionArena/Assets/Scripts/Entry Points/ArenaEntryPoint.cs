@@ -34,20 +34,25 @@ public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisp
     {
         _player.TakeOnEquipments(_equipmentSrc.GetItems());
         _player.SetActive(false);
-        
         _botPool.SetActiveAll(false);
     }
 
     public async UniTask StartAsync(CancellationToken cancellation = default)
     {
         await UniTaskSpawnAsync();
-        ActivatePlayerAndBots();
     }
 
     public void Dispose()
     {
         _cts.Cancel();
         _cts.Dispose();
+
+        _player.OnSpawnRequired -= _spawnService.SpawnAfterDelay;
+        
+        foreach (var bot in _botPool.Set)
+        {
+            bot.OnSpawnRequired -= _spawnService.SpawnAfterDelay;
+        }
     }
 
     private async UniTask UniTaskSpawnAsync()
@@ -63,23 +68,17 @@ public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisp
         await UniTask.Yield(cancellationToken: _cts.Token);
 
         _spawnService.SpawnInstantly(_player);
+        _player.OnSpawnRequired += _spawnService.SpawnAfterDelay;
     }
 
     private async UniTask BotPoolFirstSpawnAsync()
     {
         foreach (var bot in _botPool.Set)
         {
-            bot.SetPhysActive(true);
-
             await UniTask.Yield(cancellationToken: _cts.Token);
 
             _spawnService.SpawnInstantly(bot);
+            bot.OnSpawnRequired += _spawnService.SpawnAfterDelay;
         }
-    }
-
-    private void ActivatePlayerAndBots()
-    {
-        _player.SetActive(true);
-        _botPool.SetActiveAll(true);
     }
 }

@@ -58,14 +58,6 @@ namespace ATG.Character
             _attackObserver.OnAttackCompleted -= OnAttackCompleted;
         }
 
-        protected override void OnHealthIsOverHandle()
-        {
-            base.OnHealthIsOverHandle();
-            _moveObserver.SetActive(false);
-            _attackObserver.SetActive(false);
-            _cinemachine.SelectPlayerTarget(false);
-        }
-
         private void OnAttackCompleted(IReadOnlyCollection<IAttackable> attackables)
         {
             //Debug.Log(attackables.Count());
