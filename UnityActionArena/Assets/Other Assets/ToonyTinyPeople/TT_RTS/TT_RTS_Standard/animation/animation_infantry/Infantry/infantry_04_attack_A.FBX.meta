@@ -225,14 +225,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.14534883
+      - time: 0.29138842
         functionName: OnEvent
         data: START_SWING
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.43023255
+      - time: 0.4475593
         functionName: OnEvent
         data: END_SWING
         objectReferenceParameter: {instanceID: 0}
