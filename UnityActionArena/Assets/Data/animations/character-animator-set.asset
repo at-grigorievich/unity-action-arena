@@ -26,7 +26,7 @@ MonoBehaviour:
         <Tag>k__BackingField: 0
         <StateName>k__BackingField: idle
         option:
-          CrossFadeDuration: 0.02
+          CrossFadeDuration: 0.002
           AnimatorLayer: 0
     - rid: 5624822270889033729
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
@@ -42,7 +42,7 @@ MonoBehaviour:
         <Tag>k__BackingField: 3
         <StateName>k__BackingField: attack
         option:
-          CrossFadeDuration: 0.002
+          CrossFadeDuration: 0.02
           AnimatorLayer: 1
     - rid: 5624822354833571840
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
@@ -50,5 +50,5 @@ MonoBehaviour:
         <Tag>k__BackingField: 5
         <StateName>k__BackingField: get_damage
         option:
-          CrossFadeDuration: 0.002
+          CrossFadeDuration: 0.02
           AnimatorLayer: 0

@@ -10,17 +10,19 @@ GameObject:
   m_Component:
   - component: {fileID: 4831414681254248022}
   - component: {fileID: 5343817471244602314}
-  - component: {fileID: 4662722926353379586}
   - component: {fileID: 2133249514479372931}
   - component: {fileID: 7890395075382638807}
-  - component: {fileID: 6837768909373603477}
+  - component: {fileID: 6772464606663016082}
+  - component: {fileID: 8307907481850506623}
+  - component: {fileID: 2032633666486325669}
+  - component: {fileID: 7156929680363290368}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4831414681254248022
 Transform:
   m_ObjectHideFlags: 0
@@ -49,20 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoBehaviourTree: {fileID: 2133249514479372931}
---- !u!114 &4662722926353379586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2217e4d35c0c94ea02cf2166c17e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variables: []
-  masterBlackboard: {fileID: 0}
 --- !u!114 &2133249514479372931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 6837768909373603477}
-  repeatOnFinish: 0
+  selectedEditorNode: {fileID: 7156929680363290368}
+  repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
 --- !u!114 &7890395075382638807
@@ -97,14 +85,41 @@ MonoBehaviour:
     x: 216
     y: 209
     width: 160
-    height: 45
+    height: 44
   parent: {fileID: 0}
   children:
-  - {fileID: 6837768909373603477}
+  - {fileID: 6772464606663016082}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
---- !u!114 &6837768909373603477
+--- !u!114 &6772464606663016082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: 215
+    y: 298
+    width: 160
+    height: 44
+  parent: {fileID: 7890395075382638807}
+  children:
+  - {fileID: 2032633666486325669}
+  - {fileID: 8307907481850506623}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &8307907481850506623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,16 +134,71 @@ MonoBehaviour:
   title: Move To Random Point
   rect:
     serializedVersion: 2
-    x: 217
-    y: 302
+    x: 323
+    y: 408
     width: 160
-    height: 45
-  parent: {fileID: 7890395075382638807}
+    height: 44
+  parent: {fileID: 6772464606663016082}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
+  minDistance: 0.2
+--- !u!114 &2032633666486325669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4378ef3bbf4936befa76032b86fbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Get Damage
+  rect:
+    serializedVersion: 2
+    x: 108
+    y: 411
+    width: 160
+    height: 44
+  parent: {fileID: 6772464606663016082}
+  children:
+  - {fileID: 7156929680363290368}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 0
+  abort: 2
+--- !u!114 &7156929680363290368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6dde7df57f4974a3bcb7960f786f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stay In Shock
+  rect:
+    serializedVersion: 2
+    x: 108
+    y: 492
+    width: 160
+    height: 44
+  parent: {fileID: 2032633666486325669}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  shockDuration: 0.4
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

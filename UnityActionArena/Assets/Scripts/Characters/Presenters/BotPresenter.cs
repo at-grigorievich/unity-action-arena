@@ -1,6 +1,7 @@
 ﻿using ATG.Animator;
 using ATG.Attack;
 using ATG.Move;
+using ATG.Observable;
 using ATG.Stamina;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace ATG.Character
     public sealed class BotPresenter: ArenaCharacterPresenter
     {
         public readonly TargetNavigationPointSet NavigationPoints;
+
+        public readonly IObservableVar<bool> IsGetDamage;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -17,24 +20,30 @@ namespace ATG.Character
             : base(view, model, animator, move, attack, stamina)
         {
             NavigationPoints = navigationPoints;
+            
+            IsGetDamage = new ObservableVar<bool>(false);
         }
 
         public override void SetActive(bool isActive)
         {
-            Idle();
             base.SetActive(isActive);
         }
         
-        public void Idle()
+        public void Stop()
         {
             _move.Stop();
-            _animator.SelectState(AnimatorTag.Idle);
         }
         
         public void MoveTo(Vector3 position)
         {
             _move.MoveTo(position);
             _animator.SelectState(AnimatorTag.Run);
+        }
+
+        protected override void RequestToGetDamageHandle(AttackDamageData damageData)
+        {
+            base.RequestToGetDamageHandle(damageData);
+            IsGetDamage.Value = true;
         }
     }
 }
