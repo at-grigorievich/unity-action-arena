@@ -5,6 +5,7 @@ using ATG.Camera;
 using ATG.Input;
 using ATG.Move;
 using ATG.Observable;
+using Settings;
 using UnityEngine;
 using VContainer;
 
@@ -75,14 +76,14 @@ namespace ATG.Character
     [Serializable]
     public sealed class BotCharacterCreator : ArenaCharacterCreator<BotPresenter>
     {
-        public BotPresenter Create(TargetNavigationPointSet navigationPointSet)
+        public BotPresenter Create(TargetNavigationPointSet navigationPointSet, IStaminaReset staminaReset)
         {
             CharacterModel model = GetModel();
             IAnimatorWrapper animator = GetAnimator();
             IMoveableService move = GetMove(model.Speed);
             IAttackService attack = GetAttack(model.Range);
 
-            return new BotPresenter(view, model, animator, move, attack, navigationPointSet);
+            return new BotPresenter(view, model, animator, move, attack, staminaReset, navigationPointSet);
         }
     }
 }

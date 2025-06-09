@@ -5,6 +5,7 @@ using ATG.Camera;
 using ATG.Input;
 using ATG.Move;
 using Characters.Observers;
+using Settings;
 
 namespace ATG.Character
 {
@@ -18,12 +19,12 @@ namespace ATG.Character
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, CinemachineWrapper cinemachine, 
-            IInputable input) 
-            : base(view, model, animator, move, attack)
+            IInputable input, IStaminaReset staminaReset) 
+            : base(view, model, animator, move, attack, staminaReset)
         {
             _cinemachine = cinemachine;
             _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);
-            _attackObserver = new AttackByInputObserver(input, _attack, _animator);
+            _attackObserver = new AttackByInputObserver(input, _attack, _animator, _stamina);
         }
 
         public override void Initialize()

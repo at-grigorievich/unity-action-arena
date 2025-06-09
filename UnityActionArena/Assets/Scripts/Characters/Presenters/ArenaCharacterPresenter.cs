@@ -4,6 +4,8 @@ using ATG.Attack;
 using ATG.Health;
 using ATG.Items;
 using ATG.Move;
+using ATG.Stamina;
+using Settings;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -13,18 +15,22 @@ namespace ATG.Character
     {
         protected readonly IAttackService _attack;
         protected readonly IHealthService<int> _health;
+        protected readonly IStaminaService _stamina;
         
         protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
-            IAnimatorWrapper animator, IMoveableService move, IAttackService attack) 
+            IAnimatorWrapper animator, IMoveableService move, IAttackService attack,
+            IStaminaReset staminaReset) 
             : base(view, model, animator, move)
         {
             _attack = attack;
             _health = new HealthService(model.Health);
+            _stamina = new AutoResetStaminaService(model.Stamina, staminaReset);
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            
             _attack.InitOwner(_view);
             
             _view.OnAttacked += RequestToGetDamageHandle;
@@ -51,6 +57,7 @@ namespace ATG.Character
         {
             if(_isActive == false) return;
             
+            _stamina.Tick();
             _attack.Tick();
         }
 
@@ -58,12 +65,14 @@ namespace ATG.Character
         {
             base.Spawn(spawnPosition, spawnRotation);
             _health.Reset();
+            _stamina.Reset();
         }
 
         public override void TakeOnEquipments(IEnumerable<Item> items)
         {
             base.TakeOnEquipments(items);
             _health.Initialize();
+            _stamina.Initialize();
         }
 
         protected virtual void RequestToDealDamageHandle(IAttackable obj)

@@ -12,7 +12,7 @@ namespace ATG.Health
         
         public int Current => Mathf.Clamp(_heath.Value, 0, int.MaxValue);
         
-        public float Rate => Mathf.Abs(Current / _default);
+        public float Rate => Mathf.Clamp01((float)Current / _default);
 
         public event Action OnHealthIsOver;
 

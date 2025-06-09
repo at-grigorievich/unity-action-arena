@@ -26,9 +26,14 @@ MonoBehaviour:
     - rid: 7637649362196627457
     - rid: 7637649362196627459
     - rid: 7637649362196627460
+    - rid: 5624822423718461442
   references:
     version: 2
     RefIds:
+    - rid: 5624822423718461442
+      type: {class: HeroStaminaEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
+      data:
+        StaminaEffect: 100
     - rid: 7637649362196627456
       type: {class: HeroHealthEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

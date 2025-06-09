@@ -124,6 +124,30 @@ namespace ATG.Items
             hero.Range.Value -= RangeEffect;
         }  
     }
+    
+    [Serializable]
+    public class HeroStaminaEffectComponent : HeroEffectComponent
+    {
+        public int StaminaEffect = 100;
+        
+        public override IItemComponent Clone()
+        {
+            return new HeroStaminaEffectComponent()
+            {
+                StaminaEffect = this.StaminaEffect
+            };
+        }
+
+        public override void AddEffect(CharacterModel hero)
+        {
+            hero.Stamina.Value += StaminaEffect;
+        }
+
+        public override void RemoveEffect(CharacterModel hero)
+        {
+            hero.Stamina.Value -= StaminaEffect;
+        }  
+    }
 
     [Serializable]
     public class HeroEquipmentComponent : IItemComponent
