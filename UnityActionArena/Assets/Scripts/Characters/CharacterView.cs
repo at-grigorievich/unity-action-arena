@@ -1,5 +1,6 @@
 using System;
 using ATG.Attack;
+using ATG.EnemyDetector;
 using ATG.Items.Equipment;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.AI;
 namespace ATG.Character
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(CharacterEquipmentView))]
-    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable, IAttackable
+    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable, IAttackable, IEnemy
     {
         private Rigidbody _rb;
         private Collider _collider;
@@ -57,6 +58,11 @@ namespace ATG.Character
             OnAttacked?.Invoke(damageData);
         }
 
+        public EnemyData GetEnemyData()
+        {
+            return MyPresenter.GetEnemyData();
+        }
+        
         #region DEBUG ONLY
 
 #if UNITY_EDITOR

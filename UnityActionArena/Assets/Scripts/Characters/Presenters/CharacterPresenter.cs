@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ATG.Animator;
+using ATG.EnemyDetector;
 using ATG.Items;
 using ATG.Items.Equipment;
 using ATG.Move;
@@ -10,7 +11,7 @@ using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable
+    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IEnemy
     {
         protected readonly CharacterView _view;
         protected readonly CharacterModel _characterModel;
@@ -84,5 +85,10 @@ namespace ATG.Character
         }
 
         protected void RequireSpawn() => OnSpawnRequired?.Invoke(this);
+        
+        public EnemyData GetEnemyData()
+        {
+            return new EnemyData(_view.transform);
+        }
     }
 }

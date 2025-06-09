@@ -22,7 +22,7 @@ namespace ATG.Character
         }
     }     
     
-    public sealed class BotPool: IInitializable, IDisposable 
+    public sealed class BotPool: IInitializable, ITickable, IDisposable 
     {
         private readonly BotPresenterCreator _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
@@ -79,6 +79,14 @@ namespace ATG.Character
             }
             
             _botSet.Clear();
+        }
+
+        public void Tick()
+        {
+            foreach (var botPresenter in _botSet)
+            {
+                botPresenter.Tick();
+            }
         }
     }
 }

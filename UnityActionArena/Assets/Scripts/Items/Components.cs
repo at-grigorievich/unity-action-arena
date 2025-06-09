@@ -104,7 +104,7 @@ namespace ATG.Items
     [Serializable]
     public class HeroRangeEffectComponent : HeroEffectComponent
     {
-        public int RangeEffect = 5;
+        public float RangeEffect = 5;
         
         public override IItemComponent Clone()
         {

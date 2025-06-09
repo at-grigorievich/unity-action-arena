@@ -1,5 +1,6 @@
 ﻿using ATG.Animator;
 using ATG.Attack;
+using ATG.EnemyDetector;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
@@ -9,6 +10,8 @@ namespace ATG.Character
 {
     public sealed class BotPresenter: ArenaCharacterPresenter
     {
+        private readonly IEnemyDetector _enemyDetector;
+        
         public readonly TargetNavigationPointSet NavigationPoints;
 
         public readonly IObservableVar<bool> IsGetDamage;
@@ -23,8 +26,16 @@ namespace ATG.Character
             NavigationPoints = navigationPoints;
             
             IsGetDamage = new ObservableVar<bool>(false);
+
+            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view.transform);
         }
-        
+
+        public override void Tick()
+        {
+            base.Tick();
+            _enemyDetector.Detect();
+        }
+
         public void Stop()
         {
             _move.Stop();
