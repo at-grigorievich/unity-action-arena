@@ -7,9 +7,11 @@ namespace ATG.Character.AI
     [MBTNode("Bot Actions/Nothing")]
     public class BTNode_Nothing: Leaf
     {
+        [SerializeField] private MBT.Status result = MBT.Status.Running;
+        
         public override NodeResult Execute()
         {
-            return NodeResult.running;
+            return new NodeResult(result);
         }
     }
 }

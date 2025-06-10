@@ -11,10 +11,14 @@ namespace ATG.Move
         private readonly IReadOnlyObservableVar<float> _speedVariable;
         private readonly NavMeshAgent _agent;
         
+        private readonly NavMeshPath _path;
+        private NavMeshHit _hit;
+        
         public NavMeshMoveService(NavMeshAgent agent, IReadOnlyObservableVar<float> speedVariable)
         {
             _agent = agent;
             _speedVariable = speedVariable;
+            _path = new NavMeshPath();
         }
 
         public void SetActive(bool isActive)
@@ -39,6 +43,22 @@ namespace ATG.Move
             _agent.transform.position = position;
             _agent.transform.rotation = rotation;
             SetActive(true);
+        }
+
+        public bool CanReach(Vector3 inputPosition, out Vector3 resultPosition)
+        {
+            resultPosition = inputPosition;
+            
+            if(_agent.enabled == false) return false;
+            
+            if (NavMesh.SamplePosition(inputPosition, out _hit, 1.0f, NavMesh.AllAreas) != true) 
+                return false;
+            
+            if (_agent.CalculatePath(_hit.position, _path) != true) 
+                return false;
+            
+            resultPosition = _hit.position;
+            return true;
         }
 
         public void Stop()

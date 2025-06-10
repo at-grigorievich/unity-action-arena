@@ -28,5 +28,8 @@ namespace ATG.Character
             Speed.Dispose();
             Range.Dispose();
         }
+
+        public float GetRate() =>
+            (Health.Value + Stamina.Value + Damage.Value + Range.Value + Speed.Value) / 5.0f;
     }
 }

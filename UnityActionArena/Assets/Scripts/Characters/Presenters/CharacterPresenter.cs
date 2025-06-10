@@ -25,6 +25,11 @@ namespace ATG.Character
         private readonly IEquipmentObserver _equipmentViewObserver;
         
         protected bool _isActive;
+
+        public Vector3 Position => _view.Position;
+        public Quaternion Rotation => _view.Rotation;
+        
+        public float Rate => _characterModel.GetRate();
         
         public event Action<ISpawnable> OnSpawnRequired;
         
@@ -88,7 +93,7 @@ namespace ATG.Character
         
         public EnemyData GetEnemyData()
         {
-            return new EnemyData(_view.transform);
+            return new EnemyData(_view.transform, Rate);
         }
     }
 }

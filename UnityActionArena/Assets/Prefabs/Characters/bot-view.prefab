@@ -22,6 +22,11 @@ GameObject:
   - component: {fileID: 5690028956336577123}
   - component: {fileID: 1083297630772468877}
   - component: {fileID: 1404770486591979392}
+  - component: {fileID: 1739123724725270924}
+  - component: {fileID: 3578481856059453096}
+  - component: {fileID: 5212705538593228479}
+  - component: {fileID: 7910992734906089671}
+  - component: {fileID: 1312999402744187782}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -69,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 5690028956336577123}
+  selectedEditorNode: {fileID: 1312999402744187782}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -222,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Nothing
+  title: Wait
   rect:
     serializedVersion: 2
     x: -88.999985
@@ -234,6 +239,7 @@ MonoBehaviour:
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
+  result: 2
 --- !u!114 &5289062055058093761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +261,7 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 1083297630772468877}
+  - {fileID: 1739123724725270924}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -274,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Nothing
+  title: Wait
   rect:
     serializedVersion: 2
     x: 100
@@ -286,6 +292,7 @@ MonoBehaviour:
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
+  result: 2
 --- !u!114 &5690028956336577123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,8 +308,8 @@ MonoBehaviour:
   title: Start Attack
   rect:
     serializedVersion: 2
-    x: 183
-    y: 580
+    x: 220
+    y: 740
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -323,15 +330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Sequence
+  title: Attack Sequence
   rect:
     serializedVersion: 2
     x: 280
-    y: 500
+    y: 620
     width: 160
     height: 45
-  parent: {fileID: 5289062055058093761}
+  parent: {fileID: 1739123724725270924}
   children:
+  - {fileID: 3578481856059453096}
   - {fileID: 5690028956336577123}
   - {fileID: 1404770486591979392}
   behaviourTree: {fileID: 0}
@@ -353,8 +361,8 @@ MonoBehaviour:
   title: End Attack
   rect:
     serializedVersion: 2
-    x: 380
-    y: 580
+    x: 420
+    y: 740
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -363,6 +371,138 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
+--- !u!114 &1739123724725270924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688844c25a2b46a0833c09d38fef2a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Has Enough Stamina
+  rect:
+    serializedVersion: 2
+    x: 280
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 5289062055058093761}
+  children:
+  - {fileID: 1083297630772468877}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 0
+--- !u!114 &3578481856059453096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Check Distance To Enemy
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 740
+    width: 160
+    height: 45
+  parent: {fileID: 1083297630772468877}
+  children:
+  - {fileID: 5212705538593228479}
+  - {fileID: 1312999402744187782}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &5212705538593228479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db6bb9b9aab419d92e22b247b1652ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Enemy In Attack Range
+  rect:
+    serializedVersion: 2
+    x: -120
+    y: 820
+    width: 160
+    height: 45
+  parent: {fileID: 3578481856059453096}
+  children:
+  - {fileID: 7910992734906089671}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 0
+--- !u!114 &7910992734906089671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Skip
+  rect:
+    serializedVersion: 2
+    x: -120
+    y: 920
+    width: 160
+    height: 45
+  parent: {fileID: 5212705538593228479}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  result: 0
+--- !u!114 &1312999402744187782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c4f83e3c27426dadc8af9265ea966c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Move To Enemy
+  rect:
+    serializedVersion: 2
+    x: 60
+    y: 820
+    width: 160
+    height: 45
+  parent: {fileID: 3578481856059453096}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  minDistance: 0.2
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

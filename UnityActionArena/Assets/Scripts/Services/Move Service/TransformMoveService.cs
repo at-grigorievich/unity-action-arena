@@ -21,6 +21,12 @@ namespace ATG.Move
             _transform.rotation = rotation;
         }
 
+        public bool CanReach(Vector3 inputPosition, out Vector3 resultPosition)
+        {
+            resultPosition = inputPosition;
+            return true;
+        }
+
         public void Stop() { }
     }
 }

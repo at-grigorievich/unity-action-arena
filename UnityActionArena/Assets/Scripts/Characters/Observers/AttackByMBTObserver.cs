@@ -14,7 +14,7 @@ namespace Characters.Observers
         private readonly IStaminaService _stamina;
 
         public readonly IObservableVar<bool> IsAttacking;
-
+        
         public AttackByMBTObserver(IAttackService attack, IAnimatorWrapper animator, 
             IStaminaService stamina)
         {

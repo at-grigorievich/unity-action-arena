@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ATG.Observable;
 using UnityEngine;
 
 namespace ATG.EnemyDetector
 {
-    public sealed class RangeEnemyDetector: IEnemyDetector
+    public sealed class RangeEnemyDetectorSensor: IEnemyDetectorSensor
     {
         private const float RANGE_MULTIPLIER = 2.0f;
         
@@ -14,7 +15,7 @@ namespace ATG.EnemyDetector
         private readonly Transform _ownerTransform;
         private readonly int _mask;
 
-        public RangeEnemyDetector(IReadOnlyObservableVar<float> range, IDetectable owner)
+        public RangeEnemyDetectorSensor(IReadOnlyObservableVar<float> range, IDetectable owner)
         {
             _range = range;
             _owner = owner;
@@ -23,12 +24,32 @@ namespace ATG.EnemyDetector
             _mask = LayerMask.GetMask("Default");
         }
         
-        public IReadOnlyCollection<IDetectable> Detect()
+        public bool TryDetect(out IDetectable detectable)
+        {
+            detectable = null;
+            
+            var detectables = Detect();
+
+            if (detectables == null) return false;
+            if(detectables.Count == 0) return false;
+            
+            detectable = FindWeakestTarget(detectables);
+
+            return true;
+        }
+
+        private IDetectable FindWeakestTarget(List<IDetectable> detectables)
+        {
+            IDetectable weakestTarget = detectables.OrderBy(d => d.GetEnemyData().Rate).First();
+            return weakestTarget;
+        }
+        
+        private List<IDetectable> Detect()
         {
             int hitCount = OverlapSphereCastPool.Cast(_ownerTransform.position, _range.Value * RANGE_MULTIPLIER, 
                 _mask, out Collider[] colliders);
 
-            if (hitCount <= 0) return Array.Empty<IDetectable>();
+            if (hitCount <= 0) return null;
             
             List<IDetectable> detectables = new List<IDetectable>();
             
@@ -44,6 +65,5 @@ namespace ATG.EnemyDetector
             
             return detectables;
         }
-        
     }
 }

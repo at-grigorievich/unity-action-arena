@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ATG.Animator;
+﻿using ATG.Animator;
 using ATG.Attack;
 using ATG.EnemyDetector;
 using ATG.Move;
@@ -12,7 +11,7 @@ namespace ATG.Character
 {
     public sealed class BotPresenter: ArenaCharacterPresenter
     {
-        private readonly IEnemyDetector _enemyDetector;
+        private readonly IEnemyDetectorSensor _enemyDetectorSensor;
         private readonly AttackByMBTObserver _attackObserver;
         
         public readonly TargetNavigationPointSet NavigationPoints;
@@ -22,9 +21,10 @@ namespace ATG.Character
         public IObservableVar<int> Health => _characterModel.Health;
         public IObservableVar<bool> IsGetDamage => _getDamageObserver.IsDamaged;
         public IObservableVar<bool> IsAttacking => _attackObserver.IsAttacking;
-        
-        public IReadOnlyCollection<IDetectable> DetectedEnemies { get; private set; }
 
+        public IDetectable WeakestDetectedEnemy { get; private set; } = null;
+
+        public float AttackRange => _characterModel.Range.Value;
         public bool EnoughStamina => _stamina.IsEnough;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
@@ -34,7 +34,7 @@ namespace ATG.Character
             : base(view, model, animator, move, attack, stamina)
         {
             NavigationPoints = navigationPoints;
-            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
+            _enemyDetectorSensor = new RangeEnemyDetectorSensor(_characterModel.Range, _view);
             _attackObserver = new AttackByMBTObserver(_attack, _animator, _stamina);
             
             HasDetectedEnemies = new ObservableVar<bool>(false);
@@ -49,8 +49,9 @@ namespace ATG.Character
         public override void Tick()
         {
             base.Tick();
-            DetectedEnemies = _enemyDetector.Detect();
-            HasDetectedEnemies.Value = DetectedEnemies.Count > 0;
+            
+            HasDetectedEnemies.Value = _enemyDetectorSensor.TryDetect(out IDetectable detected);
+            WeakestDetectedEnemy = detected;
         }
 
         public void Stop()
@@ -61,9 +62,11 @@ namespace ATG.Character
 
         public void Attack()
         {
-            Stop();
             _attackObserver.OnAttackRequired();
         }
+        
+        public bool CanReachPosition(Vector3 inputPosition, out Vector3 targetPosition) => 
+            _move.CanReach(inputPosition, out targetPosition);
         
         public void MoveTo(Vector3 position)
         {
