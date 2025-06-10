@@ -60,7 +60,7 @@ namespace ATG.Character
         {
             _isActive = isActive;
             
-            _move.Stop();
+            _move.SetActive(isActive);
             _animator.SetActive(_isActive);
             
             //SetVisible(isActive);
