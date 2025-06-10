@@ -61,6 +61,7 @@ namespace ATG.Character
 
         public void Attack()
         {
+            Stop();
             _attackObserver.OnAttackRequired();
         }
         

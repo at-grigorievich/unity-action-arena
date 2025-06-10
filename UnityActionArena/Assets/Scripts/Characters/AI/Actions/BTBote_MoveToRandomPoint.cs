@@ -6,7 +6,7 @@ namespace ATG.Character.AI
 {
     [AddComponentMenu("")]
     [MBTNode("Bot Actions/Move To Random Point")]
-    public class BTNode_MoveToRandomPoint: BTBot_Action
+    public class BTBote_MoveToRandomPoint: BTBot_Action
     {
         [SerializeField] private float minDistance = 0.2f;
         private TargetNavigationPointSet _pointsSet;
@@ -23,12 +23,12 @@ namespace ATG.Character.AI
         {
             if(_bot == null) return NodeResult.failure;
             if (_pointsSet == null) return NodeResult.failure;
-
+            
             if (_selectedPoint == null)
             {
                 _selectedPoint = _pointsSet.GetRandomPointInRadiusXZ();
             }
-
+            
             float distance = Vector3.Distance(botView.Position, _selectedPoint.Value);
             
             if (distance > minDistance)

@@ -63,8 +63,6 @@ public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisp
 
     private async UniTask PlayerFirstSpawnAsync()
     {
-        _player.SetPhysActive(true);
-
         await UniTask.Yield(cancellationToken: _cts.Token);
 
         _spawnService.SpawnInstantly(_player);

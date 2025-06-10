@@ -46,8 +46,6 @@ namespace ATG.Character
         {
             base.SetActive(isActive);
             
-            _animator.SetActive(isActive);
-            
             _getDamageObserver.SetActive(isActive);
         }
 
