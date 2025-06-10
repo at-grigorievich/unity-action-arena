@@ -4,6 +4,7 @@ using ATG.Animator.Event_Dispatcher;
 using ATG.Attack;
 using ATG.Observable;
 using ATG.Stamina;
+using UnityEngine;
 
 namespace Characters.Observers
 {
@@ -13,7 +14,7 @@ namespace Characters.Observers
         private readonly IAnimatorWrapper _animator;
         private readonly IStaminaService _stamina;
 
-        public readonly IObservableVar<bool> CanAttack;
+        public readonly IObservableVar<bool> IsAttacking;
 
         public AttackByMBTObserver(IAttackService attack, IAnimatorWrapper animator, 
             IStaminaService stamina)
@@ -22,7 +23,7 @@ namespace Characters.Observers
             _stamina = stamina;
             _attack = attack;
 
-            CanAttack = new ObservableVar<bool>(true);
+            IsAttacking = new ObservableVar<bool>(false);
         }
         
         public void SetActive(bool isActive)
@@ -45,15 +46,15 @@ namespace Characters.Observers
         public void OnAttackRequired()
         {
             if(_stamina.IsEnough == false) return;
-            if(CanAttack.Value == false) return;
-
-            CanAttack.Value = false;
+            if(IsAttacking.Value == true) return;
+            
             _animator.SelectState(AnimatorTag.Attack);
         }
         
         private void OnStartSwing()
         {
-            //Debug.Log("start swing");;
+            Debug.Log("start swing");;
+            IsAttacking.Value = true;
             
             _stamina.Reduce(_stamina.DefaultReduceAmount);
             _attack.TakeSwing();
@@ -61,13 +62,11 @@ namespace Characters.Observers
         
         private void OnEndSwing()
         {
-            //Debug.Log("end swing");
+            Debug.Log("end swing");
             
             var result = _attack.EndSwing();
             
-            OnAttackCompleted?.Invoke(result);
-            
-            _isAttacking = false;
+            IsAttacking.Value = false;
         }
     }
 }

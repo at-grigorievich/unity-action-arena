@@ -19,15 +19,14 @@ GameObject:
   - component: {fileID: 9026806060835026794}
   - component: {fileID: 3954861273546968034}
   - component: {fileID: 5289062055058093761}
-  - component: {fileID: 5165356271509986823}
-  - component: {fileID: 7346021440728586299}
+  - component: {fileID: 5972528670149508007}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4831414681254248022
 Transform:
   m_ObjectHideFlags: 0
@@ -68,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 7346021440728586299}
+  selectedEditorNode: {fileID: 0}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -90,7 +89,7 @@ MonoBehaviour:
     x: 216
     y: 209
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 0}
   children:
   - {fileID: 6772464606663016082}
@@ -115,7 +114,7 @@ MonoBehaviour:
     x: 215
     y: 298
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 7890395075382638807}
   children:
   - {fileID: 9026806060835026794}
@@ -144,7 +143,7 @@ MonoBehaviour:
     x: 493
     y: 418
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 6772464606663016082}
   children: []
   behaviourTree: {fileID: 0}
@@ -170,7 +169,7 @@ MonoBehaviour:
     x: 100.79999
     y: 418.19998
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 6772464606663016082}
   children:
   - {fileID: 7156929680363290368}
@@ -198,7 +197,7 @@ MonoBehaviour:
     x: 100
     y: 491.19998
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 2032633666486325669}
   children: []
   behaviourTree: {fileID: 0}
@@ -224,7 +223,7 @@ MonoBehaviour:
     x: -89.59998
     y: 417.6
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 6772464606663016082}
   children:
   - {fileID: 3954861273546968034}
@@ -253,7 +252,7 @@ MonoBehaviour:
     x: -87.999985
     y: 488.79996
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 9026806060835026794}
   children: []
   behaviourTree: {fileID: 0}
@@ -274,20 +273,20 @@ MonoBehaviour:
   title: Has Detected Enemies
   rect:
     serializedVersion: 2
-    x: 303
-    y: 469
+    x: 284
+    y: 415
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 5165356271509986823}
+  - {fileID: 5972528670149508007}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   invert: 0
-  abort: 0
---- !u!114 &5165356271509986823
+  abort: 2
+--- !u!114 &5972528670149508007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,50 +295,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078407424188329271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66e66ab0d9c44c39e40fe28f54d9fba, type: 3}
+  m_Script: {fileID: 11500000, guid: 73da5a43d46c40dc897189b5abc98d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Has Enough Stamina
+  title: Attack
   rect:
     serializedVersion: 2
-    x: 220.6
-    y: 558.4
+    x: 285.6
+    y: 562.80005
     width: 160
-    height: 44
+    height: 45
   parent: {fileID: 5289062055058093761}
-  children:
-  - {fileID: 7346021440728586299}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  botView: {fileID: 7672783158125893895}
-  invert: 0
---- !u!114 &7346021440728586299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6dde7df57f4974a3bcb7960f786f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Stay In Shock
-  rect:
-    serializedVersion: 2
-    x: 221.6
-    y: 630.19995
-    width: 160
-    height: 44
-  parent: {fileID: 5165356271509986823}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
-  shockDuration: 2
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

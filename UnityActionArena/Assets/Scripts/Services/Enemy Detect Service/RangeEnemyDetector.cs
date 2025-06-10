@@ -38,8 +38,7 @@ namespace ATG.EnemyDetector
                 
                 if(collider.TryGetComponent(out IDetectable detected) == false) continue;
                 if(ReferenceEquals(_owner, detected) == true) continue;
-                
-                Debug.Log(detected.GetEnemyData().Transform.name);
+
                 detectables.Add(detected);
             }
             

@@ -5,6 +5,7 @@ using ATG.EnemyDetector;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
+using Characters.Observers;
 using UnityEngine;
 
 namespace ATG.Character
@@ -12,6 +13,7 @@ namespace ATG.Character
     public sealed class BotPresenter: ArenaCharacterPresenter
     {
         private readonly IEnemyDetector _enemyDetector;
+        private readonly AttackByMBTObserver _attackObserver;
         
         public readonly TargetNavigationPointSet NavigationPoints;
 
@@ -19,10 +21,11 @@ namespace ATG.Character
         public readonly IObservableVar<bool> HasDetectedEnemies;
         
         public IObservableVar<int> Health => _characterModel.Health;
+        public IObservableVar<bool> IsAttacking => _attackObserver.IsAttacking;
         
         public IReadOnlyCollection<IDetectable> DetectedEnemies { get; private set; }
 
-        public bool CanAttack => _stamina.IsEnough == true && _attack.IsAvailable == true;
+        public bool EnoughStamina => _stamina.IsEnough;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -32,9 +35,16 @@ namespace ATG.Character
         {
             NavigationPoints = navigationPoints;
             _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
+            _attackObserver = new AttackByMBTObserver(_attack, _animator, _stamina);
             
             IsGetDamage = new ObservableVar<bool>(false);
             HasDetectedEnemies = new ObservableVar<bool>(false);
+        }
+
+        public override void SetActive(bool isActive)
+        {
+            base.SetActive(isActive);
+            _attackObserver.SetActive(isActive);
         }
 
         public override void Tick()
@@ -44,14 +54,15 @@ namespace ATG.Character
             HasDetectedEnemies.Value = DetectedEnemies.Count > 0;
         }
 
-        public void StayInShock()
+        public void Stop()
         {
+            _animator.SelectState(AnimatorTag.Idle);
             _move.Stop();
         }
 
         public void Attack()
         {
-            
+            _attackObserver.OnAttackRequired();
         }
         
         public void MoveTo(Vector3 position)

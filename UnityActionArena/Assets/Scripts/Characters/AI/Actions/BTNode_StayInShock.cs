@@ -29,7 +29,7 @@ namespace ATG.Character.AI
                 return NodeResult.success;
             }
             
-            _bot.StayInShock();
+            _bot.Stop();
             _shockTimer += Time.deltaTime;
             
             return NodeResult.running;
