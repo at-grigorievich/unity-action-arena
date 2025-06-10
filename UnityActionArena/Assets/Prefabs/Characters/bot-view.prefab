@@ -18,6 +18,9 @@ GameObject:
   - component: {fileID: 7156929680363290368}
   - component: {fileID: 9026806060835026794}
   - component: {fileID: 3954861273546968034}
+  - component: {fileID: 5289062055058093761}
+  - component: {fileID: 5165356271509986823}
+  - component: {fileID: 7346021440728586299}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -65,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 9026806060835026794}
+  selectedEditorNode: {fileID: 7346021440728586299}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -117,6 +120,7 @@ MonoBehaviour:
   children:
   - {fileID: 9026806060835026794}
   - {fileID: 2032633666486325669}
+  - {fileID: 5289062055058093761}
   - {fileID: 8307907481850506623}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -137,8 +141,8 @@ MonoBehaviour:
   title: Move To Random Point
   rect:
     serializedVersion: 2
-    x: 323
-    y: 408
+    x: 493
+    y: 418
     width: 160
     height: 44
   parent: {fileID: 6772464606663016082}
@@ -255,6 +259,87 @@ MonoBehaviour:
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
+--- !u!114 &5289062055058093761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cd46331eb14ed9aa07059ba2674c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Has Detected Enemies
+  rect:
+    serializedVersion: 2
+    x: 303
+    y: 469
+    width: 160
+    height: 44
+  parent: {fileID: 6772464606663016082}
+  children:
+  - {fileID: 5165356271509986823}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 0
+  abort: 0
+--- !u!114 &5165356271509986823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e66ab0d9c44c39e40fe28f54d9fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Has Enough Stamina
+  rect:
+    serializedVersion: 2
+    x: 220.6
+    y: 558.4
+    width: 160
+    height: 44
+  parent: {fileID: 5289062055058093761}
+  children:
+  - {fileID: 7346021440728586299}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 0
+--- !u!114 &7346021440728586299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6dde7df57f4974a3bcb7960f786f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stay In Shock
+  rect:
+    serializedVersion: 2
+    x: 221.6
+    y: 630.19995
+    width: 160
+    height: 44
+  parent: {fileID: 5165356271509986823}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  shockDuration: 2
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,31 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using ATG.Animator;
 using ATG.Animator.Event_Dispatcher;
 using ATG.Attack;
-using ATG.Input;
+using ATG.Observable;
 using ATG.Stamina;
 
 namespace Characters.Observers
 {
-    public sealed class AttackByInputObserver
+    public class AttackByMBTObserver
     {
-        private readonly IInputable _input;
         private readonly IAttackService _attack;
         private readonly IAnimatorWrapper _animator;
         private readonly IStaminaService _stamina;
 
-        private bool _isAttacking;
-        
-        public event Action<IReadOnlyCollection<IAttackable>> OnAttackCompleted; 
-        
-        public AttackByInputObserver(IInputable input, IAttackService attack, IAnimatorWrapper animator, 
+        public readonly IObservableVar<bool> CanAttack;
+
+        public AttackByMBTObserver(IAttackService attack, IAnimatorWrapper animator, 
             IStaminaService stamina)
         {
-            _input = input;
-            _attack = attack;
             _animator = animator;
             _stamina = stamina;
+            _attack = attack;
+
+            CanAttack = new ObservableVar<bool>(true);
         }
         
         public void SetActive(bool isActive)
@@ -37,33 +34,26 @@ namespace Characters.Observers
             {
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_SWING, OnEndSwing);
-                
-                _input.OnLMBClicked += OnLMBClicked;
             }
             else
             {
                 _animator.EventDispatcher.Unsubscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Unsubscribe(AnimatorEventType.END_SWING, OnEndSwing);
-                
-                _input.OnLMBClicked -= OnLMBClicked;
             }
         }
         
-        private void OnLMBClicked(bool obj)
+        public void OnAttackRequired()
         {
-            if(obj == false) return;
-            if(_attack.IsAvailable == false) return;
             if(_stamina.IsEnough == false) return;
-            if(_isAttacking == true) return;
-            
+            if(CanAttack.Value == false) return;
+
+            CanAttack.Value = false;
             _animator.SelectState(AnimatorTag.Attack);
         }
         
         private void OnStartSwing()
         {
-            //Debug.Log("start swing");
-            
-            _isAttacking = true;
+            //Debug.Log("start swing");;
             
             _stamina.Reduce(_stamina.DefaultReduceAmount);
             _attack.TakeSwing();

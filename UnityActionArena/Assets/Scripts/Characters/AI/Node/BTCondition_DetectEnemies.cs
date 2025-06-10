@@ -5,17 +5,17 @@ using UnityEngine;
 namespace ATG.Character.AI
 {
     [AddComponentMenu("")]
-    [MBTNode("Bot Conditions/Is Get Damage")]
-    public sealed class BTCondition_IsGetDamage: BTBot_VariableCondition<bool>
+    [MBTNode("Bot Conditions/Has Detected Enemies")]
+    public class BTCondition_DetectEnemies: BTBot_VariableCondition<bool>
     {
         protected override IObservableVar<bool> InitializeVariable(BotPresenter presenter)
         {
-            return presenter.IsGetDamage;
+            return presenter.HasDetectedEnemies;
         }
 
         protected override bool CheckCondition()
         {
-            return Variable.Value == true;
+            return Variable.Value;
         }
     }
 }

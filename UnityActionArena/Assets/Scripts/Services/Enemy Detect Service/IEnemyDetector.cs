@@ -4,6 +4,6 @@ namespace ATG.EnemyDetector
 {
     public interface IEnemyDetector
     {
-        IEnumerable<IDetectable> Detect();
+        IReadOnlyCollection<IDetectable> Detect();
     }
 }

@@ -1,4 +1,5 @@
-﻿using ATG.Animator;
+﻿using System.Collections.Generic;
+using ATG.Animator;
 using ATG.Attack;
 using ATG.EnemyDetector;
 using ATG.Move;
@@ -15,7 +16,13 @@ namespace ATG.Character
         public readonly TargetNavigationPointSet NavigationPoints;
 
         public readonly IObservableVar<bool> IsGetDamage;
+        public readonly IObservableVar<bool> HasDetectedEnemies;
+        
         public IObservableVar<int> Health => _characterModel.Health;
+        
+        public IReadOnlyCollection<IDetectable> DetectedEnemies { get; private set; }
+
+        public bool CanAttack => _stamina.IsEnough == true && _attack.IsAvailable == true;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -24,21 +31,27 @@ namespace ATG.Character
             : base(view, model, animator, move, attack, stamina)
         {
             NavigationPoints = navigationPoints;
+            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
             
             IsGetDamage = new ObservableVar<bool>(false);
-
-            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
+            HasDetectedEnemies = new ObservableVar<bool>(false);
         }
 
         public override void Tick()
         {
             base.Tick();
-            _enemyDetector.Detect();
+            DetectedEnemies = _enemyDetector.Detect();
+            HasDetectedEnemies.Value = DetectedEnemies.Count > 0;
         }
 
-        public void Stop()
+        public void StayInShock()
         {
             _move.Stop();
+        }
+
+        public void Attack()
+        {
+            
         }
         
         public void MoveTo(Vector3 position)

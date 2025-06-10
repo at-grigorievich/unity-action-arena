@@ -23,14 +23,14 @@ namespace ATG.EnemyDetector
             _mask = LayerMask.GetMask("Default");
         }
         
-        public IEnumerable<IDetectable> Detect()
+        public IReadOnlyCollection<IDetectable> Detect()
         {
             int hitCount = OverlapSphereCastPool.Cast(_ownerTransform.position, _range.Value * RANGE_MULTIPLIER, 
                 _mask, out Collider[] colliders);
 
             if (hitCount <= 0) return Array.Empty<IDetectable>();
             
-            List<IDetectable> detectables = new List<IDetectable>(hitCount);
+            List<IDetectable> detectables = new List<IDetectable>();
             
             for (int i = 0; i < hitCount; i++)
             {
@@ -39,6 +39,7 @@ namespace ATG.EnemyDetector
                 if(collider.TryGetComponent(out IDetectable detected) == false) continue;
                 if(ReferenceEquals(_owner, detected) == true) continue;
                 
+                Debug.Log(detected.GetEnemyData().Transform.name);
                 detectables.Add(detected);
             }
             

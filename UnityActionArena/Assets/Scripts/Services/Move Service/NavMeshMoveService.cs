@@ -24,6 +24,8 @@ namespace ATG.Move
 
         public void MoveTo(Vector3 position)
         {
+            if(_agent.enabled == false) return;
+            
             _agent.isStopped = false;
             _agent.speed = _speedVariable.Value;
             _agent.SetDestination(position);
@@ -41,6 +43,8 @@ namespace ATG.Move
 
         public void Stop()
         {
+            if(_agent.enabled == false) return;
+            
             _agent.speed = 0f;
             _agent.isStopped = true;
         }

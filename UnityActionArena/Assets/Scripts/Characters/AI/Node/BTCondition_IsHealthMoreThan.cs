@@ -6,7 +6,7 @@ namespace ATG.Character.AI
 {
     [AddComponentMenu("")]
     [MBTNode("Bot Conditions/Is Health More Than")]
-    public sealed class BTCondition_IsHealthMoreThan: BTBot_Condition<int>
+    public sealed class BTCondition_IsHealthMoreThan: BTBot_VariableCondition<int>
     {
         [SerializeField] private int healthLevel;
         
