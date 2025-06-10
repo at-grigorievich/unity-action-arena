@@ -9,7 +9,7 @@ using UnityEngine.AI;
 namespace ATG.Character
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(CharacterEquipmentView))]
-    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable, IAttackable, IEnemy
+    public sealed class CharacterView : MonoBehaviour, IEquipmentViewable, IAttackable, IDetectable
     {
         private Rigidbody _rb;
         private Collider _collider;

@@ -27,7 +27,7 @@ namespace ATG.Character
             
             IsGetDamage = new ObservableVar<bool>(false);
 
-            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view.transform);
+            _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
         }
 
         public override void Tick()

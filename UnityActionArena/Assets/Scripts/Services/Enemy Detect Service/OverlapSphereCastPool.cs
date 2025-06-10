@@ -15,7 +15,6 @@ namespace ATG.EnemyDetector
         public static int Cast(Vector3 origin, float radius, int mask, out Collider[] hits)
         {
 #if UNITY_EDITOR
-            Debug.DrawRay(origin, origin + Vector3.up, Color.red);    
             Debug.DrawLine(origin + Vector3.up, origin + Vector3.up +  Vector3.forward * radius, Color.yellow);
 #endif
 

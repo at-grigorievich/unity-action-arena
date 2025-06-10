@@ -11,7 +11,7 @@ using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IEnemy
+    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IDetectable
     {
         protected readonly CharacterView _view;
         protected readonly CharacterModel _characterModel;
@@ -40,12 +40,12 @@ namespace ATG.Character
             
             _animator = animator;
             _move = move;
+            
+            _view.Initialize(this);
         }
         
         public virtual void Initialize()
         {
-            _view.Initialize(this);
-            
             _equipmentModelObserver.Initialize();
             _equipmentViewObserver.Initialize();
         }

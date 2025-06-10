@@ -12,7 +12,7 @@ namespace ATG.EnemyDetector
         }
     }
     
-    public interface IEnemy
+    public interface IDetectable
     {
         EnemyData GetEnemyData();
     }

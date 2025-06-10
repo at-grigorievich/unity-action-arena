@@ -40,7 +40,7 @@ MonoBehaviour:
     - rid: 7637649362196627459
       type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        DamageEffect: 10
+        DamageEffect: 100
     - rid: 7637649362196627460
       type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
