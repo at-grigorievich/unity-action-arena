@@ -4,6 +4,7 @@ using ATG.Attack;
 using ATG.Camera;
 using ATG.Input;
 using ATG.Move;
+using ATG.Observable;
 using ATG.Stamina;
 using Characters.Observers;
 
@@ -15,6 +16,8 @@ namespace ATG.Character
         
         private readonly MoveByInputObserver _moveObserver;
         private readonly AttackByInputObserver _attackObserver;
+
+        private readonly CompositeObserveDisposable _dis;
         
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
@@ -25,13 +28,21 @@ namespace ATG.Character
             _cinemachine = cinemachine;
             _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);
             _attackObserver = new AttackByInputObserver(input, _attack, _animator, _stamina);
+            
+            _dis = new CompositeObserveDisposable();
         }
 
         public override void Initialize()
         {
             base.Initialize();
-
+            
             _attackObserver.OnAttackCompleted += OnAttackCompleted;
+
+            _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
+            {
+                _attackObserver.SetActive(!isDamagedNow);
+                _moveObserver.SetActive(!isDamagedNow);
+            }).AddTo(_dis);
         }
 
         public override void SetActive(bool isActive)
@@ -55,17 +66,15 @@ namespace ATG.Character
         {
             base.Dispose();
             
+            _dis.Dispose();
+            
             _moveObserver.SetActive(false);
             _attackObserver.OnAttackCompleted -= OnAttackCompleted;
         }
 
         private void OnAttackCompleted(IReadOnlyCollection<IAttackable> attackables)
         {
-            //Debug.Log(attackables.Count());
-            /*foreach (var attackable in attackables)
-            {
-                
-            }*/
+            
         }
     }
 }

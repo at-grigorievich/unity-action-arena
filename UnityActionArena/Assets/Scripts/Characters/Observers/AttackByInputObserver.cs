@@ -14,8 +14,6 @@ namespace Characters.Observers
         private readonly IAttackService _attack;
         private readonly IAnimatorWrapper _animator;
         private readonly IStaminaService _stamina;
-
-        private bool _isAttacking;
         
         public event Action<IReadOnlyCollection<IAttackable>> OnAttackCompleted; 
         
@@ -35,6 +33,8 @@ namespace Characters.Observers
             
             if (isActive == true)
             {
+                _attack.Reset();
+                
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_SWING, OnEndSwing);
                 
@@ -54,17 +54,14 @@ namespace Characters.Observers
             if(obj == false) return;
             if(_attack.IsAvailable == false) return;
             if(_stamina.IsEnough == false) return;
-            if(_isAttacking == true) return;
-            
+
             _animator.SelectState(AnimatorTag.Attack);
         }
         
         private void OnStartSwing()
         {
             //Debug.Log("start swing");
-            
-            _isAttacking = true;
-            
+
             _stamina.Reduce(_stamina.DefaultReduceAmount);
             _attack.TakeSwing();
         }
@@ -76,8 +73,6 @@ namespace Characters.Observers
             var result = _attack.EndSwing();
             
             OnAttackCompleted?.Invoke(result);
-            
-            _isAttacking = false;
         }
     }
 }

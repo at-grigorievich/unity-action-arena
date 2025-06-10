@@ -45,6 +45,11 @@ namespace ATG.Attack
             _attack.Start(_range.Value);
         }
 
+        public void Reset()
+        {
+            IsAvailable = true;
+        }
+
         public IReadOnlyCollection<IAttackable> EndSwing()
         {
             //Debug.Log("end swing");

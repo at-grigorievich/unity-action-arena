@@ -12,6 +12,7 @@ namespace ATG.Attack
         
         void InitOwner(IAttackable owner);
         void TakeSwing();
+        void Reset();
         IReadOnlyCollection<IAttackable> EndSwing();
     }
 }

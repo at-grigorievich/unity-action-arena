@@ -50,5 +50,5 @@ MonoBehaviour:
         <Tag>k__BackingField: 5
         <StateName>k__BackingField: get_damage
         option:
-          CrossFadeDuration: 0.02
+          CrossFadeDuration: 0.002
           AnimatorLayer: 0

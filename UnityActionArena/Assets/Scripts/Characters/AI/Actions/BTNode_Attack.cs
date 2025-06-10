@@ -15,7 +15,6 @@ namespace ATG.Character.AI
 
             if (_bot.IsAttacking.Value == false && _alreadyAttacked == false)
             {
-                _bot.Stop();
                 _bot.Attack();
                 _alreadyAttacked = true;
                 return NodeResult.running;

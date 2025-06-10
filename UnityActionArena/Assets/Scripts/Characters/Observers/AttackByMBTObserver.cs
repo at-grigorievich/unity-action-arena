@@ -4,7 +4,6 @@ using ATG.Animator.Event_Dispatcher;
 using ATG.Attack;
 using ATG.Observable;
 using ATG.Stamina;
-using UnityEngine;
 
 namespace Characters.Observers
 {
@@ -33,6 +32,8 @@ namespace Characters.Observers
             
             if (isActive == true)
             {
+                _attack.Reset();
+                
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_SWING, OnEndSwing);
             }
@@ -53,7 +54,7 @@ namespace Characters.Observers
         
         private void OnStartSwing()
         {
-            Debug.Log("start swing");;
+            // Debug.Log("start swing");;
             IsAttacking.Value = true;
             
             _stamina.Reduce(_stamina.DefaultReduceAmount);
@@ -62,7 +63,7 @@ namespace Characters.Observers
         
         private void OnEndSwing()
         {
-            Debug.Log("end swing");
+            //Debug.Log("end swing");
             
             var result = _attack.EndSwing();
             

@@ -16,11 +16,11 @@ namespace ATG.Character
         private readonly AttackByMBTObserver _attackObserver;
         
         public readonly TargetNavigationPointSet NavigationPoints;
-
-        public readonly IObservableVar<bool> IsGetDamage;
+        
         public readonly IObservableVar<bool> HasDetectedEnemies;
         
         public IObservableVar<int> Health => _characterModel.Health;
+        public IObservableVar<bool> IsGetDamage => _getDamageObserver.IsDamaged;
         public IObservableVar<bool> IsAttacking => _attackObserver.IsAttacking;
         
         public IReadOnlyCollection<IDetectable> DetectedEnemies { get; private set; }
@@ -37,7 +37,6 @@ namespace ATG.Character
             _enemyDetector = new RangeEnemyDetector(_characterModel.Range, _view);
             _attackObserver = new AttackByMBTObserver(_attack, _animator, _stamina);
             
-            IsGetDamage = new ObservableVar<bool>(false);
             HasDetectedEnemies = new ObservableVar<bool>(false);
         }
 
@@ -69,12 +68,6 @@ namespace ATG.Character
         {
             _move.MoveTo(position);
             _animator.SelectState(AnimatorTag.Run);
-        }
-
-        protected override void RequestToGetDamageHandle(AttackDamageData damageData)
-        {
-            base.RequestToGetDamageHandle(damageData);
-            IsGetDamage.Value = true;
         }
     }
 }

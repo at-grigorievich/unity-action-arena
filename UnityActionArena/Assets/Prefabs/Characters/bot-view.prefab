@@ -15,11 +15,13 @@ GameObject:
   - component: {fileID: 6772464606663016082}
   - component: {fileID: 8307907481850506623}
   - component: {fileID: 2032633666486325669}
-  - component: {fileID: 7156929680363290368}
   - component: {fileID: 9026806060835026794}
   - component: {fileID: 3954861273546968034}
   - component: {fileID: 5289062055058093761}
   - component: {fileID: 5972528670149508007}
+  - component: {fileID: 7216338854177170397}
+  - component: {fileID: 5588873546243290786}
+  - component: {fileID: 2990230229590110906}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -67,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 0}
+  selectedEditorNode: {fileID: 2990230229590110906}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -172,39 +174,13 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 7156929680363290368}
+  - {fileID: 7216338854177170397}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   invert: 0
-  abort: 2
---- !u!114 &7156929680363290368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6dde7df57f4974a3bcb7960f786f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Stay In Shock
-  rect:
-    serializedVersion: 2
-    x: 100
-    y: 491.19998
-    width: 160
-    height: 45
-  parent: {fileID: 2032633666486325669}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  botView: {fileID: 7672783158125893895}
-  shockDuration: 0.4
+  abort: 3
 --- !u!114 &9026806060835026794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +208,7 @@ MonoBehaviour:
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   invert: 1
-  abort: 1
+  abort: 3
   healthLevel: 0
 --- !u!114 &3954861273546968034
 MonoBehaviour:
@@ -249,8 +225,8 @@ MonoBehaviour:
   title: Nothing
   rect:
     serializedVersion: 2
-    x: -87.999985
-    y: 488.79996
+    x: -88.999985
+    y: 497.79996
     width: 160
     height: 45
   parent: {fileID: 9026806060835026794}
@@ -279,7 +255,7 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 5972528670149508007}
+  - {fileID: 5588873546243290786}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -301,11 +277,87 @@ MonoBehaviour:
   title: Attack
   rect:
     serializedVersion: 2
-    x: 285.6
-    y: 562.80005
+    x: 377.6
+    y: 603.80005
+    width: 160
+    height: 45
+  parent: {fileID: 5588873546243290786}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+--- !u!114 &7216338854177170397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Nothing
+  rect:
+    serializedVersion: 2
+    x: 98.000015
+    y: 494.79993
+    width: 160
+    height: 45
+  parent: {fileID: 2032633666486325669}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+--- !u!114 &5588873546243290786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Attack In Idle
+  rect:
+    serializedVersion: 2
+    x: 287
+    y: 502
     width: 160
     height: 45
   parent: {fileID: 5289062055058093761}
+  children:
+  - {fileID: 2990230229590110906}
+  - {fileID: 5972528670149508007}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &2990230229590110906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81cd107dee9441fb71d24995e9e38c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stop Moving
+  rect:
+    serializedVersion: 2
+    x: 211
+    y: 605
+    width: 160
+    height: 45
+  parent: {fileID: 5588873546243290786}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0

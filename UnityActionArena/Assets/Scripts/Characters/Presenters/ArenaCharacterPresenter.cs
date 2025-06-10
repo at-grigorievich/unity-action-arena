@@ -5,6 +5,7 @@ using ATG.Health;
 using ATG.Items;
 using ATG.Move;
 using ATG.Stamina;
+using Characters.Observers;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -15,14 +16,19 @@ namespace ATG.Character
         protected readonly IAttackService _attack;
         protected readonly IHealthService<int> _health;
         protected readonly IStaminaService _stamina;
+
+        protected readonly GetDamageObserver _getDamageObserver;
         
         protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
-            IAnimatorWrapper animator, IMoveableService move, IAttackService attack, IStaminaService stamina) 
+            IAnimatorWrapper animator, IMoveableService move, 
+            IAttackService attack, IStaminaService stamina) 
             : base(view, model, animator, move)
         {
             _attack = attack;
-            _health = new HealthService(model.Health);
             _stamina = stamina;
+            
+            _health = new HealthService(model.Health);
+            _getDamageObserver = new GetDamageObserver(_animator, _move, _health);
         }
 
         public override void Initialize()
@@ -39,7 +45,10 @@ namespace ATG.Character
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
+            
             _animator.SetActive(isActive);
+            
+            _getDamageObserver.SetActive(isActive);
         }
 
         public override void Dispose()
@@ -77,12 +86,9 @@ namespace ATG.Character
         {
             obj.TakeHitByAttacker(new AttackDamageData(_characterModel.Damage.Value));
         }
-        
-        protected virtual void RequestToGetDamageHandle(AttackDamageData damageData)
-        {
-            _animator.SelectState(AnimatorTag.GetDamage);
-            _health.Reduce(damageData.Damage);
-        }
+
+        protected virtual void RequestToGetDamageHandle(AttackDamageData damageData) =>
+            _getDamageObserver.ReceiveDamage(damageData);
         
         protected virtual void OnHealthIsOverHandle()
         {

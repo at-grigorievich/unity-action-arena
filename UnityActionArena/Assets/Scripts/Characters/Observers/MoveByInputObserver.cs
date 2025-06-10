@@ -17,6 +17,8 @@ namespace Characters.Observers
         private readonly IAnimatorWrapper _animatorService;
         
         private readonly Transform _cameraTransform;
+
+        private bool _isActive;
         
         public MoveByInputObserver(Transform characterTransform, IInputable input,
             IMoveableService moveService, IAnimatorWrapper animatorService)
@@ -34,10 +36,13 @@ namespace Characters.Observers
         
         public void SetActive(bool isActive)
         {
+            _isActive = isActive;
         }
 
         public void Tick()
         {
+            if(_isActive == false) return;
+            
             Vector2 input = _input.GetDirection();
             
             if (input.sqrMagnitude > float.Epsilon)
