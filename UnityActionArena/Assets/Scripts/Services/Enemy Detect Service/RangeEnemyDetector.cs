@@ -30,7 +30,7 @@ namespace ATG.EnemyDetector
 
             if (hitCount <= 0) return Array.Empty<IDetectable>();
             
-            List<IDetectable> detectables = new List<IDetectable>();
+            List<IDetectable> detectables = new List<IDetectable>(hitCount);
             
             for (int i = 0; i < hitCount; i++)
             {
@@ -42,7 +42,7 @@ namespace ATG.EnemyDetector
                 detectables.Add(detected);
             }
             
-            return null;
+            return detectables;
         }
         
     }
