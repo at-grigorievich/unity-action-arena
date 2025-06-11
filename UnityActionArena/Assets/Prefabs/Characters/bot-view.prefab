@@ -27,6 +27,15 @@ GameObject:
   - component: {fileID: 5212705538593228479}
   - component: {fileID: 7910992734906089671}
   - component: {fileID: 1312999402744187782}
+  - component: {fileID: 7556530520321611289}
+  - component: {fileID: 2281688590794052359}
+  - component: {fileID: 5828226279792792592}
+  - component: {fileID: 5947885201502075452}
+  - component: {fileID: 9078390468601708650}
+  - component: {fileID: 2175297434533970898}
+  - component: {fileID: 6321607486707726686}
+  - component: {fileID: 1328532870646235046}
+  - component: {fileID: 4571301569805196008}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -74,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 1083297630772468877}
+  selectedEditorNode: {fileID: 5828226279792792592}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -308,7 +317,7 @@ MonoBehaviour:
   title: Start Attack
   rect:
     serializedVersion: 2
-    x: 220
+    x: 200
     y: 740
     width: 160
     height: 45
@@ -340,8 +349,11 @@ MonoBehaviour:
   parent: {fileID: 1739123724725270924}
   children:
   - {fileID: 3578481856059453096}
+  - {fileID: 5947885201502075452}
   - {fileID: 5690028956336577123}
+  - {fileID: 7556530520321611289}
   - {fileID: 1404770486591979392}
+  - {fileID: 4571301569805196008}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -361,7 +373,7 @@ MonoBehaviour:
   title: End Attack
   rect:
     serializedVersion: 2
-    x: 420
+    x: 560
     y: 740
     width: 160
     height: 45
@@ -413,7 +425,7 @@ MonoBehaviour:
   title: Check Distance To Enemy
   rect:
     serializedVersion: 2
-    x: 0
+    x: -180
     y: 740
     width: 160
     height: 45
@@ -440,7 +452,7 @@ MonoBehaviour:
   title: Enemy In Attack Range
   rect:
     serializedVersion: 2
-    x: -120
+    x: -280
     y: 820
     width: 160
     height: 45
@@ -467,8 +479,8 @@ MonoBehaviour:
   title: Skip
   rect:
     serializedVersion: 2
-    x: -120
-    y: 920
+    x: -280
+    y: 900
     width: 160
     height: 45
   parent: {fileID: 5212705538593228479}
@@ -492,7 +504,7 @@ MonoBehaviour:
   title: Move To Enemy
   rect:
     serializedVersion: 2
-    x: 60
+    x: -100
     y: 820
     width: 160
     height: 45
@@ -502,6 +514,242 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
+--- !u!114 &7556530520321611289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Idle Or Strafe
+  rect:
+    serializedVersion: 2
+    x: 380
+    y: 740
+    width: 160
+    height: 45
+  parent: {fileID: 1083297630772468877}
+  children:
+  - {fileID: 9078390468601708650}
+  - {fileID: 2175297434533970898}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &2281688590794052359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81cd107dee9441fb71d24995e9e38c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stop Moving
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 900
+    width: 160
+    height: 45
+  parent: {fileID: 9078390468601708650}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+--- !u!114 &5828226279792792592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9661c42c14c545f5948d1faefb0228d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Strafe Around Enemy
+  rect:
+    serializedVersion: 2
+    x: 400
+    y: 960
+    width: 160
+    height: 45
+  parent: {fileID: 1328532870646235046}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  directionScale: 2
+  strafeAngles: d8ffffffe2ffffffecffffff280000001e00000014000000
+--- !u!114 &5947885201502075452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e657d2ae8a40908b39d96bb1011100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Look At Target
+  rect:
+    serializedVersion: 2
+    x: 20
+    y: 740
+    width: 160
+    height: 45
+  parent: {fileID: 1083297630772468877}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+--- !u!114 &9078390468601708650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9319a8e7acfa45b7be9da115b762364d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Enemy Stay
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 820
+    width: 160
+    height: 45
+  parent: {fileID: 7556530520321611289}
+  children:
+  - {fileID: 2281688590794052359}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 1
+--- !u!114 &2175297434533970898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Random Selector
+  rect:
+    serializedVersion: 2
+    x: 480
+    y: 820
+    width: 160
+    height: 45
+  parent: {fileID: 7556530520321611289}
+  children:
+  - {fileID: 1328532870646235046}
+  - {fileID: 6321607486707726686}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 1
+--- !u!114 &6321607486707726686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81cd107dee9441fb71d24995e9e38c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stop Moving
+  rect:
+    serializedVersion: 2
+    x: 580
+    y: 900
+    width: 160
+    height: 45
+  parent: {fileID: 2175297434533970898}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+--- !u!114 &1328532870646235046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3137b73a92a439192800ec4860d7a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Random Chance
+  rect:
+    serializedVersion: 2
+    x: 400
+    y: 900
+    width: 160
+    height: 45
+  parent: {fileID: 2175297434533970898}
+  children:
+  - {fileID: 5828226279792792592}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  trueIfMoreThan: 0.25
+--- !u!114 &4571301569805196008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9661c42c14c545f5948d1faefb0228d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Strafe Around Enemy
+  rect:
+    serializedVersion: 2
+    x: 760
+    y: 740
+    width: 160
+    height: 45
+  parent: {fileID: 1083297630772468877}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  directionScale: 3
+  strafeAngles: a6ffffff5a000000b400000088ffffff78000000
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

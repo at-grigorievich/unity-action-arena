@@ -10,6 +10,8 @@ namespace ATG.Move
         {
             _transform = transform;
         }
+
+        public float CurrentSpeed => 0f;
         
         public void SetActive(bool isActive) { }
 
@@ -19,6 +21,12 @@ namespace ATG.Move
         {
             _transform.position = position;
             _transform.rotation = rotation;
+        }
+
+        public void LookAt(Vector3 lookAtPosition)
+        {
+            lookAtPosition.y = _transform.position.y;
+            _transform.LookAt(lookAtPosition);
         }
 
         public bool CanReach(Vector3 inputPosition, out Vector3 resultPosition)

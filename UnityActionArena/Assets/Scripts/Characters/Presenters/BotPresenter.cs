@@ -49,7 +49,6 @@ namespace ATG.Character
             base.Initialize();
             _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
             {
-                Debug.Log(isDamagedNow);
                 _attackObserver.SetActive(!isDamagedNow);
                 Stop();
             }).AddTo(_dis);
@@ -95,5 +94,7 @@ namespace ATG.Character
             _move.MoveTo(position);
             _animator.SelectState(AnimatorTag.Run);
         }
+        
+        public void LookAt(Vector3 position) => _move.LookAt(position);
     }
 }

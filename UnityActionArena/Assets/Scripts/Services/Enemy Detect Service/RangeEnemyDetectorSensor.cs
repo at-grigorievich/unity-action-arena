@@ -40,7 +40,7 @@ namespace ATG.EnemyDetector
 
         private IDetectable FindWeakestTarget(List<IDetectable> detectables)
         {
-            IDetectable weakestTarget = detectables.OrderBy(d => d.GetEnemyData().Rate).First();
+            IDetectable weakestTarget = detectables.OrderBy(d => d.GetEnemyData().SkillRate).First();
             return weakestTarget;
         }
         

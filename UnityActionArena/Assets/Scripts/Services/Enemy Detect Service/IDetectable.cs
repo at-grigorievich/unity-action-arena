@@ -5,12 +5,14 @@ namespace ATG.EnemyDetector
     public readonly struct EnemyData
     {
         public readonly Transform Transform;
-        public readonly float Rate;
+        public readonly float SkillRate;
+        public readonly float CurrentSpeed;
         
-        public EnemyData(Transform transform, float rate)
+        public EnemyData(Transform transform, float skillRate, float currentSpeed)
         {
             Transform = transform;
-            Rate = rate;
+            SkillRate = skillRate;
+            CurrentSpeed = currentSpeed;
         }
     }
     

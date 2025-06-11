@@ -205,7 +205,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -225,14 +225,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.29138842
+      - time: 0.45430976
         functionName: OnEvent
         data: START_SWING
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4475593
+      - time: 0.7228402
         functionName: OnEvent
         data: END_SWING
         objectReferenceParameter: {instanceID: 0}

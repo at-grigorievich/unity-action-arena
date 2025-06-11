@@ -28,7 +28,7 @@ namespace ATG.Character.AI
 
             if (TryReachPoint(targetPosition, out Vector3 resultPosition) == false)
             {
-                resultPosition = _bot.Position + CalculateOffsetInsideCircle();
+                return NodeResult.running;
             }
             
             //Debug.DrawLine(_bot.Position, resultPosition, Color.magenta, 1f);

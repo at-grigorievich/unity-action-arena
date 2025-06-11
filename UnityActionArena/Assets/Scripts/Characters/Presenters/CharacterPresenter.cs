@@ -27,6 +27,7 @@ namespace ATG.Character
         protected bool _isActive;
 
         public Vector3 Position => _view.Position;
+        public Vector3 Forward => _view.transform.forward;
         public Quaternion Rotation => _view.Rotation;
         
         public float Rate => _characterModel.GetRate();
@@ -93,7 +94,7 @@ namespace ATG.Character
         
         public EnemyData GetEnemyData()
         {
-            return new EnemyData(_view.transform, Rate);
+            return new EnemyData(_view.transform, Rate, _move.CurrentSpeed);
         }
     }
 }

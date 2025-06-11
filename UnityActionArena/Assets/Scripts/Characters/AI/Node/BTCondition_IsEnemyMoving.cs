@@ -1,0 +1,19 @@
+﻿using MBT;
+using UnityEngine;
+
+namespace ATG.Character.AI
+{
+    [AddComponentMenu("")]
+    [MBTNode("Bot Conditions/Is Enemy Moving")]
+    public class BTCondition_IsEnemyMoving: BTBot_Condition
+    {
+        protected override bool CheckCondition()
+        {
+            if (_bot.WeakestDetectedEnemy == null) return false;
+
+            var data = _bot.WeakestDetectedEnemy.GetEnemyData();
+
+            return data.CurrentSpeed > 0f;
+        }
+    }
+}

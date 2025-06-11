@@ -67,7 +67,6 @@ namespace Characters.Observers
         private void OnEndSwing()
         {
             //Debug.Log("end swing");
-            
             var result = _attack.EndSwing();
         }
         

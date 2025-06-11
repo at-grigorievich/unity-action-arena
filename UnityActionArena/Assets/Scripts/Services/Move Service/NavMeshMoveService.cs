@@ -21,6 +21,8 @@ namespace ATG.Move
             _path = new NavMeshPath();
         }
 
+        public float CurrentSpeed => _agent.speed;
+
         public void SetActive(bool isActive)
         {
             _agent.enabled = isActive;
@@ -45,17 +47,25 @@ namespace ATG.Move
             SetActive(true);
         }
 
+        public void LookAt(Vector3 lookAtPosition)
+        {
+            lookAtPosition.y = _agent.transform.position.y;
+            _agent.transform.LookAt(lookAtPosition);
+        }
+
         public bool CanReach(Vector3 inputPosition, out Vector3 resultPosition)
         {
             resultPosition = inputPosition;
             
             if(_agent.enabled == false) return false;
             
-            if (NavMesh.SamplePosition(inputPosition, out _hit, 1.0f, NavMesh.AllAreas) != true) 
+            if (NavMesh.SamplePosition(inputPosition, out _hit, .1f, NavMesh.AllAreas) == false) 
                 return false;
             
-            if (_agent.CalculatePath(_hit.position, _path) != true) 
+            if (_agent.CalculatePath(_hit.position, _path) == false) 
                 return false;
+            
+            Debug.DrawRay(resultPosition, Vector3.up * 10f, Color.red, 10f);
             
             resultPosition = _hit.position;
             return true;
