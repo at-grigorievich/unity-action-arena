@@ -7,6 +7,7 @@
         Run,
         Attack,
         Death,
-        GetDamage
+        GetDamage,
+        None = -1
     }
 }

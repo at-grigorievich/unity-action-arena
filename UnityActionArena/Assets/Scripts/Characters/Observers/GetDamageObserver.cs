@@ -30,11 +30,8 @@ namespace Characters.Observers
         
         public void SetActive(bool isActive)
         {
-            if(_animator.EventDispatcher == null)
-                throw new Exception("Animator event dispatcher is null");
-
-            OnEndDamage();
             LastReceivedDamage = null;
+            IsDamaged.Value = false;
             
             if (isActive == true)
             {
@@ -50,24 +47,24 @@ namespace Characters.Observers
 
         public void ReceiveDamage(AttackDamageData damageData)
         {
+            Debug.Log(_animator.GetStateLength(AnimatorTag.GetDamage));
+            
+            _health.Reduce(damageData.Damage);
+            
             LastReceivedDamage = damageData;
             IsDamaged.Value = true;
             
             _move.Stop();
             _animator.SelectState(AnimatorTag.GetDamage);
-            _health.Reduce(damageData.Damage);
         }
         
         private void OnStartDamage()
         {
-            
         }
 
         private void OnEndDamage()
         {
             IsDamaged.Value = false;
         }
-        
-        private void Reset() => IsDamaged.Value = false;
     }
 }

@@ -42,6 +42,11 @@ namespace ATG.Animator
             }
         }
 
+        public float GetStateLength(AnimatorTag tag)
+        {
+            return _statesByTag[tag].GetStateLength(_animator);
+        }
+
         public void SelectState(AnimatorTag tag)
         {
             SetState(tag, null);

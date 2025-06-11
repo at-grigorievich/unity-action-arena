@@ -1,14 +1,14 @@
 ﻿using System;
-using UnityEditor.Animations;
+using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Debug = UnityEngine.Debug;
 
 namespace ATG.Animator
 {
     [Serializable]
     public class CrossFadeOption
     {
-        [field: SerializeField, Range(0.001f, 2f)] public float CrossFadeDuration;
+        [field: SerializeField, Range(0f, 1f)] public float CrossFadeDuration;
         [field: SerializeField] public AnimatorLayer AnimatorLayer = AnimatorLayer.BASE;
     }
     
@@ -20,8 +20,21 @@ namespace ATG.Animator
         int StateIndex { get; }
         
         void ChangeState(UnityEngine.Animator animator, object value);
-    }
+        
+        public float GetStateLength(UnityEngine.Animator animator)
+        {
+            var clips = animator.runtimeAnimatorController.animationClips;
+        
+            foreach (var clip in clips)
+            {
+                int hash = UnityEngine.Animator.StringToHash(clip.name);
+                if(StateIndex == hash) return clip.length;
+            }
 
+            throw new System.ArgumentException("Invalid state");
+        }
+    }
+    
     [Serializable]
     public sealed class BoolAnimatorState : IAnimatorState
     {
@@ -86,6 +99,7 @@ namespace ATG.Animator
     [Serializable]
     public sealed class CrossfadeAnimatorState : IAnimatorState
     {
+        [SerializeField] private bool ignoreTimeOffset = true;
         [field: SerializeField] public AnimatorTag Tag { get; private set; }
         [field: SerializeField] public string StateName { get; private set; }
         public int StateIndex => UnityEngine.Animator.StringToHash(StateName);
@@ -94,7 +108,14 @@ namespace ATG.Animator
         
         public void ChangeState(UnityEngine.Animator animator, object value)
         {
-            animator.CrossFade(StateIndex, option.CrossFadeDuration, (int)option.AnimatorLayer);
+            if (ignoreTimeOffset == true)
+            {
+                animator.CrossFade(StateIndex, option.CrossFadeDuration, (int)option.AnimatorLayer);
+            }
+            else
+            {
+                animator.CrossFade(StateIndex, option.CrossFadeDuration, (int)option.AnimatorLayer, 0f);
+            }
         }
     }
 }

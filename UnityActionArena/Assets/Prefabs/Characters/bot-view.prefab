@@ -40,6 +40,12 @@ GameObject:
   - component: {fileID: 5329181357420306041}
   - component: {fileID: 9074083942136092980}
   - component: {fileID: 8428251894991136816}
+  - component: {fileID: 2790673803455032205}
+  - component: {fileID: 4118993245030642107}
+  - component: {fileID: 3770116692151711861}
+  - component: {fileID: 6674863414130815983}
+  - component: {fileID: 254064463234769037}
+  - component: {fileID: 3616518242380681591}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -87,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 8303174442919773740}
+  selectedEditorNode: {fileID: 254064463234769037}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -107,7 +113,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 220
-    y: 20
+    y: -40
     width: 160
     height: 45
   parent: {fileID: 0}
@@ -132,7 +138,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 220
-    y: 100
+    y: 60
     width: 160
     height: 45
   parent: {fileID: 7890395075382638807}
@@ -140,7 +146,7 @@ MonoBehaviour:
   - {fileID: 9026806060835026794}
   - {fileID: 2032633666486325669}
   - {fileID: 5289062055058093761}
-  - {fileID: 8307907481850506623}
+  - {fileID: 3616518242380681591}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -160,11 +166,11 @@ MonoBehaviour:
   title: Move To Random Point
   rect:
     serializedVersion: 2
-    x: 493
-    y: 418
+    x: 1000
+    y: 220
     width: 160
     height: 45
-  parent: {fileID: 6772464606663016082}
+  parent: {fileID: 3616518242380681591}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -215,7 +221,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: -520
-    y: 180
+    y: 100
     width: 160
     height: 45
   parent: {fileID: 6772464606663016082}
@@ -244,7 +250,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: -520
-    y: 260
+    y: 180
     width: 160
     height: 45
   parent: {fileID: 9026806060835026794}
@@ -268,13 +274,13 @@ MonoBehaviour:
   title: Has Detected Enemies
   rect:
     serializedVersion: 2
-    x: 280
-    y: 420
+    x: 340
+    y: 180
     width: 160
     height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 1739123724725270924}
+  - {fileID: 2790673803455032205}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -379,10 +385,10 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 280
-    y: 520
+    y: 400
     width: 160
     height: 45
-  parent: {fileID: 5289062055058093761}
+  parent: {fileID: 2790673803455032205}
   children:
   - {fileID: 1083297630772468877}
   behaviourTree: {fileID: 0}
@@ -573,6 +579,7 @@ MonoBehaviour:
   botView: {fileID: 7672783158125893895}
   directionScale: 2
   strafeAngles: d8ffffffe2ffffffecffffff280000001e00000014000000
+  useBotForward: 1
 --- !u!114 &5947885201502075452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +632,7 @@ MonoBehaviour:
   botView: {fileID: 7672783158125893895}
   directionScale: 3
   strafeAngles: a6ffffff5a000000b400000088ffffff78000000
+  useBotForward: 1
 --- !u!114 &1238802228587581807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +648,7 @@ MonoBehaviour:
   title: Stay In Shock After Damage
   rect:
     serializedVersion: 2
-    x: -400
+    x: -399
     y: 340
     width: 160
     height: 59
@@ -703,7 +711,7 @@ MonoBehaviour:
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
-  random: 1
+  random: 0
 --- !u!114 &6585498868863617791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +869,166 @@ MonoBehaviour:
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   detectorType: 1
+--- !u!114 &2790673803455032205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Attack Or Retreat Selector
+  rect:
+    serializedVersion: 2
+    x: 340
+    y: 260
+    width: 160
+    height: 45
+  parent: {fileID: 5289062055058093761}
+  children:
+  - {fileID: 1739123724725270924}
+  - {fileID: 3770116692151711861}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &4118993245030642107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4222b5ada84c0db42d8cdcb5590e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Select Nearest Enemy
+  rect:
+    serializedVersion: 2
+    x: 400
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 3770116692151711861}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  detectorType: 0
+--- !u!114 &3770116692151711861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Retreat Sequence
+  rect:
+    serializedVersion: 2
+    x: 480
+    y: 400
+    width: 160
+    height: 45
+  parent: {fileID: 2790673803455032205}
+  children:
+  - {fileID: 4118993245030642107}
+  - {fileID: 6674863414130815983}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &6674863414130815983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9661c42c14c545f5948d1faefb0228d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Strafe Around Enemy
+  rect:
+    serializedVersion: 2
+    x: 600
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 3770116692151711861}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  directionScale: 15
+  strafeAngles: 000000002d000000
+  useBotForward: 0
+--- !u!114 &254064463234769037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f078d3aafee4fabbe15e2691ec0d190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 820
+    y: 220
+    width: 160
+    height: 45
+  parent: {fileID: 3616518242380681591}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  duration: 1
+--- !u!114 &3616518242380681591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sequence
+  rect:
+    serializedVersion: 2
+    x: 900
+    y: 100
+    width: 160
+    height: 45
+  parent: {fileID: 6772464606663016082}
+  children:
+  - {fileID: 254064463234769037}
+  - {fileID: 8307907481850506623}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,6 +1046,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.00000016763806
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102965821646041692, guid: a9e319b335bd6ea40a0cdfce62c379b3,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1227302586639415400, guid: a9e319b335bd6ea40a0cdfce62c379b3,
         type: 3}

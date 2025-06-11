@@ -28,11 +28,14 @@ namespace ATG.Character.AI
 
         public override NodeResult Execute()
         {
-            if (_hasAttacker == false) return NodeResult.failure;
+            if (_hasAttacker == false || _targetPosition == Vector3.zero) return NodeResult.success;
+            
+            Vector3 tarPos = _targetPosition;
+            tarPos.y = _bot.Position.y;
+            
+            float distance = Vector3.Distance(_bot.Position, tarPos);
 
-            float distance = Vector3.Distance(_bot.Position, _targetPosition);
-
-            if (distance <= 0.2f)
+            if (distance <= 0.5f)
             {
                 return NodeResult.success;
             }

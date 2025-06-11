@@ -28,12 +28,15 @@ namespace ATG.Character.AI
 
             if (TryReachPoint(targetPosition, out Vector3 resultPosition) == false)
             {
-                return NodeResult.running;
+                resultPosition = CalculateOffsetByDirection();
             }
             
             //Debug.DrawLine(_bot.Position, resultPosition, Color.magenta, 1f);
-
-            if (Vector3.Distance(_bot.Position, _targetEnemy.position) <= _bot.AttackRange)
+            
+            Vector3 tarPos = resultPosition;
+            tarPos.y = _bot.Position.y;
+            
+            if (Vector3.Distance(_bot.Position, tarPos) <= 0.25f)
             {
                 return NodeResult.success;
             }

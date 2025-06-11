@@ -20,6 +20,7 @@ namespace ATG.Animator
         
         void SetActive(bool isActive);
 
+        float GetStateLength(AnimatorTag tag);
         void SelectState(AnimatorTag tag);
         
         void SetState(AnimatorTag tag, object value);

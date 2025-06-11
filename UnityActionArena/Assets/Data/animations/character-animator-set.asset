@@ -23,32 +23,36 @@ MonoBehaviour:
     - rid: 5624822270889033728
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
       data:
+        ignoreTimeOffset: 1
         <Tag>k__BackingField: 0
-        <StateName>k__BackingField: idle
+        <StateName>k__BackingField: base_idle
         option:
           CrossFadeDuration: 0.002
           AnimatorLayer: 0
     - rid: 5624822270889033729
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
       data:
+        ignoreTimeOffset: 1
         <Tag>k__BackingField: 2
-        <StateName>k__BackingField: run
+        <StateName>k__BackingField: base_run
         option:
           CrossFadeDuration: 0.002
           AnimatorLayer: 0
     - rid: 5624822338645393408
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
       data:
+        ignoreTimeOffset: 0
         <Tag>k__BackingField: 3
-        <StateName>k__BackingField: attack
+        <StateName>k__BackingField: one_handed_attack_a
         option:
-          CrossFadeDuration: 0.02
+          CrossFadeDuration: 0.002
           AnimatorLayer: 1
     - rid: 5624822354833571840
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
       data:
+        ignoreTimeOffset: 0
         <Tag>k__BackingField: 5
-        <StateName>k__BackingField: get_damage
+        <StateName>k__BackingField: base_get_damage
         option:
           CrossFadeDuration: 0.002
           AnimatorLayer: 0

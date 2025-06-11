@@ -6,6 +6,8 @@ namespace ATG.Move
 {
     public class NavMeshMoveService: IMoveableService
     {
+        private static int Priority = 40;
+        
         private const float _smoothTime = 5f;
         
         private readonly IReadOnlyObservableVar<float> _speedVariable;
@@ -17,6 +19,8 @@ namespace ATG.Move
         public NavMeshMoveService(NavMeshAgent agent, IReadOnlyObservableVar<float> speedVariable)
         {
             _agent = agent;
+            _agent.avoidancePriority = Priority++;
+            
             _speedVariable = speedVariable;
             _path = new NavMeshPath();
         }
@@ -59,13 +63,13 @@ namespace ATG.Move
             
             if(_agent.enabled == false) return false;
             
-            if (NavMesh.SamplePosition(inputPosition, out _hit, .1f, NavMesh.AllAreas) == false) 
+            if (NavMesh.SamplePosition(inputPosition, out _hit, 0.01f, NavMesh.AllAreas) == false) 
                 return false;
             
             if (_agent.CalculatePath(_hit.position, _path) == false) 
                 return false;
             
-            Debug.DrawRay(resultPosition, Vector3.up * 10f, Color.red, 10f);
+            //Debug.DrawRay(resultPosition, Vector3.up * 10f, Color.red, 10f);
             
             resultPosition = _hit.position;
             return true;
@@ -77,6 +81,7 @@ namespace ATG.Move
             
             _agent.speed = 0f;
             _agent.isStopped = true;
+            _agent.ResetPath();
         }
 
         private void RotateToPosition(Vector3 position)
@@ -84,6 +89,8 @@ namespace ATG.Move
             Transform transform = _agent.transform;
             
             Vector3 dir = position - transform.position;
+            
+            if(dir.sqrMagnitude == 0) return;
             
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.LookRotation(dir),_smoothTime * Time.deltaTime);

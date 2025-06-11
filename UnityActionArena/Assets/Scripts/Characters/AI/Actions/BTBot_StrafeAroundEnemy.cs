@@ -9,7 +9,8 @@ namespace ATG.Character.AI
     {
         [SerializeField] private float directionScale = 1;
         [SerializeField] private int[] strafeAngles;
-
+        [SerializeField] private bool useBotForward = true;
+        
         private Vector3 _targetPos;
         
         public override void OnEnter()
@@ -18,8 +19,17 @@ namespace ATG.Character.AI
             
             int rndAngleIndex = UnityEngine.Random.Range(0, strafeAngles.Length);
             Quaternion rotation = Quaternion.Euler(0f, strafeAngles[rndAngleIndex], 0f);
-            
-            _targetPos = _bot.Position + rotation * _bot.Forward * directionScale;
+
+            if (useBotForward == true)
+            {
+                _targetPos = _bot.Position + rotation * _bot.Forward * directionScale;
+            }
+            else if (_bot.TargetDetectedEnemy != null)
+            {
+                Vector3 botPosition = _bot.TargetDetectedEnemy.GetEnemyData().Transform.position;
+                Vector3 direction = (botPosition - _bot.Position).normalized;
+                _targetPos = _bot.Position + rotation * direction * directionScale;
+            }
         }
 
         public override NodeResult Execute()
@@ -29,9 +39,12 @@ namespace ATG.Character.AI
                 return NodeResult.success;
             }
             
-            Debug.DrawLine(_bot.Position, result, Color.magenta, 1f);
-
-            if (Vector3.Distance(_bot.Position, _targetPos) <= 0.2f)
+            Debug.DrawLine(_bot.Position, result, Color.magenta);
+            
+            Vector3 tarPos = result;
+            tarPos.y = _bot.Position.y;
+            
+            if (Vector3.Distance(_bot.Position, tarPos) <= 0.25f)
             {
                 return NodeResult.success;
             }

@@ -29,7 +29,10 @@ namespace ATG.Character.AI
                 _selectedPoint = _pointsSet.GetRandomPointInRadiusXZ();
             }
             
-            float distance = Vector3.Distance(botView.Position, _selectedPoint.Value);
+            Vector3 tarPos = _selectedPoint.Value;
+            tarPos.y = _bot.Position.y;
+            
+            float distance = Vector3.Distance(botView.Position, tarPos);
             
             if (distance > minDistance)
             {
