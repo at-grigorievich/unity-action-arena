@@ -38,7 +38,7 @@ namespace ATG.Spawn
         public void SpawnInstantly(ISpawnable obj)
         {
             ISpawnPoint selectedSpawnPoint = _spawnPoints.GetRandomPoint();
-            obj.Spawn(selectedSpawnPoint.Position, selectedSpawnPoint.Rotation);
+            obj.Spawn(selectedSpawnPoint.GetRandomPointInRadiusXZ(), selectedSpawnPoint.Rotation);
         }
 
         public void SpawnAfterDelay(ISpawnable obj)

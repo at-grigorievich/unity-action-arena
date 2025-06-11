@@ -10,7 +10,7 @@ namespace ATG.Move
     
     public class TargetNavigationPoint : MonoBehaviour, INavigatablePoint
     {
-        [field: SerializeField] public float Radius { get; private set; }
+        [field: SerializeField] public float Radius { get; protected set; }
         
         public Vector3 Center => transform.position;
         

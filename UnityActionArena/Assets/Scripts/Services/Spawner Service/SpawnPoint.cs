@@ -8,7 +8,7 @@ namespace ATG.Spawn
     public interface ISpawnPoint
     {
         bool IsFree { get; }
-        Vector3 Position { get; }
+        Vector3 GetRandomPointInRadiusXZ();
         Quaternion Rotation { get; }
     }
     
@@ -30,6 +30,7 @@ namespace ATG.Spawn
         {
             _collider = GetComponent<SphereCollider>();
             _collider.isTrigger = true;
+            Radius = _collider.radius;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -44,12 +45,6 @@ namespace ATG.Spawn
             _objectsOnPoint.Remove(other.gameObject);
             IsFree = _objectsOnPoint.Count <= 0;
             isFreeDebug = IsFree;
-        }
-        
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green / 2.0f;
-            Gizmos.DrawWireSphere(transform.position, Radius);
         }
     }
 }
