@@ -9,9 +9,9 @@ namespace ATG.Character.AI
     {
         public override NodeResult Execute()
         {
-            if(_bot.WeakestDetectedEnemy == null) return NodeResult.failure;
+            if(_bot.TargetDetectedEnemy == null) return NodeResult.failure;
 
-            Transform target = _bot.WeakestDetectedEnemy.GetEnemyData().Transform;
+            Transform target = _bot.TargetDetectedEnemy.GetEnemyData().Transform;
             _bot.LookAt(target.position);
            
             return NodeResult.success;

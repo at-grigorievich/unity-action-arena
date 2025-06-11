@@ -17,7 +17,7 @@ namespace ATG.Character.AI
             base.OnEnter();
             
             _rndRangeValue = UnityEngine.Random.Range(0.5f * _bot.AttackRange, _bot.AttackRange);
-            _targetEnemy = _bot.WeakestDetectedEnemy.GetEnemyData().Transform;
+            _targetEnemy = _bot.TargetDetectedEnemy.GetEnemyData().Transform;
         }
 
         public override NodeResult Execute()

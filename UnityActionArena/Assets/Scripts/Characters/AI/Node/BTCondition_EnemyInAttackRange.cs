@@ -10,7 +10,7 @@ namespace ATG.Character.AI
     {
         protected override bool CheckCondition()
         {
-            EnemyData enemyData = _bot.WeakestDetectedEnemy.GetEnemyData();
+            EnemyData enemyData = _bot.TargetDetectedEnemy.GetEnemyData();
             Vector3 enemyPosition = enemyData.Transform.position;
 
             float distance = Vector3.Distance(_bot.Position, enemyPosition);

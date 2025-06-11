@@ -24,10 +24,11 @@ namespace ATG.Character
         public IObservableVar<bool> IsGetDamage => _getDamageObserver.IsDamaged;
         public IObservableVar<bool> IsAttacking => _attackObserver.IsAttacking;
 
-        public IDetectable WeakestDetectedEnemy { get; private set; } = null;
+        public IDetectable TargetDetectedEnemy { get; private set; } = null;
 
         public float AttackRange => _characterModel.Range.Value;
         public bool EnoughStamina => _stamina.IsEnough;
+        public AttackDamageData? LastReceivedDamage => _getDamageObserver.LastReceivedDamage;
         
         public BotPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -63,38 +64,52 @@ namespace ATG.Character
         public override void Tick()
         {
             base.Tick();
-            
-            HasDetectedEnemies.Value = _enemyDetectorSensor.TryDetect(out IDetectable detected);
-            WeakestDetectedEnemy = detected;
+            CheckEnemyBySensor();
         }
 
         public override void Dispose()
         {
             base.Dispose();
-
             _dis.Dispose();
         }
-
-        public void Stop()
-        {
-            _animator.SelectState(AnimatorTag.Idle);
-            _move.Stop();
-        }
-
+        
         public void Attack()
         {
             _attackObserver.OnAttackRequired();
         }
         
+        public void SetTargetEnemy(IDetectable target) =>
+            TargetDetectedEnemy = target;
+        
+        public bool TryDetectTargetByType(EnemyDetectorType detectionType, out IDetectable target) =>
+            _enemyDetectorSensor.TryDetect(detectionType, out target);
+
         public bool CanReachPosition(Vector3 inputPosition, out Vector3 targetPosition) => 
             _move.CanReach(inputPosition, out targetPosition);
-        
+
+        #region Move & Rotate
         public void MoveTo(Vector3 position)
         {
             _move.MoveTo(position);
             _animator.SelectState(AnimatorTag.Run);
         }
         
+        public void Stop()
+        {
+            _animator.SelectState(AnimatorTag.Idle);
+            _move.Stop();
+        }
+        
         public void LookAt(Vector3 position) => _move.LookAt(position);
+        #endregion
+
+        private void CheckEnemyBySensor()
+        {
+            HasDetectedEnemies.Value = _enemyDetectorSensor.CheckDetect();
+            if (HasDetectedEnemies.Value == false)
+            {
+                TargetDetectedEnemy = null;
+            }
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace ATG.Character
         [Button("Get Damage")]
         public void GetDamage(int damage)
         {
-            TakeHitByAttacker(new AttackDamageData(damage));
+            TakeHitByAttacker(new AttackDamageData(transform, damage, 0f));
         }
 #endif
         

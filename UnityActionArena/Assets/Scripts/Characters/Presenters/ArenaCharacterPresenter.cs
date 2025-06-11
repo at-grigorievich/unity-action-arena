@@ -82,7 +82,10 @@ namespace ATG.Character
 
         protected virtual void RequestToDealDamageHandle(IAttackable obj)
         {
-            obj.TakeHitByAttacker(new AttackDamageData(_characterModel.Damage.Value));
+            obj.TakeHitByAttacker(new AttackDamageData(
+                _view.transform, 
+                _characterModel.Damage.Value, 
+                _characterModel.GetRate()));
         }
 
         protected virtual void RequestToGetDamageHandle(AttackDamageData damageData) =>

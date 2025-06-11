@@ -17,6 +17,8 @@ namespace Characters.Observers
         
         public readonly IObservableVar<bool> IsDamaged;
         
+        public AttackDamageData? LastReceivedDamage { get; private set; }
+        
         public GetDamageObserver(IAnimatorWrapper animator, IMoveableService move, IHealthService<int> healthService)
         {
             _animator = animator;
@@ -30,13 +32,14 @@ namespace Characters.Observers
         {
             if(_animator.EventDispatcher == null)
                 throw new Exception("Animator event dispatcher is null");
+
+            OnEndDamage();
+            LastReceivedDamage = null;
             
             if (isActive == true)
             {
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_DAMAGE, OnStartDamage);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.STOP_DAMAGE, OnEndDamage);
-
-                IsDamaged.Value = false;
             }
             else
             {
@@ -47,7 +50,9 @@ namespace Characters.Observers
 
         public void ReceiveDamage(AttackDamageData damageData)
         {
+            LastReceivedDamage = damageData;
             IsDamaged.Value = true;
+            
             _move.Stop();
             _animator.SelectState(AnimatorTag.GetDamage);
             _health.Reduce(damageData.Damage);

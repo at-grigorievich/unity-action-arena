@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 9026806060835026794}
   - component: {fileID: 3954861273546968034}
   - component: {fileID: 5289062055058093761}
-  - component: {fileID: 7216338854177170397}
   - component: {fileID: 5690028956336577123}
   - component: {fileID: 1083297630772468877}
   - component: {fileID: 1404770486591979392}
@@ -32,6 +31,15 @@ GameObject:
   - component: {fileID: 5828226279792792592}
   - component: {fileID: 5947885201502075452}
   - component: {fileID: 4571301569805196008}
+  - component: {fileID: 1238802228587581807}
+  - component: {fileID: 7407237931972874107}
+  - component: {fileID: 8303174442919773740}
+  - component: {fileID: 6585498868863617791}
+  - component: {fileID: 8882289702675364719}
+  - component: {fileID: 1937038885864171914}
+  - component: {fileID: 5329181357420306041}
+  - component: {fileID: 9074083942136092980}
+  - component: {fileID: 8428251894991136816}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -79,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 7556530520321611289}
+  selectedEditorNode: {fileID: 8303174442919773740}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -98,8 +106,8 @@ MonoBehaviour:
   title: Root
   rect:
     serializedVersion: 2
-    x: 216
-    y: 209
+    x: 220
+    y: 20
     width: 160
     height: 45
   parent: {fileID: 0}
@@ -123,8 +131,8 @@ MonoBehaviour:
   title: Selector
   rect:
     serializedVersion: 2
-    x: 215
-    y: 298
+    x: 220
+    y: 100
     width: 160
     height: 45
   parent: {fileID: 7890395075382638807}
@@ -178,19 +186,19 @@ MonoBehaviour:
   title: Is Get Damage
   rect:
     serializedVersion: 2
-    x: 100.79999
-    y: 418.19998
+    x: -320
+    y: 180
     width: 160
     height: 45
   parent: {fileID: 6772464606663016082}
   children:
-  - {fileID: 7216338854177170397}
+  - {fileID: 7407237931972874107}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   botView: {fileID: 7672783158125893895}
   invert: 0
-  abort: 3
+  abort: 2
 --- !u!114 &9026806060835026794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,8 +214,8 @@ MonoBehaviour:
   title: Is Health Is Over
   rect:
     serializedVersion: 2
-    x: -89.59998
-    y: 417.6
+    x: -520
+    y: 180
     width: 160
     height: 45
   parent: {fileID: 6772464606663016082}
@@ -235,8 +243,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: -88.999985
-    y: 497.79996
+    x: -520
+    y: 260
     width: 160
     height: 45
   parent: {fileID: 9026806060835026794}
@@ -273,31 +281,6 @@ MonoBehaviour:
   botView: {fileID: 7672783158125893895}
   invert: 0
   abort: 3
---- !u!114 &7216338854177170397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Wait
-  rect:
-    serializedVersion: 2
-    x: 28
-    y: 590
-    width: 160
-    height: 45
-  parent: {fileID: 2032633666486325669}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  result: 2
 --- !u!114 &5690028956336577123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +297,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 200
-    y: 740
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -344,6 +327,7 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 1739123724725270924}
   children:
+  - {fileID: 5329181357420306041}
   - {fileID: 3578481856059453096}
   - {fileID: 5947885201502075452}
   - {fileID: 5690028956336577123}
@@ -369,8 +353,8 @@ MonoBehaviour:
   title: End Attack
   rect:
     serializedVersion: 2
-    x: 560
-    y: 740
+    x: 600
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -395,7 +379,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 280
-    y: 500
+    y: 520
     width: 160
     height: 45
   parent: {fileID: 5289062055058093761}
@@ -421,8 +405,8 @@ MonoBehaviour:
   title: Check Distance To Enemy
   rect:
     serializedVersion: 2
-    x: -180
-    y: 740
+    x: -200
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -448,8 +432,8 @@ MonoBehaviour:
   title: Enemy In Attack Range
   rect:
     serializedVersion: 2
-    x: -280
-    y: 820
+    x: -260
+    y: 880
     width: 160
     height: 45
   parent: {fileID: 3578481856059453096}
@@ -475,8 +459,8 @@ MonoBehaviour:
   title: Skip
   rect:
     serializedVersion: 2
-    x: -280
-    y: 900
+    x: -260
+    y: 940
     width: 160
     height: 45
   parent: {fileID: 5212705538593228479}
@@ -500,8 +484,8 @@ MonoBehaviour:
   title: Move To Enemy
   rect:
     serializedVersion: 2
-    x: -100
-    y: 820
+    x: -60
+    y: 880
     width: 160
     height: 45
   parent: {fileID: 3578481856059453096}
@@ -522,11 +506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Idle Or Strafe
+  title: Idle Or Strafe Random
   rect:
     serializedVersion: 2
-    x: 380
-    y: 740
+    x: 400
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -552,8 +536,8 @@ MonoBehaviour:
   title: Stop Moving
   rect:
     serializedVersion: 2
-    x: 280
-    y: 820
+    x: 300
+    y: 880
     width: 160
     height: 45
   parent: {fileID: 7556530520321611289}
@@ -577,8 +561,8 @@ MonoBehaviour:
   title: Strafe Around Enemy
   rect:
     serializedVersion: 2
-    x: 460
-    y: 820
+    x: 500
+    y: 880
     width: 160
     height: 45
   parent: {fileID: 7556530520321611289}
@@ -604,8 +588,8 @@ MonoBehaviour:
   title: Look At Target
   rect:
     serializedVersion: 2
-    x: 20
-    y: 740
+    x: -0
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -629,8 +613,8 @@ MonoBehaviour:
   title: Strafe Around Enemy
   rect:
     serializedVersion: 2
-    x: 760
-    y: 740
+    x: 800
+    y: 800
     width: 160
     height: 45
   parent: {fileID: 1083297630772468877}
@@ -641,6 +625,242 @@ MonoBehaviour:
   botView: {fileID: 7672783158125893895}
   directionScale: 3
   strafeAngles: a6ffffff5a000000b400000088ffffff78000000
+--- !u!114 &1238802228587581807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699d378cb7944428a6f21b5d3824e434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Stay In Shock After Damage
+  rect:
+    serializedVersion: 2
+    x: -400
+    y: 340
+    width: 160
+    height: 59
+  parent: {fileID: 7407237931972874107}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+--- !u!114 &7407237931972874107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Get Damage Sequence
+  rect:
+    serializedVersion: 2
+    x: -320
+    y: 260
+    width: 160
+    height: 45
+  parent: {fileID: 2032633666486325669}
+  children:
+  - {fileID: 1238802228587581807}
+  - {fileID: 8303174442919773740}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &8303174442919773740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: After Shock Selector
+  rect:
+    serializedVersion: 2
+    x: -200
+    y: 340
+    width: 160
+    height: 45
+  parent: {fileID: 7407237931972874107}
+  children:
+  - {fileID: 6585498868863617791}
+  - {fileID: 8882289702675364719}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 1
+--- !u!114 &6585498868863617791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bbd5f88fce4c7692aa7b8794eb5623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Attacker Is Stronger
+  rect:
+    serializedVersion: 2
+    x: -300
+    y: 440
+    width: 160
+    height: 45
+  parent: {fileID: 8303174442919773740}
+  children:
+  - {fileID: 1937038885864171914}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  invert: 1
+--- !u!114 &8882289702675364719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baf09fcefc846219310a3a43f8de604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Skip
+  rect:
+    serializedVersion: 2
+    x: -100
+    y: 440
+    width: 160
+    height: 45
+  parent: {fileID: 8303174442919773740}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  result: 0
+--- !u!114 &1937038885864171914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff94a55f8ea4d5b878061dfc7d174d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Move From Attacker
+  rect:
+    serializedVersion: 2
+    x: -300
+    y: 520
+    width: 160
+    height: 45
+  parent: {fileID: 6585498868863617791}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  minMaxMoveDistance: {x: 1, y: 3}
+--- !u!114 &5329181357420306041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Random Enemy Selector
+  rect:
+    serializedVersion: 2
+    x: -560
+    y: 800
+    width: 160
+    height: 45
+  parent: {fileID: 1083297630772468877}
+  children:
+  - {fileID: 9074083942136092980}
+  - {fileID: 8428251894991136816}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 1
+--- !u!114 &9074083942136092980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4222b5ada84c0db42d8cdcb5590e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Select Nearest Enemy
+  rect:
+    serializedVersion: 2
+    x: -660
+    y: 880
+    width: 160
+    height: 45
+  parent: {fileID: 5329181357420306041}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  detectorType: 0
+--- !u!114 &8428251894991136816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078407424188329271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4222b5ada84c0db42d8cdcb5590e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Select Weakest Target
+  rect:
+    serializedVersion: 2
+    x: -460
+    y: 880
+    width: 160
+    height: 45
+  parent: {fileID: 5329181357420306041}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  botView: {fileID: 7672783158125893895}
+  detectorType: 1
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

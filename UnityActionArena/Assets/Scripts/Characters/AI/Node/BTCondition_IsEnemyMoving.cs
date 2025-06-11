@@ -9,9 +9,9 @@ namespace ATG.Character.AI
     {
         protected override bool CheckCondition()
         {
-            if (_bot.WeakestDetectedEnemy == null) return false;
+            if (_bot.TargetDetectedEnemy == null) return false;
 
-            var data = _bot.WeakestDetectedEnemy.GetEnemyData();
+            var data = _bot.TargetDetectedEnemy.GetEnemyData();
 
             return data.CurrentSpeed > 0f;
         }
