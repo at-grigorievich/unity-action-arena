@@ -15,7 +15,6 @@ namespace ATG.Character.AI
 
             float distance = Vector3.Distance(_bot.Position, enemyPosition);
             
-            Debug.Log(distance);
             return distance <= _bot.AttackRange;
         }
     }
