@@ -21,8 +21,6 @@ namespace ATG.Attack
         private readonly IReadOnlyObservableVar<float> _range;
 
         private readonly OverlapCapsuleCastAttack _attack;
-
-        public bool IsAvailable { get; private set; } = true;
         
         public event Action<IAttackable> OnRequestToDealDamage
         {
@@ -41,20 +39,18 @@ namespace ATG.Attack
         public void TakeSwing()
         {
             //Debug.Log("take swing");
-            IsAvailable = false;
             _attack.Start(_range.Value);
         }
 
-        public void Reset()
+        public void Stop()
         {
-            IsAvailable = true;
+            _attack.Stop();
         }
 
         public IReadOnlyCollection<IAttackable> EndSwing()
         {
             //Debug.Log("end swing");
-            IsAvailable = true;
-            return _attack.EndAndGetResult();
+            return _attack.StopAndGetResult();
         }
         
         public void Tick() => _attack.Tick();

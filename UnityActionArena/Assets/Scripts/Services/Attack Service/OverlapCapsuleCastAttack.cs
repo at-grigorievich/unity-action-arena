@@ -35,11 +35,16 @@ namespace ATG.Attack
             _range = range;
             _allowAttack = true;
         }
-        
-        public IReadOnlyCollection<IAttackable> EndAndGetResult()
+
+        public void Stop()
         {
             _allowAttack = false;
-            return _attackablesByLast;
+        }
+        
+        public IReadOnlyCollection<IAttackable> StopAndGetResult()
+        {
+           Stop();
+           return _attackablesByLast;
         }
         
         public void Tick()

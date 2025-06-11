@@ -232,7 +232,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.98787886
+      - time: 1
         functionName: OnEvent
         data: STOP_DAMAGE
         objectReferenceParameter: {instanceID: 0}

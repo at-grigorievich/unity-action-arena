@@ -6,13 +6,11 @@ namespace ATG.Attack
 {
     public interface IAttackService: ITickable
     {
-        bool IsAvailable { get; }
-     
         event Action<IAttackable> OnRequestToDealDamage; 
         
         void InitOwner(IAttackable owner);
         void TakeSwing();
-        void Reset();
+        void Stop();
         IReadOnlyCollection<IAttackable> EndSwing();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ATG.Animator;
+﻿using ATG.Animator;
 using ATG.Attack;
 using ATG.Camera;
 using ATG.Input;
@@ -36,8 +35,6 @@ namespace ATG.Character
         {
             base.Initialize();
             
-            _attackObserver.OnAttackCompleted += OnAttackCompleted;
-
             _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
             {
                 _attackObserver.SetActive(!isDamagedNow);
@@ -69,12 +66,6 @@ namespace ATG.Character
             _dis.Dispose();
             
             _moveObserver.SetActive(false);
-            _attackObserver.OnAttackCompleted -= OnAttackCompleted;
-        }
-
-        private void OnAttackCompleted(IReadOnlyCollection<IAttackable> attackables)
-        {
-            
         }
     }
 }

@@ -29,11 +29,12 @@ namespace Characters.Observers
         {
             if(_animator.EventDispatcher == null)
                 throw new Exception("Animator event dispatcher is null");
+
+            _attack.Stop();
+            IsAttacking.Value = false;
             
             if (isActive == true)
             {
-                _attack.Reset();
-                
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_SWING, OnEndSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_ATTACK, OnEndAttack);
