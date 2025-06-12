@@ -44,8 +44,6 @@ GameObject:
   - component: {fileID: 4118993245030642107}
   - component: {fileID: 3770116692151711861}
   - component: {fileID: 6674863414130815983}
-  - component: {fileID: 254064463234769037}
-  - component: {fileID: 3616518242380681591}
   m_Layer: 0
   m_Name: mbt
   m_TagString: Untagged
@@ -93,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 254064463234769037}
+  selectedEditorNode: {fileID: 8307907481850506623}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -146,7 +144,7 @@ MonoBehaviour:
   - {fileID: 9026806060835026794}
   - {fileID: 2032633666486325669}
   - {fileID: 5289062055058093761}
-  - {fileID: 3616518242380681591}
+  - {fileID: 8307907481850506623}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -166,11 +164,11 @@ MonoBehaviour:
   title: Move To Random Point
   rect:
     serializedVersion: 2
-    x: 1000
-    y: 220
+    x: 845
+    y: 99
     width: 160
     height: 45
-  parent: {fileID: 3616518242380681591}
+  parent: {fileID: 6772464606663016082}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -977,58 +975,6 @@ MonoBehaviour:
   directionScale: 15
   strafeAngles: 000000002d000000
   useBotForward: 0
---- !u!114 &254064463234769037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f078d3aafee4fabbe15e2691ec0d190, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Wait
-  rect:
-    serializedVersion: 2
-    x: 820
-    y: 220
-    width: 160
-    height: 45
-  parent: {fileID: 3616518242380681591}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  duration: 1
---- !u!114 &3616518242380681591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078407424188329271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Sequence
-  rect:
-    serializedVersion: 2
-    x: 900
-    y: 100
-    width: 160
-    height: 45
-  parent: {fileID: 6772464606663016082}
-  children:
-  - {fileID: 254064463234769037}
-  - {fileID: 8307907481850506623}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  random: 0
 --- !u!1001 &4111947973915720032
 PrefabInstance:
   m_ObjectHideFlags: 0

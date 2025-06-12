@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Threading;
 using ATG.Animator;
-using ATG.Animator.Event_Dispatcher;
 using ATG.Attack;
 using ATG.Health;
 using ATG.Move;
 using ATG.Observable;
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Characters.Observers
 {
-    public sealed class GetDamageObserver
+    public sealed class GetDamageObserver: IDisposable
     {
         private readonly IAnimatorWrapper _animator;
         private readonly IMoveableService _move;
         private readonly IHealthService<int> _health;
+
+        private readonly float _damagedDurationSec;
+
+        private CancellationTokenSource _cts;
         
         public readonly IObservableVar<bool> IsDamaged;
         
@@ -26,6 +30,8 @@ namespace Characters.Observers
             _move = move;
             
             IsDamaged = new ObservableVar<bool>(false);
+
+            _damagedDurationSec = _animator.GetStateLength(AnimatorTag.GetDamage);
         }
         
         public void SetActive(bool isActive)
@@ -33,38 +39,48 @@ namespace Characters.Observers
             LastReceivedDamage = null;
             IsDamaged.Value = false;
             
-            if (isActive == true)
-            {
-                _animator.EventDispatcher.Subscribe(AnimatorEventType.START_DAMAGE, OnStartDamage);
-                _animator.EventDispatcher.Subscribe(AnimatorEventType.STOP_DAMAGE, OnEndDamage);
-            }
-            else
-            {
-                _animator.EventDispatcher.Unsubscribe(AnimatorEventType.START_DAMAGE, OnStartDamage);
-                _animator.EventDispatcher.Unsubscribe(AnimatorEventType.STOP_DAMAGE, OnEndDamage);
-            }
+            Kill();
         }
 
         public void ReceiveDamage(AttackDamageData damageData)
         {
-            Debug.Log(_animator.GetStateLength(AnimatorTag.GetDamage));
-            
             _health.Reduce(damageData.Damage);
-            
             LastReceivedDamage = damageData;
+            
+            if(IsDamaged.Value == true) return;
+            
+            _cts = new CancellationTokenSource();
+            ReceiveDamageAsync(_cts.Token).Forget();
+        }
+        
+        public void Dispose()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = null;
+            
+            IsDamaged?.Dispose();
+        }
+        
+        private void Kill()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = null;
+            
+            IsDamaged.Value = false;
+        }
+
+        private async UniTask ReceiveDamageAsync(CancellationToken token)
+        {
             IsDamaged.Value = true;
             
             _move.Stop();
             _animator.SelectState(AnimatorTag.GetDamage);
-        }
-        
-        private void OnStartDamage()
-        {
-        }
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(_damagedDurationSec), cancellationToken: token);
 
-        private void OnEndDamage()
-        {
-            IsDamaged.Value = false;
+            Kill();
         }
     }
 }

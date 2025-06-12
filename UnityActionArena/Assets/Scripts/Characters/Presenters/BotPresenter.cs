@@ -71,6 +71,7 @@ namespace ATG.Character
         {
             base.Dispose();
             _dis.Dispose();
+            _attackObserver.Dispose();
         }
         
         public void Attack()
