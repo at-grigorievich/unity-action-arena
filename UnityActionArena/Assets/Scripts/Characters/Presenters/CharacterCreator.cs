@@ -4,6 +4,7 @@ using ATG.Attack;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
+using ATG.UI;
 using UnityEngine;
 using VContainer;
 
@@ -78,6 +79,8 @@ namespace ATG.Character
     [Serializable]
     public sealed class BotCharacterCreator : ArenaCharacterCreator<BotPresenter>
     {
+        [SerializeField] private ArenaBotUIView uiView;
+        
         public BotPresenter Create(TargetNavigationPointSet navigationPointSet)
         {
             CharacterModel model = GetModel();
@@ -86,7 +89,7 @@ namespace ATG.Character
             IAttackService attack = GetAttack(model.Range);
             IStaminaService stamina = GetStamina(model.Stamina);
 
-            return new BotPresenter(view, model, animator, move, attack, stamina, navigationPointSet);
+            return new BotPresenter(view, uiView, model, animator, move, attack, stamina, navigationPointSet);
         }
     }
 }

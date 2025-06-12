@@ -9,10 +9,10 @@ namespace ATG.Health
         private readonly IObservableVar<int> _heath;
 
         private int _default;
+
+        public IReadOnlyObservableVar<int> Current => _heath;
         
-        public int Current => Mathf.Clamp(_heath.Value, 0, int.MaxValue);
-        
-        public float Rate => Mathf.Clamp01((float)Current / _default);
+        public float Rate => Mathf.Clamp01((float)Current.Value / _default);
 
         public event Action OnHealthIsOver;
 
@@ -23,17 +23,17 @@ namespace ATG.Health
         
         public void Initialize()
         {
-            _default = Current;
+            _default = Current.Value;
         }
 
         public void Reduce(int reduceValue)
         {
-            if(Current <= 0) return;
+            if(Current.Value <= 0) return;
             
-            int nextHealth = Mathf.Clamp(Current - reduceValue, 0, _default);
+            int nextHealth = Mathf.Clamp(Current.Value - reduceValue, 0, _default);
             _heath.Value = nextHealth;
 
-            if (Current <= 0)
+            if (Current.Value <= 0)
             {
                 OnHealthIsOver?.Invoke();
             }

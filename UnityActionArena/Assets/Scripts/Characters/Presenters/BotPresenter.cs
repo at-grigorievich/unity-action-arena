@@ -4,6 +4,7 @@ using ATG.EnemyDetector;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
+using ATG.UI;
 using Characters.Observers;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace ATG.Character
     {
         private readonly IEnemyDetectorSensor _enemyDetectorSensor;
         private readonly AttackByMBTObserver _attackObserver;
+
+        private readonly ArenaBotUIView _uiView;
         
         private readonly CompositeObserveDisposable _dis;
         
@@ -30,12 +33,14 @@ namespace ATG.Character
         public bool EnoughStamina => _stamina.IsEnough;
         public AttackDamageData? LastReceivedDamage => _getDamageObserver.LastReceivedDamage;
         
-        public BotPresenter(CharacterView view, CharacterModel model, 
+        public BotPresenter(CharacterView view, ArenaBotUIView uiView, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, IStaminaService stamina,
             TargetNavigationPointSet navigationPoints) 
             : base(view, model, animator, move, attack, stamina)
         {
+            _uiView = uiView;
+            
             NavigationPoints = navigationPoints;
             _enemyDetectorSensor = new RangeEnemyDetectorSensor(_characterModel.Range, _view);
             _attackObserver = new AttackByMBTObserver(_attack, _animator, _stamina);
@@ -59,6 +64,15 @@ namespace ATG.Character
         {
             base.SetActive(isActive);
             _attackObserver.SetActive(isActive);
+
+            if (isActive == true)
+            {
+                _uiView.Show(this, new ArenaBotUIData(_health));
+            }
+            else
+            {
+                _uiView.Hide();
+            }
         }
 
         public override void Tick()
