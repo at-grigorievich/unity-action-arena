@@ -50,6 +50,13 @@ namespace ATG.UI
             _fullRateWidth = Size.x - 2 * progress.anchoredPosition.x;
         }
 
+        private void OnDestroy()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = null;
+        }
+
         public override void Show(object sender, ProgressBarRate data)
         {
             base.Show(sender, data);

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ATG.Animator;
 using ATG.Attack;
 using ATG.Health;
 using ATG.Items;
+using ATG.KillCounter;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
@@ -12,7 +14,7 @@ using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public abstract class ArenaCharacterPresenter: CharacterPresenter, ITickable
+    public abstract class ArenaCharacterPresenter: CharacterPresenter, ITickable, IDieCountable
     {
         protected readonly IAttackService _attack;
         protected readonly IHealthService<int> _health;
@@ -21,6 +23,10 @@ namespace ATG.Character
         protected readonly GetDamageObserver _getDamageObserver;
 
         protected CompositeObserveDisposable _dis;
+
+        private AttackDamageData? _lastDamager;
+        
+        public event Action<AttackDamageData> OnDieCountRequired;
         
         protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -85,6 +91,7 @@ namespace ATG.Character
         public override void Spawn(Vector3 spawnPosition, Quaternion spawnRotation)
         {
             base.Spawn(spawnPosition, spawnRotation);
+            _lastDamager = null;
             _health.Reset();
             _stamina.Reset();
         }
@@ -98,19 +105,32 @@ namespace ATG.Character
 
         protected virtual void RequestToDealDamageHandle(IAttackable obj)
         {
-            obj.TakeHitByAttacker(new AttackDamageData(
+            obj.TakeHitByAttacker(new AttackDamageData(Nick,
                 _view.transform, 
                 _characterModel.Damage.Value, 
                 _characterModel.GetRate()));
         }
 
-        protected virtual void RequestToGetDamageHandle(AttackDamageData damageData) =>
-            _getDamageObserver.ReceiveDamage(damageData);
+        protected virtual void RequestToGetDamageHandle(AttackDamageData damageData)
+        {
+            _lastDamager = damageData;
+            _getDamageObserver.ReceiveDamage(_lastDamager.Value);
+        }
         
         protected virtual void OnHealthIsOverHandle()
         {
             SetActive(false);
+            InformAboutDie();
+        }
+
+        private void InformAboutDie()
+        {
             RequireSpawn();
+            
+            if (_lastDamager.HasValue == true)
+            {
+                OnDieCountRequired?.Invoke(_lastDamager.Value);
+            }
         }
     }
 }

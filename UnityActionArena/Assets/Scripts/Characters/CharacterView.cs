@@ -27,6 +27,7 @@ namespace ATG.Character
         public void Initialize(CharacterPresenter presenter)
         {
             MyPresenter = presenter;
+            transform.name = MyPresenter.Nick;
             
             _rb = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
@@ -69,7 +70,7 @@ namespace ATG.Character
         [Button("Get Damage")]
         public void GetDamage(int damage)
         {
-            TakeHitByAttacker(new AttackDamageData(transform, damage, 0f));
+            TakeHitByAttacker(new AttackDamageData(MyPresenter.Nick, transform, damage, 0f));
         }
 #endif
         

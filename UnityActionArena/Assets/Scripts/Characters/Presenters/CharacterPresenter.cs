@@ -30,6 +30,7 @@ namespace ATG.Character
         public Vector3 Forward => _view.transform.forward;
         public Quaternion Rotation => _view.Rotation;
         
+        public string Nick => _characterModel.Name;
         public float Rate => _characterModel.GetRate();
         
         public event Action<ISpawnable> OnSpawnRequired;

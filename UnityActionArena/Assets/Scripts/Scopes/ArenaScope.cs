@@ -2,6 +2,7 @@
 using ATG.Camera;
 using ATG.Character;
 using ATG.Items.Equipment;
+using ATG.KillCounter;
 using ATG.Move;
 using ATG.Spawn;
 using Settings;
@@ -35,7 +36,8 @@ namespace Scopes
             
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
-            
+
+            builder.Register<TableKillCounter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();

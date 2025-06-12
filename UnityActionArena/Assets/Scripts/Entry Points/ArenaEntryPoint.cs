@@ -3,6 +3,7 @@ using System.Threading;
 using ATG.Camera;
 using ATG.Character;
 using ATG.Items.Equipment;
+using ATG.KillCounter;
 using ATG.Spawn;
 using Cysharp.Threading.Tasks;
 using VContainer.Unity;
@@ -18,14 +19,18 @@ public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisp
 
     private readonly CancellationTokenSource _cts;
 
+    private readonly IKillCounter _killCounter;
+    
     public ArenaEntryPoint(PlayerPresenter player, BotPool botPool, StaticEquipmentSource equipmentSrc,
-        ISpawnService spawnService)
+        ISpawnService spawnService, IKillCounter killCounter)
     {
         _player = player;
         _botPool = botPool;
 
         _equipmentSrc = equipmentSrc;
         _spawnService = spawnService;
+        
+        _killCounter = killCounter;
 
         _cts = new CancellationTokenSource();
     }

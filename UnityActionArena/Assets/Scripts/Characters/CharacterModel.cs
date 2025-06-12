@@ -5,14 +5,16 @@ namespace ATG.Character
 {
     public class CharacterModel: IDisposable
     {
+        public readonly string Name;
         public readonly IObservableVar<int> Health;
         public readonly IObservableVar<float> Stamina;
         public readonly IObservableVar<int> Damage;
         public readonly IObservableVar<float> Speed;
         public readonly IObservableVar<float> Range;
 
-        public CharacterModel(int baseHealth, int baseStamina, int baseDamage, float baseSpeed, float baseRange)
+        public CharacterModel(string name, int baseHealth, int baseStamina, int baseDamage, float baseSpeed, float baseRange)
         {
+            Name = name;
             Health = new ObservableVar<int>(baseHealth);
             Stamina = new ObservableVar<float>(baseStamina);
             Damage = new ObservableVar<int>(baseDamage);

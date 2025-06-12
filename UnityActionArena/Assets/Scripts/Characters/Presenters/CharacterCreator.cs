@@ -32,7 +32,7 @@ namespace ATG.Character
                 .AsImplementedInterfaces();
         }
 
-        protected CharacterModel GetModel() => new CharacterModel(0, 0, 1, 3, 0);
+        protected virtual CharacterModel GetModel() => new CharacterModel(string.Empty,0, 0, 1, 3, 0);
         protected IAnimatorWrapper GetAnimator() => animatorCreator.Create();
         protected virtual IMoveableService GetMove(IReadOnlyObservableVar<float> speed) => new TransformMoveService(view.transform);
     }
@@ -72,9 +72,17 @@ namespace ATG.Character
 
     [Serializable]
     public sealed class LobbyCharacterCreator : CharacterCreator<LobbyCharacterPresenter> { }
-    
-    [Serializable] 
-    public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter> { }
+
+    [Serializable]
+    public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter>
+    {
+        protected override CharacterModel GetModel()
+        {
+            string name = "BIG_BOSS";
+            
+            return new CharacterModel(name,0, 0, 1, 3, 0);
+        }
+    }
 
     [Serializable]
     public sealed class BotCharacterCreator : ArenaCharacterCreator<BotPresenter>
@@ -90,6 +98,13 @@ namespace ATG.Character
             IStaminaService stamina = GetStamina(model.Stamina);
 
             return new BotPresenter(view, uiView, model, animator, move, attack, stamina, navigationPointSet);
+        }
+
+        protected override CharacterModel GetModel()
+        {
+            string viewHash = Mathf.Abs(view.GetHashCode()).ToString()[..3];
+            string name = $"Bot_{viewHash}";
+            return new CharacterModel(name,0, 0, 1, 3, 0);
         }
     }
 }

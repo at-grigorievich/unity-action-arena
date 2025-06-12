@@ -1,4 +1,5 @@
-﻿using ATG.Health;
+﻿using System;
+using ATG.Health;
 using UnityEngine;
 
 namespace ATG.UI
@@ -13,7 +14,7 @@ namespace ATG.UI
         }
     }
     
-    public sealed class ArenaBotUIView: LookAtCameraCanvas<ArenaBotUIData>
+    public sealed class ArenaBotUIView: LookAtCameraCanvas<ArenaBotUIData>, IDisposable
     {
         [SerializeField] private ProgressBar healthBarView;
 
@@ -35,6 +36,12 @@ namespace ATG.UI
         {
             _health.Dispose();
             base.Hide();
+        }
+
+        public void Dispose()
+        {
+            healthBarView?.Dispose();
+            _health?.Dispose();
         }
     }
 }

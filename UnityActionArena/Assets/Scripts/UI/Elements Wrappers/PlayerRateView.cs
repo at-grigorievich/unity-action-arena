@@ -1,4 +1,5 @@
-﻿using ATG.Character;
+﻿using System;
+using ATG.Character;
 using ATG.Health;
 using ATG.Stamina;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace ATG.UI
         }
     }
     
-    public class PlayerRateView: UIElement<PlayerRateUIData>
+    public class PlayerRateView: UIElement<PlayerRateUIData>, IDisposable
     {
         [SerializeField] private ProgressBar heathBarView;
         [SerializeField] private ProgressBar staminaBarView;
@@ -43,6 +44,12 @@ namespace ATG.UI
         {
             _healthBar.Dispose();
             _staminaBar.Dispose();
+        }
+
+        public void Dispose()
+        {
+            _healthBar?.Dispose();
+            _staminaBar?.Dispose();
         }
     }
 }

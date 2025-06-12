@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ATG.Attack;
 using ATG.Items.Equipment;
+using ATG.KillCounter;
 using ATG.Move;
 using Settings;
 using UnityEngine;
@@ -22,7 +24,7 @@ namespace ATG.Character
         }
     }     
     
-    public sealed class BotPool: IInitializable, ITickable, IDisposable 
+    public sealed class BotPool: IInitializable, ITickable, IDisposable, IDieCountable
     {
         private readonly BotPresenterCreator _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
@@ -34,6 +36,8 @@ namespace ATG.Character
         private List<BotPresenter> _botSet;
 
         public IEnumerable<BotPresenter> Set => _botSet;
+        
+        public event Action<AttackDamageData> OnDieCountRequired;
         
         public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize,
             RandomEquipmentSource equipmentSource, TargetNavigationPointSet pointSet)
@@ -56,6 +60,7 @@ namespace ATG.Character
                 BotPresenterCreator instance = GameObject.Instantiate(_prefab, _root);
                 BotPresenter bot = instance.Create(_targetPointSet);
                 
+                bot.OnDieCountRequired += OnBotDieCountRequired;
                 _botSet.Add(bot);
                 
                 bot.Initialize();
@@ -63,29 +68,32 @@ namespace ATG.Character
             }
         }
 
-        public void SetActiveAll(bool isActive)
-        {
-            foreach (var bot in _botSet)
-            {
-                bot.SetActive(isActive);
-            }
-        }
-        
-        public void Dispose()
-        {
-            foreach (var botPresenter in _botSet)
-            {
-                botPresenter.Dispose();
-            }
-            
-            _botSet.Clear();
-        }
-
         public void Tick()
         {
             foreach (var botPresenter in _botSet)
             {
                 botPresenter.Tick();
+            }
+        }
+        
+        public void Dispose()
+        {
+            foreach (var bot in _botSet)
+            {
+                bot.OnDieCountRequired += OnBotDieCountRequired;
+                bot.Dispose();
+            }
+            
+            _botSet.Clear();
+        }
+        
+        private void OnBotDieCountRequired(AttackDamageData data) => OnDieCountRequired?.Invoke(data);
+
+        public void SetActiveAll(bool isActive)
+        {
+            foreach (var bot in _botSet)
+            {
+                bot.SetActive(isActive);
             }
         }
     }
