@@ -4,6 +4,7 @@ using ATG.Attack;
 using ATG.Health;
 using ATG.Items;
 using ATG.Move;
+using ATG.Observable;
 using ATG.Stamina;
 using Characters.Observers;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace ATG.Character
         protected readonly IStaminaService _stamina;
 
         protected readonly GetDamageObserver _getDamageObserver;
+
+        protected CompositeObserveDisposable _dis;
         
         protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
@@ -47,11 +50,24 @@ namespace ATG.Character
             base.SetActive(isActive);
             
             _getDamageObserver.SetActive(isActive);
+
+            if (isActive)
+            {
+                _dis = new CompositeObserveDisposable();
+            }
+            else
+            {
+                _dis?.Dispose();
+                _dis = null;
+            }
         }
 
         public override void Dispose()
         {
             base.Dispose();
+            
+            _dis?.Dispose();
+            _dis = null;
             
             _view.OnAttacked -= RequestToGetDamageHandle;
             _attack.OnRequestToDealDamage -= RequestToDealDamageHandle;

@@ -37,7 +37,7 @@ namespace Characters.Observers
             if(_animator.EventDispatcher == null)
                 throw new Exception("Animator event dispatcher is null");
 
-            //Kill();
+            Kill();
             
             if (isActive == true)
             {

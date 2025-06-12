@@ -1,6 +1,7 @@
 ﻿using ATG.Animator;
 using ATG.Attack;
 using ATG.Camera;
+using ATG.Health;
 using ATG.Input;
 using ATG.Move;
 using ATG.Observable;
@@ -16,7 +17,8 @@ namespace ATG.Character
         private readonly MoveByInputObserver _moveObserver;
         private readonly AttackByInputObserver _attackObserver;
 
-        private readonly CompositeObserveDisposable _dis;
+        public IHealthRate<int> HealthRate => _health;
+        public IStaminaRate StaminaRate => _stamina;
         
         public PlayerPresenter(CharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
@@ -27,24 +29,20 @@ namespace ATG.Character
             _cinemachine = cinemachine;
             _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);
             _attackObserver = new AttackByInputObserver(input, _attack, _animator, _stamina);
-            
-            _dis = new CompositeObserveDisposable();
         }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            
-            _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
-            {
-                _attackObserver.SetActive(!isDamagedNow);
-                _moveObserver.SetActive(!isDamagedNow);
-            }).AddTo(_dis);
-        }
-
+        
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
+
+            if (_isActive == true) 
+            {
+                _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
+                {
+                    _attackObserver.SetActive(!isDamagedNow);
+                    _moveObserver.SetActive(!isDamagedNow);
+                }).AddTo(_dis);
+            }
             
             _moveObserver.SetActive(isActive);
             _attackObserver.SetActive(isActive);
@@ -62,9 +60,6 @@ namespace ATG.Character
         public override void Dispose()
         {
             base.Dispose();
-            
-            _dis.Dispose();
-            
             _moveObserver.SetActive(false);
         }
     }

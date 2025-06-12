@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ATG.UI
 {
@@ -34,9 +35,10 @@ namespace ATG.UI
     
     public class ProgressBar: CanvasGroupElement<ProgressBarRate>, IDisposable
     {
+        [SerializeField] private Graphic progressImg;
         [SerializeField] private RectTransform progress;
         [SerializeField] private float animationSpeed;
-            
+        
         private float _fullRateWidth;
         
         private CancellationTokenSource _cts;
@@ -77,6 +79,14 @@ namespace ATG.UI
             }
         }
 
+        public void SetAlpha(float alpha)
+        {
+            Color color = progressImg.color;
+            color.a = alpha;
+            
+            progressImg.color = color;
+        }
+        
         public void Dispose()
         {
             _cts?.Cancel();
@@ -108,7 +118,7 @@ namespace ATG.UI
                 currentSizeDelta.x = currentX;
                 progress.sizeDelta = currentSizeDelta;
                 
-                await UniTask.Yield();
+                await UniTask.Yield(cancellationToken: token);
             }
             
             currentSizeDelta.x = nextWidth;

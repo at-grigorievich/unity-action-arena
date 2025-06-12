@@ -3,7 +3,7 @@ using ATG.Observable;
 
 namespace ATG.Health
 {
-    public interface IHealthRate<T>
+    public interface IHealthRate<out T>
     {
         IReadOnlyObservableVar<T> Current { get; }
         float Rate { get; }

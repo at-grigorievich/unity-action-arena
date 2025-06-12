@@ -17,8 +17,6 @@ namespace ATG.Character
 
         private readonly ArenaBotUIView _uiView;
         
-        private readonly CompositeObserveDisposable _dis;
-        
         public readonly TargetNavigationPointSet NavigationPoints;
         
         public readonly IObservableVar<bool> HasDetectedEnemies;
@@ -46,27 +44,21 @@ namespace ATG.Character
             _attackObserver = new AttackByMBTObserver(_attack, _animator, _stamina);
             
             HasDetectedEnemies = new ObservableVar<bool>(false);
-
-            _dis = new CompositeObserveDisposable();
         }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
-            {
-                _attackObserver.SetActive(!isDamagedNow);
-                Stop();
-            }).AddTo(_dis);
-        }
-
+        
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
             _attackObserver.SetActive(isActive);
 
             if (isActive == true)
-            {
+            {            
+                _getDamageObserver.IsDamaged.Subscribe(isDamagedNow =>
+                {
+                    _attackObserver.SetActive(!isDamagedNow);
+                    Stop();
+                }).AddTo(_dis);
+                
                 _uiView.Show(this, new ArenaBotUIData(_health));
             }
             else
@@ -84,7 +76,6 @@ namespace ATG.Character
         public override void Dispose()
         {
             base.Dispose();
-            _dis.Dispose();
             _attackObserver.Dispose();
         }
         

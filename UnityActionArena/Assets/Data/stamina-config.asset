@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: stamina-config
   m_EditorClassIdentifier: 
   <DefaultReduceAmount>k__BackingField: 25
-  <DefaultResetAmount>k__BackingField: 2
+  <DefaultResetAmount>k__BackingField: 75
   <DelayAfterReduce>k__BackingField: 2

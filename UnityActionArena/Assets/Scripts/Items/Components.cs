@@ -128,7 +128,7 @@ namespace ATG.Items
     [Serializable]
     public class HeroStaminaEffectComponent : HeroEffectComponent
     {
-        public int StaminaEffect = 100;
+        public float StaminaEffect = 100;
         
         public override IItemComponent Clone()
         {

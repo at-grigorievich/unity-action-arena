@@ -67,7 +67,7 @@ namespace ATG.Character
             new NavMeshMoveService(view.NavAgent, speed);
         
         protected IAttackService GetAttack(IReadOnlyObservableVar<float> range) => attackCreator.Create(range);
-        protected IStaminaService GetStamina(IObservableVar<int> stamina) => staminaCreator.Create(stamina);
+        protected IStaminaService GetStamina(IObservableVar<float> stamina) => staminaCreator.Create(stamina);
     }
 
     [Serializable]

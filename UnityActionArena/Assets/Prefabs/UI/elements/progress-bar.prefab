@@ -213,4 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a707c7fc9154bb696dfc365f13ded96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressImg: {fileID: 9189400683441501166}
   progress: {fileID: 3738976385558643606}
+  animationSpeed: 15

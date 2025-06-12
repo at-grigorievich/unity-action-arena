@@ -1,13 +1,17 @@
-﻿using VContainer.Unity;
+﻿using ATG.Observable;
+using VContainer.Unity;
 
 namespace ATG.Stamina
 {
-    public interface IStaminaService: ITickable
+    public interface IStaminaRate
     {
-        int Current { get; }
-        bool IsEnough { get; }
+        IReadOnlyObservableVar<float> Current { get; }
         float Rate { get; }
-
+        bool IsEnough { get; }
+    }
+    
+    public interface IStaminaService: ITickable, IStaminaRate
+    {
         int DefaultReduceAmount { get; }
         
         void Initialize();
