@@ -15,7 +15,7 @@ namespace Characters.Observers
         private readonly IAnimatorWrapper _animator;
         private readonly IStaminaService _stamina;
 
-        private readonly float _attackDurationSec;
+        private readonly TimeSpan _attackDurationSec;
 
         private CancellationTokenSource _cts;
         
@@ -29,6 +29,7 @@ namespace Characters.Observers
             _attack = attack;
 
             IsAttacking = new ObservableVar<bool>(false);
+            _attackDurationSec = TimeSpan.FromSeconds(_animator.GetStateLength(AnimatorTag.Attack));
         }
         
         public void SetActive(bool isActive)
@@ -36,7 +37,7 @@ namespace Characters.Observers
             if(_animator.EventDispatcher == null)
                 throw new Exception("Animator event dispatcher is null");
 
-            Kill();
+            //Kill();
             
             if (isActive == true)
             {
@@ -97,7 +98,7 @@ namespace Characters.Observers
             IsAttacking.Value = true;
             _animator.SelectState(AnimatorTag.Attack);
             
-            await UniTask.Delay(TimeSpan.FromSeconds(_attackDurationSec), cancellationToken: token);
+            await UniTask.Delay(_attackDurationSec, cancellationToken: token);
 
             Kill();
         }

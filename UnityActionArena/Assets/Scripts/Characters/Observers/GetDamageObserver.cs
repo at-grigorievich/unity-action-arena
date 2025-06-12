@@ -15,7 +15,7 @@ namespace Characters.Observers
         private readonly IMoveableService _move;
         private readonly IHealthService<int> _health;
 
-        private readonly float _damagedDurationSec;
+        private readonly TimeSpan _damagedDurationSec;
 
         private CancellationTokenSource _cts;
         
@@ -31,7 +31,7 @@ namespace Characters.Observers
             
             IsDamaged = new ObservableVar<bool>(false);
 
-            _damagedDurationSec = _animator.GetStateLength(AnimatorTag.GetDamage);
+            _damagedDurationSec = TimeSpan.FromSeconds(_animator.GetStateLength(AnimatorTag.GetDamage));
         }
         
         public void SetActive(bool isActive)
@@ -78,7 +78,7 @@ namespace Characters.Observers
             _move.Stop();
             _animator.SelectState(AnimatorTag.GetDamage);
             
-            await UniTask.Delay(TimeSpan.FromSeconds(_damagedDurationSec), cancellationToken: token);
+            await UniTask.Delay(_damagedDurationSec, cancellationToken: token);
 
             Kill();
         }

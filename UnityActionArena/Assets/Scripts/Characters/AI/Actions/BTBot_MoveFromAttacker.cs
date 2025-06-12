@@ -28,7 +28,7 @@ namespace ATG.Character.AI
 
         public override NodeResult Execute()
         {
-            if (_hasAttacker == false || _targetPosition == Vector3.zero) return NodeResult.success;
+            if (_hasAttacker == false || _targetPosition == Vector3.zero) return NodeResult.failure;
             
             Vector3 tarPos = _targetPosition;
             tarPos.y = _bot.Position.y;

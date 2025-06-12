@@ -7,6 +7,7 @@ using ATG.Input;
 using ATG.Observable;
 using ATG.Stamina;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Characters.Observers
 {
@@ -19,7 +20,7 @@ namespace Characters.Observers
         
         public readonly IObservableVar<bool> IsAttacking;
         
-        private readonly float _attackDurationSec;
+        private readonly TimeSpan _attackDurationSec;
 
         private CancellationTokenSource _cts;
         
@@ -33,7 +34,7 @@ namespace Characters.Observers
             
             IsAttacking = new ObservableVar<bool>(false);
             
-            _attackDurationSec = _animator.GetStateLength(AnimatorTag.Attack);
+            _attackDurationSec = TimeSpan.FromSeconds(_animator.GetStateLength(AnimatorTag.Attack));
         }
         
         public void SetActive(bool isActive)
@@ -107,7 +108,7 @@ namespace Characters.Observers
             IsAttacking.Value = true;
             _animator.SelectState(AnimatorTag.Attack);
             
-            await UniTask.Delay(TimeSpan.FromSeconds(_attackDurationSec), cancellationToken: token);
+            await UniTask.Delay(_attackDurationSec, cancellationToken: token);
 
             Kill();
         }

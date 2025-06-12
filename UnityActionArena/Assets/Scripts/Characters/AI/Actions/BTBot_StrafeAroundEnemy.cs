@@ -36,7 +36,7 @@ namespace ATG.Character.AI
         {
             if (_bot.CanReachPosition(_targetPos, out Vector3 result) == false)
             {
-                return NodeResult.success;
+                return NodeResult.failure;
             }
             
             Debug.DrawLine(_bot.Position, result, Color.magenta);
