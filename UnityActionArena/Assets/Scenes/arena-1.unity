@@ -7308,6 +7308,9 @@ MonoBehaviour:
   cinemachineCreator:
     topDownCamera: {fileID: 1207939189}
     showCamera: {fileID: 2081211477}
+  killCounterCreator:
+    config: {fileID: 11400000, guid: 5f125356836dc704fb47e6291237138d, type: 2}
+    isPlayerEarnPerKill: 1
   playerCreator:
     view: {fileID: 433729972}
     animatorCreator:
@@ -10658,6 +10661,46 @@ PrefabInstance:
     - target: {fileID: 5843848309951371595, guid: a142c97b63a34b647a2d8198ae3964c8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498594736556152489, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498594736556152489, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694863148953744216, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694863148953744216, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694863148953744216, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694863148953744216, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829581829633180137, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829581829633180137, guid: a142c97b63a34b647a2d8198ae3964c8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7829581829633180137, guid: a142c97b63a34b647a2d8198ae3964c8,

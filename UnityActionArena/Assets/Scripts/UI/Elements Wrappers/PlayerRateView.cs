@@ -1,5 +1,4 @@
 ﻿using System;
-using ATG.Character;
 using ATG.Health;
 using ATG.Stamina;
 using UnityEngine;

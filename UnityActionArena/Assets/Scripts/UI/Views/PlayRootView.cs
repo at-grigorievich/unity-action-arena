@@ -3,7 +3,6 @@ using ATG.Character;
 using ATG.KillCounter;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 
 using IObjectResolver = VContainer.IObjectResolver;
@@ -13,11 +12,12 @@ namespace ATG.UI
     public class PlayRootView: RootUIView, IDisposable
     {
         [SerializeField] private TMP_Text playerNickOutput;
-        [SerializeField] private CounterOutput killCountOutput;
         [SerializeField] private PlayerRateView playerRateView;
-
+        [SerializeField] private PlayerStatisticView playerStatisticView;
+        
         private PlayerPresenter _player;
-        private PlayerKillCounterOutput _playerKillCounter;
+        private IKillCounter _playerKillCounter;
+        private IEarnPerKillCounter _playerEarnCounter;
         
         public override UiTag Tag => UiTag.ArenaPlay;
         
@@ -27,11 +27,14 @@ namespace ATG.UI
             if(resolver.TryResolve(out _player) == false)
                 throw new VContainerException(typeof(PlayerPresenter),"Failed to resolve player presenter");
             
-            if(resolver.TryResolve(out IKillCounter killCounter) == false)
-                throw new VContainerException(typeof(PlayerPresenter),"Failed to resolve IKillCounter");
+            if(resolver.TryResolve(out _playerKillCounter) == false)
+                throw new VContainerException(typeof(IKillCounter),"Failed to resolve IKillCounter");
+            
+            if(resolver.TryResolve(out _playerEarnCounter) == false)
+                throw new VContainerException(typeof(IEarnPerKillCounter),"Failed to resolve IEarnPerKillCounter");
             
             playerNickOutput.text = _player.Nick;
-            _playerKillCounter = new PlayerKillCounterOutput(_player.Nick, killCountOutput, killCounter);
+            
             base.Initialize(resolver);
         }
 
@@ -40,7 +43,8 @@ namespace ATG.UI
             base.Show();
             
             playerRateView.Show(this, new PlayerRateUIData(_player.HealthRate, _player.StaminaRate));
-            _playerKillCounter.Show();
+            playerStatisticView.Show(this, 
+                new PlayerStatisticUIData(_player.Nick, _playerKillCounter, _playerEarnCounter));
         }
 
         public override void Hide()
@@ -48,13 +52,13 @@ namespace ATG.UI
             base.Hide();
             
             playerRateView.Hide();
-            _playerKillCounter.Dispose();
+            playerStatisticView.Hide();
         }
 
         public void Dispose()
         {
             playerRateView.Dispose();
-            _playerKillCounter.Dispose();
+            playerStatisticView.Dispose();
         }
     }
 }

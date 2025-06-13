@@ -17,6 +17,7 @@ namespace Scopes
         [SerializeField] private ArenaSettings arenaSettings;
         [SerializeField] private SpawnServiceCreator spawnServiceCreator;
         [SerializeField] private CinemachineWrapperCreator cinemachineCreator;
+        [SerializeField] private KillCounterCreator killCounterCreator;
         
         [SerializeField] private PlayerCharacterCreator playerCreator;
         [SerializeField] private BotCharactersPoolCreator botPoolCreator;
@@ -31,13 +32,12 @@ namespace Scopes
             staticEquipmentSourceCreator.Create(builder);
             playerCreator.Create(builder);
             botPoolCreator.Create(builder);
-            
+            killCounterCreator.Create(builder);
             spawnServiceCreator.Create(builder);
             
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
-
-            builder.Register<TableKillCounter>(Lifetime.Singleton).AsImplementedInterfaces();
+            
             builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();

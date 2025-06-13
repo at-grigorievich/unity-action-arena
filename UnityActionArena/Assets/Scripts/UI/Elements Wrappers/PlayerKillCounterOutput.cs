@@ -4,21 +4,23 @@ namespace ATG.UI
 {
     public sealed class PlayerKillCounterOutput
     {
-        private readonly string _playerName;
         private readonly CounterOutput _counterOutput;
-        private readonly IKillCounter _killCounter;
-
+        
+        private string _playerName;
+        private IKillCounter _killCounter;
+        
         private int _lastCount = -1;
         
-        public PlayerKillCounterOutput(string playerName, CounterOutput counterOutput, IKillCounter killCounter)
+        public PlayerKillCounterOutput(CounterOutput counterOutput)
         {
-            _playerName = playerName;
             _counterOutput = counterOutput;
-            _killCounter = killCounter;
         }
 
-        public void Show()
+        public void Show(string playerName, IKillCounter killCounter)
         {
+            _playerName = playerName;
+            _killCounter = killCounter;
+            
             _killCounter.OnTableChanged += OnKillTableChanged;
             OnKillTableChanged();
         }
@@ -27,6 +29,9 @@ namespace ATG.UI
         {
             _killCounter.OnTableChanged -= OnKillTableChanged;
             _counterOutput.Hide();
+            
+            _killCounter = null;
+            _playerName = string.Empty;
         }
         
         private void OnKillTableChanged()
