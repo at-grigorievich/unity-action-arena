@@ -33,7 +33,17 @@ namespace ATG.Spawn
             
             _data = new Dictionary<ISpawnable, CooldownTimer>();
         }
-        
+
+        public bool GetSpawnTimer(ISpawnable spawnOwner, out CooldownTimer result)
+        {
+            result = null;
+            
+            if (_data.TryGetValue(spawnOwner, out var value) == false) return false;
+            
+            result = value;
+            return true;
+        }
+
         public void SpawnInstantly(ISpawnable obj)
         {
             ISpawnPoint selectedSpawnPoint = _spawnPoints.GetRandomPoint();

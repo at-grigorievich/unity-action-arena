@@ -32,7 +32,8 @@ namespace ATG.Character
         
         public string Nick => _characterModel.Name;
         public float Rate => _characterModel.GetRate();
-        
+
+        public event Action OnSpawned;
         public event Action<ISpawnable> OnSpawnRequired;
         
         protected CharacterPresenter(CharacterView view, CharacterModel model, 
@@ -81,6 +82,8 @@ namespace ATG.Character
         {
             _move.PlaceTo(spawnPosition, spawnRotation);
             SetActive(true);
+            
+            OnSpawned?.Invoke();
         }
         
         public virtual void TakeOnEquipments(IEnumerable<Item> items)
