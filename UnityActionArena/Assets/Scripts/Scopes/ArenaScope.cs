@@ -1,12 +1,11 @@
-﻿using ATG.Attack;
-using ATG.Camera;
+﻿using ATG.Camera;
 using ATG.Character;
 using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Move;
 using ATG.Spawn;
 using Settings;
-using UI.Service;
+using ATG.UI.Service;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -40,6 +39,8 @@ namespace Scopes
             
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);
+
+            builder.Register<ArenaUIObserver>(Lifetime.Singleton).AsImplementedInterfaces();
             
             builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
             

@@ -4,7 +4,7 @@ using System.Linq;
 using ATG.UI;
 using UnityEngine;
 
-namespace UI.Service
+namespace ATG.UI.Service
 {
     [Serializable]
     public sealed class UIRootPair

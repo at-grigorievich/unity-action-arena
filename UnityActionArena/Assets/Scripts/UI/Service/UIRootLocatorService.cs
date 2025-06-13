@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ATG.UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace UI.Service
+namespace ATG.UI.Service
 {
     [Serializable]
     public sealed class UIRootLocatorCreator
@@ -53,7 +52,7 @@ namespace UI.Service
 
         public bool TryShowView(UiTag tag)
         {
-            if (_instances.ContainsKey(tag) == false)
+            if (_instances.ContainsKey(tag) == true)
             {
                 _instances[tag].Show();
                 return true;
