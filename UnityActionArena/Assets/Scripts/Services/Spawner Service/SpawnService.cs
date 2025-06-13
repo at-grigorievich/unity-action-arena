@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+using ATG.DateTimers;
 using Settings;
 using UnityEngine;
 using VContainer;
@@ -23,16 +22,16 @@ namespace ATG.Spawn
     
     public sealed class SpawnService: ISpawnService, IDisposable
     {
-        private readonly int _respawnDelayMillis;
+        private readonly IArenaRespawnDelay _config;
         private readonly SpawnPointSet _spawnPoints;
-        private readonly Dictionary<ISpawnable, CancellationTokenSource> _ctsActive;
+        private readonly Dictionary<ISpawnable, CooldownTimer> _data;
 
-        public SpawnService(SpawnPointSet spawnPoints, IArenaRespawnDelay respawnDelay)
+        public SpawnService(SpawnPointSet spawnPoints, IArenaRespawnDelay config)
         {
-            _respawnDelayMillis = respawnDelay.CharacterRespawnDelayMs;
+            _config = config;
             _spawnPoints = spawnPoints;
             
-            _ctsActive = new Dictionary<ISpawnable, CancellationTokenSource>();
+            _data = new Dictionary<ISpawnable, CooldownTimer>();
         }
         
         public void SpawnInstantly(ISpawnable obj)
@@ -43,45 +42,35 @@ namespace ATG.Spawn
 
         public void SpawnAfterDelay(ISpawnable obj)
         {
-            if (_ctsActive.ContainsKey(obj) == true)
+            if (_data.ContainsKey(obj) == true)
             {
                 Debug.LogWarning("spawn require already registered");
-                RemoveTokenSourceByKey(obj);
+                return;
             }
 
-            CancellationTokenSource newCts = new();
-            _ctsActive.Add(obj, newCts);
+            CooldownTimer timer = new CooldownTimer(_config.RespawnSpan);
 
-            SpawnAfterDelayAsync(obj, newCts).Forget();
-        }
+            void OnTimerFinished(CooldownTimer t)
+            {
+                SpawnInstantly(obj);
+                _data.Remove(obj);
+                t.ClearCallbacks();
+            }
 
-        private async UniTask SpawnAfterDelayAsync(ISpawnable spawnedObj, CancellationTokenSource cts)
-        {
-            await UniTask.Delay(_respawnDelayMillis, cancellationToken: cts.Token);
+            timer.OnTimerFinished += OnTimerFinished;
             
-            SpawnInstantly(spawnedObj);
-            RemoveTokenSourceByKey(spawnedObj);
+            _data.Add(obj, timer);
+            timer.Start();
         }
         
         public void Dispose()
         {
-            foreach (var token in _ctsActive.Values)
+            foreach (var timer in _data.Values)
             {
-                token?.Cancel();
-                token?.Dispose();
+                timer.Dispose();
+                timer.ClearCallbacks();
             }
-            
-            _ctsActive.Clear();
-        }
-
-        private void RemoveTokenSourceByKey(ISpawnable spawnable)
-        {
-            if(_ctsActive.TryGetValue(spawnable, out var cts) == false) return;
-
-            cts.Cancel();
-            cts.Dispose();
-            
-            _ctsActive.Remove(spawnable);
+            _data.Clear();
         }
     }
 }
