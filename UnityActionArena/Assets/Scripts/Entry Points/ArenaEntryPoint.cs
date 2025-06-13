@@ -1,87 +1,40 @@
 ﻿using System;
-using System.Threading;
-using ATG.Camera;
 using ATG.Character;
+using ATG.Command;
 using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Spawn;
-using Cysharp.Threading.Tasks;
 using VContainer.Unity;
 
-public sealed class ArenaEntryPoint : IPostInitializable, IAsyncStartable, IDisposable
+public sealed class ArenaEntryPoint : IPostInitializable, IDisposable
 {
-    private readonly StaticEquipmentSource _equipmentSrc;
-
-    private readonly PlayerPresenter _player;
-    private readonly BotPool _botPool;
-
     private readonly ISpawnService _spawnService;
-
-    private readonly CancellationTokenSource _cts;
-
     private readonly IKillCounter _killCounter;
+
+    private readonly CommandInvoker _stepByStepEntry;
     
-    public ArenaEntryPoint(PlayerPresenter player, BotPool botPool, StaticEquipmentSource equipmentSrc,
+    public ArenaEntryPoint(PlayerPresenter player, BotPool botPool, 
+        StaticEquipmentSource staticEquipmentSrc, RandomEquipmentSource rndEquipmentSrc,
         ISpawnService spawnService, IKillCounter killCounter)
     {
-        _player = player;
-        _botPool = botPool;
-
-        _equipmentSrc = equipmentSrc;
         _spawnService = spawnService;
-        
         _killCounter = killCounter;
 
-        _cts = new CancellationTokenSource();
+        _stepByStepEntry = new CommandInvoker(true,
+            new SpawnPlayerStep(player, staticEquipmentSrc, _spawnService),
+            new SpawnBotSetStep(botPool, rndEquipmentSrc, _spawnService),
+            new ActivateBotSetStep(botPool),
+            new ActivatePlayerStep(player));
     }
 
     public void PostInitialize()
     {
-        _player.TakeOnEquipments(_equipmentSrc.GetItems());
-        _player.SetActive(false);
-        _botPool.SetActiveAll(false);
-    }
-
-    public async UniTask StartAsync(CancellationToken cancellation = default)
-    {
-        await UniTaskSpawnAsync();
+        _stepByStepEntry.Execute();
     }
 
     public void Dispose()
     {
-        _cts.Cancel();
-        _cts.Dispose();
-
-        _player.OnSpawnRequired -= _spawnService.SpawnAfterDelay;
-        
-        foreach (var bot in _botPool.Set)
-        {
-            bot.OnSpawnRequired -= _spawnService.SpawnAfterDelay;
-        }
-    }
-
-    private async UniTask UniTaskSpawnAsync()
-    {
-        await PlayerFirstSpawnAsync();
-        await BotPoolFirstSpawnAsync();
-    }
-
-    private async UniTask PlayerFirstSpawnAsync()
-    {
-        await UniTask.Yield(cancellationToken: _cts.Token);
-
-        _spawnService.SpawnInstantly(_player);
-        _player.OnSpawnRequired += _spawnService.SpawnAfterDelay;
-    }
-
-    private async UniTask BotPoolFirstSpawnAsync()
-    {
-        foreach (var bot in _botPool.Set)
-        {
-            await UniTask.Yield(cancellationToken: _cts.Token);
-
-            _spawnService.SpawnInstantly(bot);
-            bot.OnSpawnRequired += _spawnService.SpawnAfterDelay;
-        }
+        _stepByStepEntry.Dispose();
+        _killCounter.Dispose();
     }
 }

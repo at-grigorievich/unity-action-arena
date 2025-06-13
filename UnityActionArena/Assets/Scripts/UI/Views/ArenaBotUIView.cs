@@ -28,6 +28,8 @@ namespace ATG.UI
 
         public override void Show(object sender, ArenaBotUIData data)
         {
+            Hide();
+            
             _health.Show(data.HealthRate);
             base.Show(sender, data);
         }

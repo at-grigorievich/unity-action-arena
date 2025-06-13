@@ -9,17 +9,16 @@ namespace ATG.Command
         private readonly ICommand[] _commands;
         private readonly bool _ignoreIfAlreadyExecuted;
         
-        public event Action<bool> OnComplete; 
-        
         private Queue<ICommand> _commandQueue;
         private ICommand _currentCommand;
         
+        public event Action<bool> OnCompleted;
+        
         public CommandInvoker(bool ignoreIfAlreadyExecuted = false, params ICommand[] commands)
         {
+            _ignoreIfAlreadyExecuted = ignoreIfAlreadyExecuted;
             _commands = commands;
         }
-
-        public event Action<bool> OnCompleted;
 
         public void Execute()
         {
@@ -38,13 +37,16 @@ namespace ATG.Command
 
         public void Dispose()
         {
-            _currentCommand?.Dispose();
-            _commandQueue?.Clear();
+            foreach (var command in _commands)
+            {
+                command.Dispose();
+            }
+            
+            _commandQueue.Clear();
         }
         
         private void Reset()
         {
-            _currentCommand?.Dispose();
             _currentCommand = null;
             _commandQueue = new Queue<ICommand>(_commands);
         }
@@ -56,14 +58,12 @@ namespace ATG.Command
             if (commandExecutedStatus == false)
             {
                 OnCompleted?.Invoke(false);
-                Dispose();
                 return;
             }
 
             if (_commandQueue.Count == 0)
             {
                 OnCompleted?.Invoke(true);
-                Dispose();
                 return;
             }
             

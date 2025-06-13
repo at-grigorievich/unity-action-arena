@@ -78,7 +78,20 @@ namespace ATG.Character
             base.Dispose();
             _attackObserver.Dispose();
         }
-        
+
+        public override void SetVisible(bool isVisible)
+        {
+            base.SetVisible(isVisible);
+            if (isVisible == true)
+            {
+                _uiView.Show(this, new ArenaBotUIData(_health));
+            }
+            else
+            {
+                _uiView.Hide();
+            }
+        }
+
         public void Attack()
         {
             _attackObserver.OnAttackRequired();

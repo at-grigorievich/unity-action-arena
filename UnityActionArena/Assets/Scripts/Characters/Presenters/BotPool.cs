@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using ATG.Attack;
-using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Move;
 using Settings;
@@ -29,8 +28,6 @@ namespace ATG.Character
         private readonly BotPresenterCreator _prefab;
         private readonly TargetNavigationPointSet _targetPointSet;
         
-        private readonly RandomEquipmentSource _equipmentSource;
-        
         private readonly Transform _root;
         
         private List<BotPresenter> _botSet;
@@ -39,14 +36,11 @@ namespace ATG.Character
         
         public event Action<AttackDamageData> OnDieCountRequired;
         
-        public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize,
-            RandomEquipmentSource equipmentSource, TargetNavigationPointSet pointSet)
+        public BotPool(BotPresenterCreator prefab, IArenaSize arenaSize, TargetNavigationPointSet pointSet)
         {
             _prefab = prefab;
             
             _botSet = new List<BotPresenter>(arenaSize.PlayersOnArena - 1);
-            
-            _equipmentSource = equipmentSource;
             
             _targetPointSet = pointSet;
             
@@ -64,7 +58,6 @@ namespace ATG.Character
                 _botSet.Add(bot);
                 
                 bot.Initialize();
-                bot.TakeOnEquipments(_equipmentSource.GetItems());
             }
         }
 
@@ -88,13 +81,5 @@ namespace ATG.Character
         }
         
         private void OnBotDieCountRequired(AttackDamageData data) => OnDieCountRequired?.Invoke(data);
-
-        public void SetActiveAll(bool isActive)
-        {
-            foreach (var bot in _botSet)
-            {
-                bot.SetActive(isActive);
-            }
-        }
     }
 }

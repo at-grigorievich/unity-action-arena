@@ -25,7 +25,9 @@ namespace ATG.Character
         private readonly IEquipmentObserver _equipmentViewObserver;
         
         protected bool _isActive;
-
+        
+        public bool AllowActivatedOnSpawn { get; set; } = false;
+        
         public Vector3 Position => _view.Position;
         public Vector3 Forward => _view.transform.forward;
         public Quaternion Rotation => _view.Rotation;
@@ -35,6 +37,8 @@ namespace ATG.Character
 
         public event Action OnSpawned;
         public event Action<ISpawnable> OnSpawnRequired;
+        
+        public bool IsActive => _isActive;
         
         protected CharacterPresenter(CharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move)
@@ -75,13 +79,17 @@ namespace ATG.Character
             SetPhysActive(isActive);
         }
         
-        public void SetVisible(bool isVisible) => _view.SetVisible(isVisible);
-        public void SetPhysActive(bool isActive) => _view.SetPhysActive(isActive);
+        public virtual void SetVisible(bool isVisible) => _view.SetVisible(isVisible);
+        public virtual void SetPhysActive(bool isActive) => _view.SetPhysActive(isActive);
 
         public virtual void Spawn(Vector3 spawnPosition, Quaternion spawnRotation)
         {
             _move.PlaceTo(spawnPosition, spawnRotation);
-            SetActive(true);
+
+            if (AllowActivatedOnSpawn == true)
+            {
+                SetActive(true);
+            }
             
             OnSpawned?.Invoke();
         }
