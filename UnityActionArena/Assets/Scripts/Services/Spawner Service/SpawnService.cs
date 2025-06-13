@@ -26,6 +26,9 @@ namespace ATG.Spawn
         private readonly SpawnPointSet _spawnPoints;
         private readonly Dictionary<ISpawnable, CooldownTimer> _data;
 
+        public event Action<ISpawnable> OnStartSpawned;
+        public event Action<ISpawnable> OnFinishSpawned;
+        
         public SpawnService(SpawnPointSet spawnPoints, IArenaRespawnDelay config)
         {
             _config = config;
@@ -48,6 +51,8 @@ namespace ATG.Spawn
         {
             ISpawnPoint selectedSpawnPoint = _spawnPoints.GetRandomPoint();
             obj.Spawn(selectedSpawnPoint.GetRandomPointInRadiusXZ(), selectedSpawnPoint.Rotation);
+            
+            OnFinishSpawned?.Invoke(obj);
         }
 
         public void SpawnAfterDelay(ISpawnable obj)
@@ -66,10 +71,12 @@ namespace ATG.Spawn
                 _data.Remove(obj);
                 t.ClearCallbacks();
             }
-
+            
             timer.OnTimerFinished += OnTimerFinished;
             
             _data.Add(obj, timer);
+            
+            OnStartSpawned?.Invoke(obj);
             timer.Start();
         }
         

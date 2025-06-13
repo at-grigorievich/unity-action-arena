@@ -42,8 +42,10 @@ namespace ATG.UI
 
         public override void Hide()
         {
-            _killCounter.Dispose();
-            _earnCounter.Dispose();
+            Dispose();
+            
+            _killCounter.Hide();
+            _earnCounter.Hide();
         }
         
         public void Dispose()

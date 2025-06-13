@@ -41,6 +41,9 @@ namespace ATG.UI
 
         public override void Hide()
         {
+            heathBarView.Hide();
+            staminaBarView.Hide();
+            
             _healthBar.Dispose();
             _staminaBar.Dispose();
         }

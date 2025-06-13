@@ -27,6 +27,8 @@ namespace ATG.DateTimers
         public DateTime StartedTime { get; private set; }
         public DateTime FinishedTime { get; private set; }
 
+        public TimeSpan CooldownTime => _cooldown; 
+        public TimeSpan TimeLeft => FinishedTime - DateTime.Now;
         public bool IsFinished { get; private set; }
         
         public event Action<CooldownTimer> OnTimerStarted;

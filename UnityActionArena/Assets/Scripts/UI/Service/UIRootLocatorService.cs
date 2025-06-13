@@ -42,7 +42,6 @@ namespace ATG.UI.Service
                 if (_instances.ContainsKey(view.Tag) == true)
                 {
                     throw new Exception($"UI Root View with Tag {view.Tag} already exists: {_instances[view.Tag].transform.name}");
-                    return;
                 }
                 
                 view.Initialize(_resolver);

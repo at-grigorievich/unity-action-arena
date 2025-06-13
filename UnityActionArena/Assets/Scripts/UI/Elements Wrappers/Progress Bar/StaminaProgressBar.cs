@@ -36,8 +36,6 @@ namespace ATG.UI
 
         public void Dispose()
         {
-            _bar.Hide();
-            
             _dis?.Dispose();
             _dis = null;
 

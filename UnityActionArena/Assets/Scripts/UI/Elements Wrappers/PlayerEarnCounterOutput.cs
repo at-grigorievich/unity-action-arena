@@ -23,11 +23,17 @@ namespace ATG.UI
             OnEarnChanged(_earnPerKillCounter.EarnsPerKill.Value);
         }
 
+        public void Hide()
+        {
+            Dispose();
+            _counterOutput.Hide();
+        }
+
         public void Dispose()
         {
             _dis?.Dispose();
             _dis = null;
-            _counterOutput.Hide();
+            _counterOutput.Dispose();
 
             _earnPerKillCounter = null;
         }

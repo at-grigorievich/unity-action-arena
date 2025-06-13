@@ -25,17 +25,21 @@ namespace ATG.UI
             OnKillTableChanged();
         }
 
+        public void Hide()
+        {
+            Dispose();
+            _counterOutput.Hide();
+            _playerName = string.Empty;
+        }
+        
         public void Dispose()
         {
             if (_killCounter != null)
             {
                 _killCounter.OnTableChanged -= OnKillTableChanged;
             }
-
-            _counterOutput.Hide();
             
             _killCounter = null;
-            _playerName = string.Empty;
         }
         
         private void OnKillTableChanged()
