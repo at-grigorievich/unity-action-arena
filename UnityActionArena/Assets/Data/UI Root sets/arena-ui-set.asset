@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014297837f7549cebceb30a01d57458e, type: 3}
+  m_Name: arena-ui-set
+  m_EditorClassIdentifier: 
+  set:
+  - <Tag>k__BackingField: 2
+    <ViewAsset>k__BackingField: {fileID: 5504506460716737713, guid: a142c97b63a34b647a2d8198ae3964c8,
+      type: 3}
+  - <Tag>k__BackingField: 3
+    <ViewAsset>k__BackingField: {fileID: 3770900165431471550, guid: e3a1f5ba63ca1fb4aa380bab769daab8,
+      type: 3}

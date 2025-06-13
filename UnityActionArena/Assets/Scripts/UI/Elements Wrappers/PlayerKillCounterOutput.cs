@@ -27,7 +27,11 @@ namespace ATG.UI
 
         public void Dispose()
         {
-            _killCounter.OnTableChanged -= OnKillTableChanged;
+            if (_killCounter != null)
+            {
+                _killCounter.OnTableChanged -= OnKillTableChanged;
+            }
+
             _counterOutput.Hide();
             
             _killCounter = null;

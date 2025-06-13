@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0b54b65aa44b49a438fc0c1aa22478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showOnInitialize: 1
+  showOnInitialize: 0
   playerNickOutput: {fileID: 3950049341680911061}
   playerRateView: {fileID: 5022306660963047831}
   playerStatisticView: {fileID: 1742887337626828602}

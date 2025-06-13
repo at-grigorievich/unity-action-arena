@@ -6,6 +6,7 @@ using ATG.KillCounter;
 using ATG.Move;
 using ATG.Spawn;
 using Settings;
+using UI.Service;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,6 +19,7 @@ namespace Scopes
         [SerializeField] private SpawnServiceCreator spawnServiceCreator;
         [SerializeField] private CinemachineWrapperCreator cinemachineCreator;
         [SerializeField] private KillCounterCreator killCounterCreator;
+        [SerializeField] private UIRootLocatorCreator uiRootLocatorCreator;
         
         [SerializeField] private PlayerCharacterCreator playerCreator;
         [SerializeField] private BotCharactersPoolCreator botPoolCreator;
@@ -34,6 +36,7 @@ namespace Scopes
             botPoolCreator.Create(builder);
             killCounterCreator.Create(builder);
             spawnServiceCreator.Create(builder);
+            uiRootLocatorCreator.Create(builder);
             
             builder.RegisterInstance(arenaSettings).AsImplementedInterfaces();
             builder.RegisterInstance(targetNavigationPointSet);

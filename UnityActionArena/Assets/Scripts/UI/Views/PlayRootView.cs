@@ -55,7 +55,7 @@ namespace ATG.UI
             playerStatisticView.Hide();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             playerRateView.Dispose();
             playerStatisticView.Dispose();

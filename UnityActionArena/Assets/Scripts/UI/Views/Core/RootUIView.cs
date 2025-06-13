@@ -7,7 +7,7 @@ using IObjectResolver = VContainer.IObjectResolver;
 namespace ATG.UI
 {
     [RequireComponent(typeof(Canvas))]
-    public abstract class RootUIView: MonoBehaviour
+    public abstract class RootUIView: MonoBehaviour, IDisposable
     {
         [SerializeField] private bool showOnInitialize;
         
@@ -26,6 +26,10 @@ namespace ATG.UI
             if (showOnInitialize == true)
             {
                 Show();
+            }
+            else
+            {
+                Hide();
             }
         }
         
@@ -46,6 +50,11 @@ namespace ATG.UI
         {
             if(_isInitialized == false)
                 throw new Exception($"{transform.name} is not initialized, but try to show");
+        }
+
+        public virtual void Dispose()
+        {
+            // TODO release managed resources here
         }
     }
 }
