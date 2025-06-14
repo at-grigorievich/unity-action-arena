@@ -100,8 +100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2317399454941862454}
   - component: {fileID: 2317399454941522298}
+  - component: {fileID: 5361871946489695444}
   - component: {fileID: 2317399454959166850}
   - component: {fileID: 2317399454941758680}
+  - component: {fileID: 3299536188704737655}
   m_Layer: 5
   m_Name: lobby_view_shop_slide
   m_TagString: Untagged
@@ -139,6 +141,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2317399454953115798}
   m_CullTransparentMesh: 1
+--- !u!223 &5361871946489695444
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317399454953115798}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!114 &2317399454959166850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +196,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3299536188704737655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317399454953115798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad47bc91971b401db6ab8321fc083c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2317399454953115810
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,9 @@
-﻿using ATG.KillCounter;
+﻿using System;
+using ATG.KillCounter;
 
 namespace ATG.UI
 {
-    public sealed class PlayerKillCounterOutput
+    public sealed class PlayerKillCounterOutput: IDisposable
     {
         private readonly CounterOutput _counterOutput;
         

@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400012, guid: 871fcc95ecbb3ec42b5c4f110b220fca, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 22400012, guid: 871fcc95ecbb3ec42b5c4f110b220fca, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1296,6 +1296,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4604833786344344178, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
+        type: 3}
+      propertyPath: carouselFactory.transitionDuration
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5867604281589535096, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1305,6 +1310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466041530570729314, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7886176947166455138, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
         type: 3}
@@ -1559,6 +1569,12 @@ Transform:
   - {fileID: 988579852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1080556309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
+    type: 3}
+  m_PrefabInstance: {fileID: 988579851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1178246347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1681,7 +1697,8 @@ MonoBehaviour:
   parentReference:
     TypeName: Scopes.ProjectScope
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 1080556309}
   lobbyCharacterCreator:
     view: {fileID: 3148391202853669741}
     animatorCreator:
