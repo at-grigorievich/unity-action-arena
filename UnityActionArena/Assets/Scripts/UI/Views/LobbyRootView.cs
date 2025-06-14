@@ -11,6 +11,9 @@ namespace ATG.UI
 
         [SerializeField] private LobbyMainView mainView;
         [SerializeField] private LobbyShopView shopView;
+        [Space(5)] 
+        [SerializeField] private EventButton moveNextBtn;
+        [SerializeField] private EventButton moveBackBtn;
         [Space(5)]
         [SerializeField] private ViewCarouselFactory carouselFactory;
         
@@ -39,6 +42,10 @@ namespace ATG.UI
             
             _currentIndex = _startedIndex;
             _carousel.MoveTo(_currentIndex);
+            ShowSlide();
+
+            moveBackBtn.OnClicked += SlideToPrevious;
+            moveNextBtn.OnClicked += SlideToNext;
         }
 
         public override void Hide()
@@ -47,6 +54,9 @@ namespace ATG.UI
             _carousel.Dispose();
             mainView.Hide();
             shopView.Hide();
+            
+            moveBackBtn.OnClicked -= SlideToPrevious;
+            moveNextBtn.OnClicked -= SlideToNext;
         }
 
         public override void Dispose()
@@ -55,6 +65,9 @@ namespace ATG.UI
             _carousel.Dispose();
             mainView.Dispose();
             shopView.Dispose();
+            
+            moveBackBtn.OnClicked -= SlideToPrevious;
+            moveNextBtn.OnClicked -= SlideToNext;
         }
 
         [ContextMenu("Move Next")]

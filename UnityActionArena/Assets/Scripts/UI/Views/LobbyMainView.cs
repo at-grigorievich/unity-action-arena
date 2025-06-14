@@ -26,6 +26,7 @@ namespace ATG.UI
         [SerializeField] private TMP_Text nameOutput;
         [SerializeField] private TMP_Text idOutput;
         [SerializeField] private CounterOutput currencyOutput;
+        [SerializeField] private PlayButton playButton;
 
         private PlayerCurrencyOutput _userCurrency;
         
@@ -43,17 +44,28 @@ namespace ATG.UI
             nameOutput.text = data.Name;
             idOutput.text = data.Id;
             _userCurrency.Show(data.Currency);
+            
+            playButton.Show(this, string.Empty);
+            playButton.OnClicked += OnPlayClicked;
         }
 
         public override void Hide()
         {
             base.Hide();
             _userCurrency.Hide();
+            playButton.Hide();
+            playButton.OnClicked -= OnPlayClicked;
         }
 
         public void Dispose()
         {
             _userCurrency.Dispose();
+            playButton.OnClicked -= OnPlayClicked;
+        }
+        
+        private void OnPlayClicked()
+        {
+            Debug.Log("clicked");
         }
     }
 }

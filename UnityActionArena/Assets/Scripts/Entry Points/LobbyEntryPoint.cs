@@ -2,6 +2,7 @@
 using ATG.Character;
 using ATG.Command;
 using ATG.Save;
+using ATG.UI.Service;
 using ATG.User;
 using VContainer.Unity;
 
@@ -9,11 +10,13 @@ public class LobbyEntryPoint : IPostInitializable, IDisposable
 {
     private readonly CommandInvoker _stepByStepEntry;
 
-    public LobbyEntryPoint(UserPresenter user, LobbyCharacterPresenter lobbyCharacter, ISaveService saveService)
+    public LobbyEntryPoint(UserPresenter user, LobbyCharacterPresenter lobbyCharacter, ISaveService saveService,
+        UIRootLocatorService uiLocator)
     {
         _stepByStepEntry = new CommandInvoker(true,
             new LoadUserDataStep(saveService),
-            new ActivateLobbyCharacterStep(user, lobbyCharacter));
+            new ActivateLobbyCharacterStep(user, lobbyCharacter),
+            new ShowLobbyUIStep(uiLocator));
     }
     
     public void PostInitialize()

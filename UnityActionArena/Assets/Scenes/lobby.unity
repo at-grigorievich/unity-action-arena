@@ -368,6 +368,10 @@ PrefabInstance:
       value: lobby_view
       objectReference: {fileID: 0}
     - target: {fileID: 22300000, guid: 871fcc95ecbb3ec42b5c4f110b220fca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22300000, guid: 871fcc95ecbb3ec42b5c4f110b220fca, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
       objectReference: {fileID: 0}
@@ -1316,6 +1320,11 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7656186053657434808, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7886176947166455138, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1569,12 +1578,6 @@ Transform:
   - {fileID: 988579852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1080556309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 871fcc95ecbb3ec42b5c4f110b220fca,
-    type: 3}
-  m_PrefabInstance: {fileID: 988579851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1178246347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1697,8 +1700,7 @@ MonoBehaviour:
   parentReference:
     TypeName: Scopes.ProjectScope
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 1080556309}
+  autoInjectGameObjects: []
   lobbyCharacterCreator:
     view: {fileID: 3148391202853669741}
     animatorCreator:
@@ -1706,6 +1708,8 @@ MonoBehaviour:
       animator: {fileID: 3148391202853669742}
       withEventDispatcher: 0
       animatorEventDispatcher: {fileID: 0}
+  uiRootLocatorCreator:
+    config: {fileID: 11400000, guid: b3f47a29552e06f43a7a7c96e82abfd5, type: 2}
 --- !u!1001 &1609899244
 PrefabInstance:
   m_ObjectHideFlags: 0

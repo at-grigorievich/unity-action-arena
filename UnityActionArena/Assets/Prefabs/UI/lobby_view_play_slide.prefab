@@ -834,6 +834,7 @@ GameObject:
   - component: {fileID: 642079431722785667}
   - component: {fileID: 5859993816749133679}
   - component: {fileID: 5859993816738295373}
+  - component: {fileID: 2035452795021189611}
   - component: {fileID: 1763668389676663275}
   m_Layer: 5
   m_Name: lobby_view_play_slide
@@ -923,9 +924,26 @@ CanvasGroup:
   m_GameObject: {fileID: 5859993816760400425}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &2035452795021189611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859993816760400425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 247
 --- !u!114 &1763668389676663275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,6 +959,7 @@ MonoBehaviour:
   nameOutput: {fileID: 8489081409008802875}
   idOutput: {fileID: 7047769792522965871}
   currencyOutput: {fileID: 3324266011306869010}
+  playButton: {fileID: 234378314394533746}
 --- !u!1 &5859993816760400439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1258,7 @@ GameObject:
   - component: {fileID: 5859993816738431521}
   - component: {fileID: 5859993816738295361}
   - component: {fileID: 5859993816749133741}
+  - component: {fileID: 234378314394533746}
   m_Layer: 5
   m_Name: find_game_btn
   m_TagString: Untagged
@@ -1284,8 +1304,8 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!114 &5859993816749133741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1336,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &234378314394533746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859993816760400451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05cba08c71a4d138984a7c8f28599b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5859993816760400473
 GameObject:
   m_ObjectHideFlags: 0
