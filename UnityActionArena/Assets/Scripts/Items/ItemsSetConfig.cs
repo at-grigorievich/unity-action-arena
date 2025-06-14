@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ATG.OtusHW.Inventory;
 using UnityEngine;
 
@@ -10,6 +11,16 @@ namespace ATG.Items
     {
         [SerializeField] private ItemConfig[] items;
 
+        public Item GetPrototypeById(string id)
+        {
+            var res = items.FirstOrDefault(i => i.Prototype.Id == id);
+            
+            if(res == null)
+                throw new NullReferenceException($"Cant find prototype by id = {id}");
+
+            return res.Prototype;
+        }
+        
         public IReadOnlyList<Item> GetEquipByType(EquipType equipType)
         {
             List<Item> result = new();

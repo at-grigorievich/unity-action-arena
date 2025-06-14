@@ -12,6 +12,8 @@ namespace Scopes
         protected override void Configure(IContainerBuilder builder)
         {
             lobbyCharacterCreator.Create(builder);
+            
+            builder.Register<LobbyEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }

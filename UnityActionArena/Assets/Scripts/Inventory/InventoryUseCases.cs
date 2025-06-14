@@ -84,6 +84,10 @@ namespace ATG.Items.Inventory
             }
         }
 
+        public static string[] GetItemsIdArray(Inventory inventory)
+        {
+            return inventory.Items.Select(i => i.Id).ToArray();
+        }
 
         private static bool TryAddStackItem(Inventory inventory, Item item)
         {

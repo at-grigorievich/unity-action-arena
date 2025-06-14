@@ -1,4 +1,6 @@
-﻿namespace ATG.Items.Equipment
+﻿using System.Linq;
+
+namespace ATG.Items.Equipment
 {
     public static class EquipmentUseCases
     {
@@ -36,6 +38,11 @@
             }
 
             return null;
+        }
+        
+        public static string[] GetItemsIdArray(Equipment equipment)
+        {
+            return equipment.Items.Values.Select(i => i.Id).ToArray();
         }
     }
 }

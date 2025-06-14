@@ -48,4 +48,10 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  userSaveLoaderCreator:
+    defaultEquipmentCreator:
+      configs:
+      - {fileID: 11400000, guid: 8dce541b96d59494e83f7d7b3445ce03, type: 2}
+      - {fileID: 11400000, guid: 7d0d8e49f84552a44a3e9cee5884c20c, type: 2}
+      - {fileID: 11400000, guid: 0528a4ef180eab14bb50fef0a5516c20, type: 2}
   itemsSetConfig: {fileID: 11400000, guid: a5e9c8c7c672ad14b9b50f429be2932e, type: 2}

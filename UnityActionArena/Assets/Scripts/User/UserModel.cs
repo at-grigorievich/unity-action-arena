@@ -2,31 +2,31 @@
 using ATG.Items.Inventory;
 using ATG.Observable;
 
-namespace User
+namespace ATG.User
 {
     public sealed class UserModel
     {
-        public readonly int Id;
+        public int Id;
+        public string Name;
+        
         public readonly IObservableVar<int> Currency;
         
         public readonly Inventory Inventory;
         public readonly Equipment Equipment;
         
-        public string Name { get; set; }
-        
         public int KillCount { get; set; }
         public int DeathCount { get; set; }
 
-        public UserModel(int id, string name, int currency, Inventory inventory, Equipment equipment, int kill, int death)
+        public UserModel()
         {
-            Id = id;
-            Name = name;
-            Inventory = inventory;
-            Equipment = equipment;
-            KillCount = kill;
-            DeathCount = death;
+            Id = -1;
+            Name = "player1";
+            Inventory = new Inventory();
+            Equipment = new Equipment();
+            KillCount = 0;
+            DeathCount = 0;
 
-            Currency = new ObservableVar<int>(currency);
+            Currency = new ObservableVar<int>(0);
         }
     }
 }

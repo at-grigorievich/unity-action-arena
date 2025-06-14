@@ -16,6 +16,11 @@ namespace ATG.Items.Equipment
             builder.Register<StaticEquipmentSource>(Lifetime.Singleton)
                 .WithParameter(configs.AsEnumerable());
         }
+
+        public IEquipmentSource Create()
+        {
+            return new StaticEquipmentSource(configs);
+        }
     }
     
     public sealed class StaticEquipmentSource: IEquipmentSource

@@ -34,10 +34,13 @@ namespace ATG.Save
             else
             {
                 Debug.LogWarning($"data for {typeof(TService)} not found");
+                SetupInitialData();
             }
         }
         
         protected abstract TData ConvertToData();
         protected abstract void SetupData(TData resourcesSet);
+
+        protected abstract void SetupInitialData();
     }
 }

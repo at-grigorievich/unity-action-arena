@@ -43,6 +43,7 @@ namespace ATG.Character
 
         public void Initialize()
         {
+            _view.Initialize();
             _equipmentViewObserver.Initialize();
         }
 
