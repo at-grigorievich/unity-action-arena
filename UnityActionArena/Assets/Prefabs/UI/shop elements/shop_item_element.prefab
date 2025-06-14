@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 11400010}
   - component: {fileID: 22500000}
   - component: {fileID: 11400008}
+  - component: {fileID: 7076735920875055881}
   m_Layer: 5
   m_Name: shop_item_element
   m_TagString: Untagged
@@ -360,6 +361,25 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7076735920875055881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c6ab9ddb5d4cb6b008422d78d2b1f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderColor:
+    colorIdle: {r: 0.4862745, g: 0.043137256, b: 0.72156864, a: 1}
+    colorSelected: {r: 0.32156864, g: 0.039215688, b: 0.4745098, a: 1}
+    background: {fileID: 11400010}
+  itemName: {fileID: 1985106526557274681}
+  price: {fileID: 4305157620928245131}
+  icon: {fileID: 1183757754108264213}
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0

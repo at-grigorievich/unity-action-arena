@@ -74,7 +74,8 @@ namespace ATG.Items
         public string Name;
         public string Description;
         public Sprite Icon;
-
+        public int Price;
+        
         public ItemMetaData Clone()
         {
             return new ItemMetaData()
@@ -82,6 +83,7 @@ namespace ATG.Items
                 Name = Name,
                 Description = Description,
                 Icon = Icon,
+                Price = Price
             };
         }
     }

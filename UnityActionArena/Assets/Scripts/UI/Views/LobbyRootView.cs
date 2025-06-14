@@ -1,4 +1,6 @@
-﻿using ATG.User;
+﻿using ATG.Character;
+using ATG.Items;
+using ATG.User;
 using UnityEngine;
 using VContainer;
 
@@ -19,7 +21,9 @@ namespace ATG.UI
         
         private ViewCarousel _carousel;
 
+        private LobbyCharacterPresenter _lobbyCharacter;
         private UserPresenter _user;
+        private ItemsSetConfig _allItems;
 
         private int _currentIndex;
         
@@ -29,7 +33,13 @@ namespace ATG.UI
         public override void Initialize(IObjectResolver resolver)
         {
             if(resolver.TryResolve(out _user) == false)
-                throw new VContainerException(typeof(UserPresenter),"Failed to resolve user presenter");
+                throw new VContainerException(typeof(UserPresenter),"Failed to resolve UserPresenter");
+            
+            if(resolver.TryResolve(out _allItems) == false)
+                throw new VContainerException(typeof(ItemsSetConfig),"Failed to resolve ItemsSetConfig");
+            
+            if(resolver.TryResolve(out _lobbyCharacter) == false)
+                throw new VContainerException(typeof(LobbyCharacterPresenter),"Failed to resolve LobbyCharacterPresenter");
             
             _carousel = carouselFactory.Create();
             
@@ -104,7 +114,7 @@ namespace ATG.UI
                         _user.Id.ToString(), _user.Name, _user.Currency));
                     break;
                 case 1:
-                    shopView.Show(this, transform);
+                    shopView.Show(this, new LobbyShopViewData(_user, _lobbyCharacter, _allItems));
                     break;
             }
         }
