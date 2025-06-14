@@ -20,7 +20,7 @@ namespace ATG.Character
         public IHealthRate<int> HealthRate => _health;
         public IStaminaRate StaminaRate => _stamina;
         
-        public PlayerPresenter(CharacterView view, CharacterModel model,
+        public PlayerPresenter(ArenaCharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, CinemachineWrapper cinemachine, 
             IInputable input, IStaminaService stamina) 

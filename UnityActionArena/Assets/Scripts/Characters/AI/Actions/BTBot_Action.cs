@@ -5,7 +5,7 @@ namespace ATG.Character.AI
 {
     public abstract class BTBot_Action: Leaf
     {
-        [SerializeField] protected CharacterView botView;
+        [SerializeField] protected ArenaCharacterView botView;
         
         protected BotPresenter _bot;
         

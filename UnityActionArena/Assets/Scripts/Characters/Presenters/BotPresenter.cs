@@ -31,7 +31,7 @@ namespace ATG.Character
         public bool EnoughStamina => _stamina.IsEnough;
         public AttackDamageData? LastReceivedDamage => _getDamageObserver.LastReceivedDamage;
         
-        public BotPresenter(CharacterView view, ArenaBotUIView uiView, CharacterModel model, 
+        public BotPresenter(ArenaCharacterView view, ArenaBotUIView uiView, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, IStaminaService stamina,
             TargetNavigationPointSet navigationPoints) 

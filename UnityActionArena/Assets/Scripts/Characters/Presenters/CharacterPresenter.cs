@@ -13,7 +13,7 @@ namespace ATG.Character
 {
     public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IDetectable
     {
-        protected readonly CharacterView _view;
+        protected readonly ArenaCharacterView _view;
         protected readonly CharacterModel _characterModel;
         
         protected readonly Equipment _equipment;
@@ -40,7 +40,7 @@ namespace ATG.Character
         
         public bool IsActive => _isActive;
         
-        protected CharacterPresenter(CharacterView view, CharacterModel model, 
+        protected CharacterPresenter(ArenaCharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move)
         {
             _view = view;

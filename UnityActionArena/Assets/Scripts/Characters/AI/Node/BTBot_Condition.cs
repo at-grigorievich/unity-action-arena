@@ -5,7 +5,7 @@ namespace ATG.Character.AI
 {
     public abstract class BTBot_Condition: Condition
     {
-        [SerializeField] private CharacterView botView;
+        [SerializeField] private ArenaCharacterView botView;
         [SerializeField] private bool invert = false;
         
         protected BotPresenter _bot;

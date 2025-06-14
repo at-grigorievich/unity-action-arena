@@ -7305,8 +7305,7 @@ MonoBehaviour:
   parentReference:
     TypeName: Scopes.ProjectScope
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 1774840072}
+  autoInjectGameObjects: []
   arenaSettings: {fileID: 11400000, guid: 2651f84de68b1f0489c42dfad3baea01, type: 2}
   spawnServiceCreator:
     spawnPointSet: {fileID: 1147216868}
@@ -9204,12 +9203,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0089698, y: 6.0227017, z: 4.662248}
   m_Center: {x: -0.035620973, y: 0.02093205, z: 2.3311236}
---- !u!1 &1774840072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8672310494781238135, guid: a142c97b63a34b647a2d8198ae3964c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7388186537423894053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1810732493
 PrefabInstance:
   m_ObjectHideFlags: 0

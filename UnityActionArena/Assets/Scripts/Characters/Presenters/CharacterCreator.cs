@@ -13,7 +13,7 @@ namespace ATG.Character
     [Serializable]
     public abstract class CharacterCreator<T> where T : CharacterPresenter
     {
-        [SerializeField] protected CharacterView view;
+        [SerializeField] protected ArenaCharacterView view;
         [SerializeField] protected AnimatorWrapperCreator animatorCreator;
         
         public virtual void Create(IContainerBuilder builder)
@@ -24,7 +24,7 @@ namespace ATG.Character
             IMoveableService moveService = GetMove(model.Speed);
             
             builder.Register<T>(Lifetime.Singleton)
-                .WithParameter<CharacterView>(view)
+                .WithParameter<ArenaCharacterView>(view)
                 .WithParameter<CharacterModel>(model)
                 .WithParameter<IAnimatorWrapper>(animatorWrapper)
                 .WithParameter<IMoveableService>(moveService)
@@ -53,7 +53,7 @@ namespace ATG.Character
             IStaminaService staminaService = GetStamina(model.Stamina);
             
             builder.Register<T>(Lifetime.Singleton)
-                .WithParameter<CharacterView>(view)
+                .WithParameter<ArenaCharacterView>(view)
                 .WithParameter<CharacterModel>(model)
                 .WithParameter<IAnimatorWrapper>(animatorWrapper)
                 .WithParameter<IMoveableService>(moveService)
@@ -69,10 +69,7 @@ namespace ATG.Character
         protected IAttackService GetAttack(IReadOnlyObservableVar<float> range) => attackCreator.Create(range);
         protected IStaminaService GetStamina(IObservableVar<float> stamina) => staminaCreator.Create(stamina);
     }
-
-    [Serializable]
-    public sealed class LobbyCharacterCreator : CharacterCreator<LobbyCharacterPresenter> { }
-
+    
     [Serializable]
     public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter>
     {

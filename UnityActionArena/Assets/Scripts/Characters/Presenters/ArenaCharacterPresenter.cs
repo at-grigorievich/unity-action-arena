@@ -28,7 +28,7 @@ namespace ATG.Character
         
         public event Action<AttackDamageData> OnDieCountRequired;
         
-        protected ArenaCharacterPresenter(CharacterView view, CharacterModel model, 
+        protected ArenaCharacterPresenter(ArenaCharacterView view, CharacterModel model, 
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, IStaminaService stamina) 
             : base(view, model, animator, move)

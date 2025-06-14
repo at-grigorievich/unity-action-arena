@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ATG.Character
 {
-    [RequireComponent(typeof(CharacterView))]
+    [RequireComponent(typeof(ArenaCharacterView))]
     public sealed class BotPresenterCreator: MonoBehaviour
     {
         [SerializeField] private BotCharacterCreator creator;

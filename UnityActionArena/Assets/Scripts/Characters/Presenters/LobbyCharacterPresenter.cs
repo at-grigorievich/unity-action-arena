@@ -1,23 +1,62 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using ATG.Animator;
-using ATG.Attack;
-using ATG.Items;
-using ATG.Items.Inventory;
-using ATG.Move;
+using ATG.Items.Equipment;
+using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public sealed class LobbyCharacterPresenter: CharacterPresenter
+    [Serializable]
+    public sealed class LobbyCharacterCreator
     {
-        private readonly Inventory _inventory;
+        [SerializeField] private CharacterView view;
+        [SerializeField] private AnimatorWrapperCreator animatorCreator;
 
-        public LobbyCharacterPresenter(CharacterView view, CharacterModel model, 
-            IAnimatorWrapper animator, IMoveableService move) 
-            : base(view, model, animator, move)
+        public void Create(IContainerBuilder builder)
         {
-            _inventory = new Inventory();
+            builder.Register<LobbyCharacterPresenter>(Lifetime.Singleton)
+                .WithParameter<CharacterView>(view)
+                .WithParameter<IAnimatorWrapper>(animatorCreator.Create())
+                .AsSelf().AsImplementedInterfaces();
+        }
+    }
+    
+    public sealed class LobbyCharacterPresenter: IInitializable, IDisposable
+    {
+        private readonly CharacterView _view;
+        
+        private readonly Equipment _equipment;
+     
+        private readonly IAnimatorWrapper _animator;
+        private readonly IEquipmentObserver _equipmentViewObserver;
+        
+        public LobbyCharacterPresenter(CharacterView view, IAnimatorWrapper animator)
+        {
+            _view = view;
+            
+            _equipment = new Equipment();
+            
+            _animator = animator;
+            _equipmentViewObserver = new CharacterEquipViewObserver(_equipment, _view);
         }
 
-        public IEnumerable<Item> EquippedItems => _equipment.Items.Values;
+        public void Initialize()
+        {
+            _equipmentViewObserver.Initialize();
+        }
+
+        public void Dispose()
+        {
+            _equipmentViewObserver.Dispose();
+        }
+        
+        public void TakeOnEquipments(params Items.Item[] items)
+        {
+            foreach (var item in items)
+            {
+                _equipment.TakeOnItem(item);               
+            }
+        }
     }
 }
