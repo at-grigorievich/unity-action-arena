@@ -6,6 +6,7 @@ using ATG.Items.Inventory;
 using ATG.Observable;
 using ATG.Save;
 using Unity.VisualScripting;
+using UnityEngine;
 
 namespace ATG.User
 {
@@ -66,25 +67,37 @@ namespace ATG.User
             return success;
         }
 
-        public bool TryBuyItem(int amount, params Item[] items)
+        public bool TryBuyItem(Item proto)
         {
-            bool success = TrySpendCurrency(amount);
-
+            bool success = TrySpendCurrency(proto.MetaData.Price);
             if (success == false) return false;
 
-            foreach (var proto in items)
+            Item item = proto.Clone();
+            InventoryUseCases.AddItem(Inventory, item);
+            
+            if (item.CanEquip() == true)
             {
-                Item item = proto.Clone();
-                InventoryUseCases.AddItem(Inventory, item);
-
-                if (item.CanEquip() == true)
-                {
-                    Equipment.TakeOnItem(item);
-                }
+                Equipment.TakeOnItem(item);
             }
 
             _saveService.Save();
             return true;
+        }
+
+        public bool HasInInventory(Item proto)
+        {
+            return InventoryUseCases.Contains(Inventory, proto);
+        }
+
+        public bool IsAlreadyEquipped(Item proto)
+        {
+            return Equipment.AlreadyEquipped(proto);
+        }
+        
+        public void EquipItem(Item proto)
+        {
+            if(HasInInventory(proto) == false) return;
+            TakeOnEquipments(proto.Clone());
         }
         
         public void TakeOnEquipments(params Items.Item[] items)

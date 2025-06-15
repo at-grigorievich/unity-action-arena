@@ -1,9 +1,23 @@
 ﻿using System.Linq;
+using ATG.OtusHW.Inventory;
+using UnityEngine;
 
 namespace ATG.Items.Equipment
 {
     public static class EquipmentUseCases
     {
+        public static bool AlreadyEquipped(this Equipment equipment, Item item)
+        {
+            if (item.CanEquip() == false) return false;
+            if(item.TryGetComponent(out HeroEquipmentComponent component) == false) return false;
+
+            EquipType equipType = component.Type;
+            
+            if (equipment.Items.TryGetValue(equipType, out var equipmentItem) == false) return false;
+
+            return equipmentItem.Id == item.Id;
+        }
+        
         public static void TakeOnItem(this Equipment equipment, Item item)
         {
             if(item.CanEquip() == false) return;

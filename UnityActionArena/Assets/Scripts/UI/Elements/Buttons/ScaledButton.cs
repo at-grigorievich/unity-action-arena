@@ -11,9 +11,9 @@ namespace ATG.UI
         private readonly Vector3 _minScale = new Vector3(0.95f, 0.95f, 0.95f);
         private readonly Vector3 _maxScale = new Vector3(1f, 1f, 1f);
 
-        private RectTransform _rectTransform;
-        private CanvasGroup _canvasGroup;
-        private bool _isPressed;
+        protected RectTransform _rectTransform;
+        protected CanvasGroup _canvasGroup;
+        protected bool _isPressed;
         
         public event Action OnClicked;
         
@@ -63,8 +63,8 @@ namespace ATG.UI
 
         public override void Hide()
         {
-            _canvasGroup.alpha = 1f;
-            _canvasGroup.interactable = true;
+            _canvasGroup.alpha = 0f;
+            _canvasGroup.interactable = false;
             _isPressed = false;
         }
 

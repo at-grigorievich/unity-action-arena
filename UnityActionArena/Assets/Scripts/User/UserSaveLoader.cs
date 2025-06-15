@@ -96,7 +96,7 @@ namespace ATG.User
         {
             _dataService.Id = Guid.NewGuid().GetHashCode();
             _dataService.Name = "Player_1";
-            _dataService.Currency.Value = 0;
+            _dataService.Currency.Value = 1000;
             _dataService.KillCount = 0;
             _dataService.DeathCount = 0;
             

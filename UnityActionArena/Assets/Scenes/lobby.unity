@@ -3743,6 +3743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1364873920}
   - component: {fileID: 1364873921}
+  - component: {fileID: 1364873922}
   m_Layer: 0
   m_Name: '[LOBBY_SCOPE]'
   m_TagString: Untagged
@@ -3790,6 +3791,18 @@ MonoBehaviour:
       animatorEventDispatcher: {fileID: 0}
   uiRootLocatorCreator:
     config: {fileID: 11400000, guid: b3f47a29552e06f43a7a7c96e82abfd5, type: 2}
+--- !u!114 &1364873922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364873919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9599ee692064831be2adcbfad8483e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1609899244
 PrefabInstance:
   m_ObjectHideFlags: 0
