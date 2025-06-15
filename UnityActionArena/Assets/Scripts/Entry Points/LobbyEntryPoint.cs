@@ -9,10 +9,13 @@ using VContainer.Unity;
 public class LobbyEntryPoint : IPostInitializable, IDisposable
 {
     private readonly CommandInvoker _stepByStepEntry;
-
+    private readonly ISaveService _saveService;
+    
     public LobbyEntryPoint(UserPresenter user, LobbyCharacterPresenter lobbyCharacter, ISaveService saveService,
         UIRootLocatorService uiLocator)
     {
+        _saveService = saveService;
+        
         _stepByStepEntry = new CommandInvoker(true,
             new LoadUserDataStep(saveService),
             new ActivateLobbyCharacterStep(user, lobbyCharacter),
@@ -26,6 +29,7 @@ public class LobbyEntryPoint : IPostInitializable, IDisposable
 
     public void Dispose()
     {
+        _saveService.Save();
         _stepByStepEntry.Dispose();
     }
 }
