@@ -21,7 +21,7 @@ namespace ATG.UI
         {
             base.Awake();
             
-            _elements = root.GetComponentsInChildren<ShopItemElement>();
+            _elements = root.GetComponentsInChildren<ShopItemElement>(includeInactive: true);
         }
 
         public override void Show(object sender, IReadOnlyList<Item> items)

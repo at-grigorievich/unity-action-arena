@@ -24,6 +24,12 @@ namespace ATG.Items
     
     public abstract class HeroEffectComponent : IItemComponent
     {
+        public const float MAX_VALUE = 100f;
+
+        public abstract string EffectName { get; }
+        public abstract float CurrentValue { get; }
+        public float Rate => CurrentValue / MAX_VALUE;
+        
         public abstract IItemComponent Clone();
         public abstract void AddEffect(CharacterModel hero);
         public abstract void RemoveEffect(CharacterModel hero);
@@ -32,8 +38,11 @@ namespace ATG.Items
     [Serializable]
     public class HeroDamageEffectComponent : HeroEffectComponent
     {
-        public int DamageEffect = 2;
-        
+        [Range(0f, 100f)] public int DamageEffect = 2;
+
+        public override string EffectName => "Damage";
+        public override float CurrentValue => DamageEffect;
+
         public override IItemComponent Clone()
         {
             return new HeroDamageEffectComponent()
@@ -56,8 +65,11 @@ namespace ATG.Items
     [Serializable]
     public class HeroHealthEffectComponent : HeroEffectComponent
     {
-        public int HitPointsEffect = 2;
-        
+        [Range(0f, 100f)] public int HitPointsEffect = 2;
+
+        public override string EffectName => "Health";
+        public override float CurrentValue => HitPointsEffect;
+
         public override IItemComponent Clone()
         {
             return new HeroHealthEffectComponent()
@@ -80,7 +92,10 @@ namespace ATG.Items
     [Serializable]
     public class HeroSpeedEffectComponent : HeroEffectComponent
     {
-        public int SpeedEffect = 2;
+        [Range(0f, 100f)] public int SpeedEffect = 2;
+
+        public override string EffectName => "Speed";
+        public override float CurrentValue => SpeedEffect;
         
         public override IItemComponent Clone()
         {
@@ -104,8 +119,11 @@ namespace ATG.Items
     [Serializable]
     public class HeroRangeEffectComponent : HeroEffectComponent
     {
-        public float RangeEffect = 5;
-        
+        [Range(0f, 100f)] public float RangeEffect = 5;
+
+        public override string EffectName => "Range";
+        public override float CurrentValue => RangeEffect;
+
         public override IItemComponent Clone()
         {
             return new HeroRangeEffectComponent()
@@ -129,7 +147,10 @@ namespace ATG.Items
     public class HeroStaminaEffectComponent : HeroEffectComponent
     {
         public float StaminaEffect = 100;
-        
+
+        public override string EffectName => "Stamina";
+        public override float CurrentValue => StaminaEffect;
+
         public override IItemComponent Clone()
         {
             return new HeroStaminaEffectComponent()

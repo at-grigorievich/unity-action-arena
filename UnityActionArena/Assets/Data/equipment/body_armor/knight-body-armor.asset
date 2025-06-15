@@ -18,7 +18,7 @@ MonoBehaviour:
       Name: "\u0434\u043E\u0441\u043F\u0435\u0445 \u0440\u044B\u0446\u0430\u0440\u044F"
       Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
         \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
-      Icon: {fileID: 21300000, guid: fd5fe12220ecc22468101e28449b9cbe, type: 3}
+      Icon: {fileID: 21300000, guid: 810e1e64f331b924a9b0376d701301b0, type: 3}
       Price: 10000
     Flags: 12
     Components:
