@@ -2,11 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using ATG.Items;
+using ATG.User;
 using UnityEngine;
 
 namespace ATG.UI
 {
-    public class ShopItemsSetElement: UIElement<IReadOnlyList<Item>>, IDisposable
+    public readonly struct ShopItemsSetUIData
+    {
+        public readonly UserPresenter User;
+        public readonly IReadOnlyList<Item> Items;
+
+        public ShopItemsSetUIData(UserPresenter user, IReadOnlyList<Item> items)
+        {
+            User = user;
+            Items = items;
+        }
+    }
+    
+    public class ShopItemsSetElement: UIElement<ShopItemsSetUIData>, IDisposable
     {
         [SerializeField] private RectTransform root;
 
@@ -24,9 +37,11 @@ namespace ATG.UI
             _elements = root.GetComponentsInChildren<ShopItemElement>(includeInactive: true);
         }
 
-        public override void Show(object sender, IReadOnlyList<Item> items)
+        public override void Show(object sender, ShopItemsSetUIData data)
         {
             Dispose();
+            
+            var items = data.Items;
             
             _activeCount = items.Count;
             _items = items.OrderBy(i => i.MetaData.Price).ToList();
@@ -40,8 +55,11 @@ namespace ATG.UI
                 }
                 
                 Item item = _items[i];
+
+                bool isBuyed = data.User.HasInInventory(item);
+                bool isEquipped = data.User.IsAlreadyEquipped(item);
                 
-                _elements[i].Show(this, new ShopItemViewData(item.Id, item.MetaData));
+                _elements[i].Show(this, new ShopItemViewData(item.Id, item.MetaData, isEquipped, isBuyed ));
                 _elements[i].OnSelect += OnSelectElement;
             }
         }

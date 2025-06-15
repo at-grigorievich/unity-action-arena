@@ -15,6 +15,8 @@ namespace ATG.UI
         
         [SerializeField] private CheckboxContainer[] checkboxes;
 
+        public EquipType LastSelected { get; private set; }
+        
         public event Action<EquipType> OnSelect;
         
         public override void Show(object sender, EquipType data)
@@ -36,11 +38,14 @@ namespace ATG.UI
                 c.Checkbox.Hide();
                 c.Checkbox.OnSelected -= OnSelected;
             }
+
+            LastSelected = EquipType.None;
         }
         
         private void OnSelected(ScaleCheckboxButton<EquipType> obj)
         {
-            OnSelect?.Invoke(obj.Data);
+            LastSelected = obj.Data;
+            OnSelect?.Invoke(LastSelected);
             
             foreach (var checkboxContainer in checkboxes)
             {

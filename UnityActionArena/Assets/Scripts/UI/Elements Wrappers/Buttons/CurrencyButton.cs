@@ -35,6 +35,7 @@ namespace ATG.UI
             _price = data.Price;
             
             OnBankCurrencyChanged(data.Bank.Currency.Value);
+            counter.Show(this, data.Price.ToString());
         }
 
         public override void Hide()

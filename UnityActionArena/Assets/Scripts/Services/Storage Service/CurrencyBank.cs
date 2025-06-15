@@ -24,7 +24,7 @@ namespace ATG.Bank
 
         public bool TrySpendCurrency(int amount)
         {
-            if (_currency.Value <= amount) return false;
+            if (_currency.Value < amount) return false;
 
             _currency.Value -= amount;
             

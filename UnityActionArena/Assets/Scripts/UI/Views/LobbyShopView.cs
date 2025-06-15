@@ -116,7 +116,7 @@ namespace ATG.UI
             
             ResetLobbyCharacterEquipment();
             
-            itemsSet.Show(this, _allItems.GetEquipByType(equipType));
+            itemsSet.Show(this, new ShopItemsSetUIData(_userPresenter, _allItems.GetEquipByType(equipType)));
         }
         
         private void OnItemSelected(Item obj)
@@ -185,6 +185,8 @@ namespace ATG.UI
             
             _userPresenter.EquipItem(_selectedItem);
             OnItemSelected(_selectedItem);
+            
+            itemsSet.Show(this, new ShopItemsSetUIData(_userPresenter, _allItems.GetEquipByType(checkboxes.LastSelected)));
         }
         
         private void OnBuyButtonClicked()
@@ -193,6 +195,7 @@ namespace ATG.UI
             if (_userPresenter.TryBuyItem(_selectedItem) == true)
             {
                 OnItemSelected(_selectedItem);
+                itemsSet.Show(this, new ShopItemsSetUIData(_userPresenter, _allItems.GetEquipByType(checkboxes.LastSelected)));
             }
         }
         

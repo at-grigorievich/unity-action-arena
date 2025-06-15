@@ -11,30 +11,29 @@ namespace ATG.UI
     {
         public readonly string Id;
         public readonly ItemMetaData Meta;
+        public readonly bool IsEquipped;
+        public readonly bool IsBuyed;
 
-        public ShopItemViewData(string id, ItemMetaData meta)
+        public ShopItemViewData(string id, ItemMetaData meta, bool isEquipped, bool isBuy)
         {
             Id = id;
             Meta = meta;
+            IsEquipped = isEquipped;
+            IsBuyed = isBuy;
         }
     }
     
     public class ShopItemElement: UIElement<ShopItemViewData>, IPointerClickHandler
     {
-        [Serializable]
-        private sealed class ShopElementBorderColor
-        {
-            [SerializeField] private Color colorIdle;
-            [SerializeField] private Color colorSelected;
-            [Space(5)] 
-            [SerializeField] private Image background;
-            
-            public void SetColor(bool isSelected) => background.color = isSelected ? colorSelected : colorIdle;
-        }
+        private static string AlreadyBuyed = "Buyed";
+        private static string AlreadyEquipped = "Equipped";
         
-        [SerializeField] private ShopElementBorderColor borderColor;
+        [SerializeField] private UISkinSwitcher selectedSkin;
+        [SerializeField] private UISkinSwitcher unselectedSkin;
+        [Space(5)]
         [SerializeField] private TMP_Text itemName;
         [SerializeField] private TMP_Text price;
+        [SerializeField] private TMP_Text status;
         [SerializeField] private Image icon;
         
         private bool _isActive;
@@ -60,8 +59,9 @@ namespace ATG.UI
             price.text = meta.Price.ToString();
             icon.sprite = meta.Icon;
             
-            borderColor.SetColor(isSelected: false);
-
+            unselectedSkin.Select();
+            
+            UpdateStatus(shopItem.IsBuyed, shopItem.IsEquipped);
             _isActive = true;
         }
 
@@ -83,12 +83,28 @@ namespace ATG.UI
 
         public void Select()
         {
-            borderColor.SetColor(isSelected: true);
+            selectedSkin.Select();
         }
 
         public void Unselect()
         {
-            borderColor.SetColor(isSelected: false);
+            unselectedSkin.Select();
+        }
+
+        private void UpdateStatus(bool isBuyed, bool isEquipped)
+        {
+            if (isEquipped)
+            {
+                status.text = AlreadyEquipped;
+            }
+            else if (isBuyed)
+            {
+                status.text = AlreadyBuyed;
+            }
+            else
+            {
+                status.text = string.Empty;
+            }
         }
     }
 }
