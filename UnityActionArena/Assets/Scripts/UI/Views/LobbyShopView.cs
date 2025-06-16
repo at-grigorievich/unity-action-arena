@@ -31,8 +31,7 @@ namespace ATG.UI
         [SerializeField] private CounterOutput currencyOutput;
         [SerializeField] private ShopItemsSetElement itemsSet;
         [SerializeField] private EquipmentTypeCheckboxSet checkboxes;
-        [SerializeField] private StatProgressBarSet itemStats;
-        [SerializeField] private ShopItemDescription itemDescription;
+        [SerializeField] private SelectedShopItemInfo selectedShopItem;
         [SerializeField] private CurrencyButton buyButton;
         [SerializeField] private EquipButton equipButton;
         
@@ -85,8 +84,7 @@ namespace ATG.UI
             
             itemsSet.Hide();
             checkboxes.Hide();
-            itemStats.Hide();
-            itemDescription.Hide();
+            selectedShopItem.Hide();
             
             _userCurrency.Hide();
             
@@ -124,8 +122,7 @@ namespace ATG.UI
             _selectedItem = obj;
             _lobbyCharacter.TakeOnEquipments(_selectedItem);
             
-            itemDescription.Show(this, new ShopItemDescriptionData(_selectedItem.MetaData));
-            itemStats.Show(this, _selectedItem);
+            selectedShopItem.Show(this, _selectedItem);
             
             ShowBuyButton();
             ShowEquipButton();
@@ -134,8 +131,7 @@ namespace ATG.UI
         private void ResetSelectedItem()
         {
             ResetLobbyCharacterEquipment();
-            itemDescription.Hide();
-            itemStats.Hide();
+            selectedShopItem.Hide();
             buyButton.Hide();
             
             _selectedItem = null;

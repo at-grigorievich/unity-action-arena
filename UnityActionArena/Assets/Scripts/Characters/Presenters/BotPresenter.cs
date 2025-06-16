@@ -24,7 +24,7 @@ namespace ATG.Character
         public IObservableVar<int> Health => _characterModel.Health;
         public IObservableVar<bool> IsGetDamage => _getDamageObserver.IsDamaged;
         public IObservableVar<bool> IsAttacking => _attackObserver.IsAttacking;
-
+        
         public IDetectable TargetDetectedEnemy { get; private set; } = null;
 
         public float AttackRange => _characterModel.Range.Value;
