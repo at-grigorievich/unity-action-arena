@@ -25,13 +25,13 @@ public sealed class SpawnBotSetStep : ICommand
     {
         foreach (var bot in _pool.Set)
         {
-            bot.SetVisible(false);
-            bot.SetPhysActive(true);
-            
             _spawnService.SpawnInstantly(bot);
             bot.OnSpawnRequired += _spawnService.SpawnAfterDelay;
             
             bot.TakeOnEquipments(_equipmentSrc.GetItems().ToArray());
+            
+            bot.SetVisible(false);
+            bot.SetPhysActive(true);
         }
         
         OnCompleted?.Invoke(true);

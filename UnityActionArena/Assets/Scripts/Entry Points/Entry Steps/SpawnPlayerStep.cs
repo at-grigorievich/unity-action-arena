@@ -24,13 +24,13 @@ public sealed class SpawnPlayerStep: ICommand
     
     public void Execute()
     {
-        _player.SetVisible(false);
-        _player.SetPhysActive(true);
-        
         _spawnService.SpawnInstantly(_player);
         _player.OnSpawnRequired += _spawnService.SpawnAfterDelay;
         
         _equipmentBinder.Execute();
+        
+        _player.SetVisible(false);
+        _player.SetPhysActive(true);
         
         OnCompleted?.Invoke(true);
     }
