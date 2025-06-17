@@ -1,5 +1,6 @@
 ﻿using System;
 using ATG.Observable;
+using ATG.SceneManagement;
 using TMPro;
 using UI.Views;
 using UnityEngine;
@@ -11,12 +12,15 @@ namespace ATG.UI
         public readonly string Name;
         public readonly string Id;
 
+        public readonly SceneLoader SceneLoader;
+        
         public readonly IReadOnlyObservableVar<int> Currency;
 
-        public LobbyMainViewData(string id, string name, IReadOnlyObservableVar<int> currency)
+        public LobbyMainViewData(string id, string name, SceneLoader sceneLoader, IReadOnlyObservableVar<int> currency)
         {
             Name = name;
             Id = id;
+            SceneLoader = sceneLoader;
             Currency = currency;
         }
     }
@@ -30,6 +34,8 @@ namespace ATG.UI
 
         private PlayerCurrencyOutput _userCurrency;
         
+        private SceneLoader _sceneLoader;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -40,6 +46,8 @@ namespace ATG.UI
         public override void Show(object sender, LobbyMainViewData data)
         {
             base.Show(sender, data);
+            
+            _sceneLoader = data.SceneLoader;
             
             nameOutput.text = data.Name;
             idOutput.text = data.Id;
@@ -65,7 +73,12 @@ namespace ATG.UI
         
         private void OnPlayClicked()
         {
-            Debug.Log("clicked");
+            if(_sceneLoader == null) return;
+            
+            _sceneLoader.Load();
+            
+            playButton.OnClicked -= OnPlayClicked;
+            playButton.Hide();
         }
     }
 }

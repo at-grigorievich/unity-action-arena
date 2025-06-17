@@ -6,7 +6,7 @@ using ATG.UI.Service;
 using ATG.User;
 using VContainer.Unity;
 
-public class LobbyEntryPoint : IPostInitializable, IDisposable
+public class LobbyEntryPoint : IStartable, IDisposable
 {
     private readonly CommandInvoker _stepByStepEntry;
     private readonly ISaveService _saveService;
@@ -21,8 +21,8 @@ public class LobbyEntryPoint : IPostInitializable, IDisposable
             new ActivateLobbyCharacterStep(user, lobbyCharacter),
             new ShowLobbyUIStep(uiLocator));
     }
-    
-    public void PostInitialize()
+
+    public void Start()
     {
         _stepByStepEntry.Execute();
     }

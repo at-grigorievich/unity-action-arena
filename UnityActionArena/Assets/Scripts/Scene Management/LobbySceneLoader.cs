@@ -2,7 +2,6 @@
 {
     public sealed class LobbySceneLoader: SceneLoader
     {
-        private readonly ISceneManagement _sceneManager;
         private readonly SceneInfoData _lobbyScene;
         
         public LobbySceneLoader(ISceneManagement sceneManager, SceneInfoData lobbyScene) : base(sceneManager)

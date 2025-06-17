@@ -29,7 +29,6 @@ namespace ATG.UI
         protected override void Awake()
         {
             base.Awake();
-
            _killCounter = new PlayerKillCounterOutput(killCountOutput);
            _earnCounter = new PlayerEarnCounterOutput(earnCountOutput);
         }
@@ -43,7 +42,7 @@ namespace ATG.UI
         public override void Hide()
         {
             Dispose();
-            
+
             _killCounter.Hide();
             _earnCounter.Hide();
         }

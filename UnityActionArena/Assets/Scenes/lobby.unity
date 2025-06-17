@@ -3870,6 +3870,7 @@ MonoBehaviour:
       animatorEventDispatcher: {fileID: 0}
   uiRootLocatorCreator:
     config: {fileID: 11400000, guid: b3f47a29552e06f43a7a7c96e82abfd5, type: 2}
+  arena1SceneInfo: {fileID: 11400000, guid: 42ceabc1b61ed84479444ab7cfa7516e, type: 2}
 --- !u!114 &1364873922
 MonoBehaviour:
   m_ObjectHideFlags: 0

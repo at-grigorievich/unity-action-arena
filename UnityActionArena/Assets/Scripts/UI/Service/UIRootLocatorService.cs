@@ -19,7 +19,7 @@ namespace ATG.UI.Service
         }
     }
     
-    public sealed class UIRootLocatorService: IInitializable, IDisposable
+    public sealed class UIRootLocatorService: IStartable, IDisposable
     {
         private readonly IObjectResolver _resolver;
         
@@ -33,7 +33,7 @@ namespace ATG.UI.Service
             _instances = new Dictionary<UiTag, RootUIView>();
         }
 
-        public void Initialize()
+        public void Start()
         {
             var alreadyInstanced = GameObject.FindObjectsOfType<RootUIView>();
 

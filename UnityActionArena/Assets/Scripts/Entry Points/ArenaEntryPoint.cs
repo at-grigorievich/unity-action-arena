@@ -6,7 +6,7 @@ using ATG.KillCounter;
 using ATG.Spawn;
 using VContainer.Unity;
 
-public sealed class ArenaEntryPoint : IPostInitializable, IDisposable
+public sealed class ArenaEntryPoint : IStartable, IDisposable
 {
     private readonly ISpawnService _spawnService;
     private readonly IKillCounter _killCounter;
@@ -27,7 +27,7 @@ public sealed class ArenaEntryPoint : IPostInitializable, IDisposable
             new ActivatePlayerStep(player));
     }
 
-    public void PostInitialize()
+    public void Start()
     {
         _stepByStepEntry.Execute();
     }

@@ -1,6 +1,7 @@
 ﻿using ATG.Input;
 using ATG.Items;
 using ATG.Save;
+using ATG.SceneManagement;
 using UnityEngine;
 using ATG.User;
 using VContainer;
@@ -33,6 +34,9 @@ namespace Scopes
 
             builder.Register<SerializableRepository>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ISaveService, SaveLoadersService>(Lifetime.Singleton);
+
+            builder.Register<SceneManagement>(Lifetime.Singleton).As<ISceneManagement>();
+
         }
         
         private void RegisterUser(IContainerBuilder builder)

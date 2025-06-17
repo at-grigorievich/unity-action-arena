@@ -1,5 +1,6 @@
 ﻿using ATG.Character;
 using ATG.Items;
+using ATG.SceneManagement;
 using ATG.User;
 using UnityEngine;
 using VContainer;
@@ -24,6 +25,7 @@ namespace ATG.UI
         private LobbyCharacterPresenter _lobbyCharacter;
         private UserPresenter _user;
         private ItemsSetConfig _allItems;
+        private SceneLoader _arenaLoader;
 
         private int _currentIndex;
         
@@ -40,6 +42,9 @@ namespace ATG.UI
             
             if(resolver.TryResolve(out _lobbyCharacter) == false)
                 throw new VContainerException(typeof(LobbyCharacterPresenter),"Failed to resolve LobbyCharacterPresenter");
+            
+            if(resolver.TryResolve(out _arenaLoader) == false)
+                throw new VContainerException(typeof(SceneLoader),"Failed to resolve SceneLoader");
             
             _carousel = carouselFactory.Create();
             
@@ -111,7 +116,7 @@ namespace ATG.UI
             {
                 case 0:
                     mainView.Show(this, new LobbyMainViewData(
-                        _user.Id.ToString(), _user.Name, _user.Currency));
+                        _user.Id.ToString(), _user.Name, _arenaLoader, _user.Currency));
                     break;
                 case 1:
                     shopView.Show(this, new LobbyShopViewData(_user, _lobbyCharacter, _allItems));
