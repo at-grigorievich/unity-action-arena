@@ -22,7 +22,7 @@ namespace ATG.Character
         }
     }
     
-    public sealed class LobbyCharacterPresenter: IInitializable, IDisposable
+    public sealed class LobbyCharacterPresenter: IInitializable, IDisposable, IUseEquipment
     {
         private readonly CharacterView _view;
         

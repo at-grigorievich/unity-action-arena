@@ -4,6 +4,7 @@ using ATG.Command;
 using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Spawn;
+using ATG.User;
 using VContainer.Unity;
 
 public sealed class ArenaEntryPoint : IStartable, IDisposable
@@ -13,15 +14,14 @@ public sealed class ArenaEntryPoint : IStartable, IDisposable
 
     private readonly CommandInvoker _stepByStepEntry;
     
-    public ArenaEntryPoint(PlayerPresenter player, BotPool botPool, 
-        StaticEquipmentSource staticEquipmentSrc, RandomEquipmentSource rndEquipmentSrc,
-        ISpawnService spawnService, IKillCounter killCounter)
+    public ArenaEntryPoint(UserPresenter user, PlayerPresenter player, BotPool botPool, 
+        RandomEquipmentSource rndEquipmentSrc, ISpawnService spawnService, IKillCounter killCounter)
     {
         _spawnService = spawnService;
         _killCounter = killCounter;
 
         _stepByStepEntry = new CommandInvoker(true,
-            new SpawnPlayerStep(player, staticEquipmentSrc, _spawnService),
+            new SpawnPlayerStep(user, player, _spawnService),
             new SpawnBotSetStep(botPool, rndEquipmentSrc, _spawnService),
             new ActivateBotSetStep(botPool),
             new ActivatePlayerStep(player));

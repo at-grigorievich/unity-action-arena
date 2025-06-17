@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Linq;
 using ATG.Character;
 using ATG.Command;
 using ATG.Items.Equipment;
 using ATG.Spawn;
+using ATG.User;
 
 public sealed class SpawnPlayerStep: ICommand
 {
-    private readonly StaticEquipmentSource _equipmentSrc;
+    private readonly UserToArenaEquipmentBinder _equipmentBinder;
     private readonly PlayerPresenter _player;
 
     private readonly ISpawnService _spawnService;
     
     public event Action<bool> OnCompleted;
 
-    public SpawnPlayerStep(PlayerPresenter player, StaticEquipmentSource equipmentSrc, ISpawnService spawnService)
+    public SpawnPlayerStep(UserPresenter userPresenter, PlayerPresenter player, ISpawnService spawnService)
     {
-        _equipmentSrc = equipmentSrc;
+        _equipmentBinder = new UserToArenaEquipmentBinder(userPresenter, player);
         _player = player;
         _spawnService = spawnService;
     }
@@ -28,7 +30,7 @@ public sealed class SpawnPlayerStep: ICommand
         _spawnService.SpawnInstantly(_player);
         _player.OnSpawnRequired += _spawnService.SpawnAfterDelay;
         
-        _player.TakeOnEquipments(_equipmentSrc.GetItems());
+        _equipmentBinder.Execute();
         
         OnCompleted?.Invoke(true);
     }

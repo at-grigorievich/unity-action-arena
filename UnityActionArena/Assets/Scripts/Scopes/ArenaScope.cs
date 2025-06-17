@@ -23,14 +23,11 @@ namespace Scopes
         [SerializeField] private PlayerCharacterCreator playerCreator;
         [SerializeField] private BotCharactersPoolCreator botPoolCreator;
         
-        [SerializeField] private StaticEquipmentSourceCreator staticEquipmentSourceCreator;
-        
         [SerializeField] private TargetNavigationPointSet targetNavigationPointSet;
         
         protected override void Configure(IContainerBuilder builder)
         {
             cinemachineCreator.Create(builder);
-            staticEquipmentSourceCreator.Create(builder);
             playerCreator.Create(builder);
             botPoolCreator.Create(builder);
             killCounterCreator.Create(builder);

@@ -4,6 +4,7 @@ using ATG.Animator;
 using ATG.Attack;
 using ATG.Health;
 using ATG.Items;
+using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Move;
 using ATG.Observable;
@@ -96,7 +97,7 @@ namespace ATG.Character
             _stamina.Reset();
         }
 
-        public override void TakeOnEquipments(IEnumerable<Item> items)
+        public override void TakeOnEquipments(params Items.Item[] items)
         {
             base.TakeOnEquipments(items);
             _health.Initialize();

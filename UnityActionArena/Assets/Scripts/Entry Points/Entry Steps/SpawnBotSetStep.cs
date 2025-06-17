@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ATG.Character;
 using ATG.Command;
 using ATG.Items.Equipment;
@@ -30,7 +31,7 @@ public sealed class SpawnBotSetStep : ICommand
             _spawnService.SpawnInstantly(bot);
             bot.OnSpawnRequired += _spawnService.SpawnAfterDelay;
             
-            bot.TakeOnEquipments(_equipmentSrc.GetItems());
+            bot.TakeOnEquipments(_equipmentSrc.GetItems().ToArray());
         }
         
         OnCompleted?.Invoke(true);

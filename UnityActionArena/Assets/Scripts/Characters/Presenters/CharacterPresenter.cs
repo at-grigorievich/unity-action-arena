@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using ATG.Animator;
 using ATG.EnemyDetector;
-using ATG.Items;
 using ATG.Items.Equipment;
 using ATG.Move;
 using ATG.Spawn;
@@ -11,7 +9,7 @@ using VContainer.Unity;
 
 namespace ATG.Character
 {
-    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IDetectable
+    public abstract class CharacterPresenter: IInitializable, IDisposable, ISpawnable, IDetectable, IUseEquipment
     {
         protected readonly ArenaCharacterView _view;
         protected readonly CharacterModel _characterModel;
@@ -94,7 +92,7 @@ namespace ATG.Character
             OnSpawned?.Invoke();
         }
         
-        public virtual void TakeOnEquipments(IEnumerable<Item> items)
+        public virtual void TakeOnEquipments(params Items.Item[] items)
         {
             foreach (var item in items)
             {
