@@ -4,6 +4,7 @@
     {
         Lobby = 1,
         ArenaPlay = 2,
-        ArenaRespawn = 3
+        ArenaRespawn = 3,
+        Settings = 4
     }
 }

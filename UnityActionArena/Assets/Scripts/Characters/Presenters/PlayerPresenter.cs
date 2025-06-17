@@ -61,6 +61,7 @@ namespace ATG.Character
         {
             base.Dispose();
             _moveObserver.SetActive(false);
+            _attackObserver.Dispose();
         }
     }
 }

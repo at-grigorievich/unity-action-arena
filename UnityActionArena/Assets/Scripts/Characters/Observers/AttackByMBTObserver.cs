@@ -81,6 +81,9 @@ namespace Characters.Observers
             _cts = null;
             
             IsAttacking?.Dispose();
+            
+            _animator.EventDispatcher.Unsubscribe(AnimatorEventType.START_SWING, OnStartSwing);
+            _animator.EventDispatcher.Unsubscribe(AnimatorEventType.END_SWING, OnEndSwing);
         }
         
         private void Kill()

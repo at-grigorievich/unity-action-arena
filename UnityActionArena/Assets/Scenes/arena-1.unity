@@ -7331,12 +7331,8 @@ MonoBehaviour:
   botPoolCreator:
     botPresenterCreator: {fileID: 6371186653383767649, guid: 63e5b5a5657d7c542b6c9dbad9fefcd3,
       type: 3}
-  staticEquipmentSourceCreator:
-    configs:
-    - {fileID: 11400000, guid: 50b0ffad3cd3f3a439aa5c9e89313fea, type: 2}
-    - {fileID: 11400000, guid: 224cb37597acb694384bec332e91c425, type: 2}
-    - {fileID: 11400000, guid: a3311b7a93936ae478bedbbcb6902039, type: 2}
   targetNavigationPointSet: {fileID: 1710060074}
+  lobbySceneInfo: {fileID: 11400000, guid: 50519b34e66aec0488ad0d5c1a76575d, type: 2}
 --- !u!1001 &1492684928
 PrefabInstance:
   m_ObjectHideFlags: 0

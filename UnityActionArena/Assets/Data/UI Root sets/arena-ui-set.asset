@@ -19,3 +19,6 @@ MonoBehaviour:
   - <Tag>k__BackingField: 3
     <ViewAsset>k__BackingField: {fileID: 3770900165431471550, guid: e3a1f5ba63ca1fb4aa380bab769daab8,
       type: 3}
+  - <Tag>k__BackingField: 4
+    <ViewAsset>k__BackingField: {fileID: 8070322694821962963, guid: 4b63d739edf4e004db66949c4452eb17,
+      type: 3}

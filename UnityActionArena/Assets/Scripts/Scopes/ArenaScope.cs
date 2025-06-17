@@ -3,6 +3,8 @@ using ATG.Character;
 using ATG.Items.Equipment;
 using ATG.KillCounter;
 using ATG.Move;
+using ATG.Pause;
+using ATG.SceneManagement;
 using ATG.Spawn;
 using Settings;
 using ATG.UI.Service;
@@ -25,6 +27,8 @@ namespace Scopes
         
         [SerializeField] private TargetNavigationPointSet targetNavigationPointSet;
         
+        [SerializeField] private SceneInfoData lobbySceneInfo;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             cinemachineCreator.Create(builder);
@@ -38,8 +42,13 @@ namespace Scopes
             builder.RegisterInstance(targetNavigationPointSet);
 
             builder.Register<ArenaUIObserver>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<SettingsUIObserver>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PauseService>(Lifetime.Singleton).As<IPauseService>();
             
             builder.Register<RandomEquipmentSource>(Lifetime.Singleton);
+            
+            builder.Register<LobbySceneLoader>(Lifetime.Singleton)
+                .WithParameter<SceneInfoData>(lobbySceneInfo).As<SceneLoader>();
             
             builder.Register<ArenaEntryPoint>(Lifetime.Singleton).AsImplementedInterfaces();
         }

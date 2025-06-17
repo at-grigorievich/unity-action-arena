@@ -54,8 +54,6 @@ namespace Characters.Observers
             {
                 _animator.EventDispatcher.Unsubscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Unsubscribe(AnimatorEventType.END_SWING, OnEndSwing);
-                
-                _input.OnLMBClicked -= OnLMBClicked;
             }
         }
         
@@ -90,6 +88,11 @@ namespace Characters.Observers
             _cts = null;
             
             IsAttacking?.Dispose();
+            
+            _animator.EventDispatcher.Unsubscribe(AnimatorEventType.START_SWING, OnStartSwing);
+            _animator.EventDispatcher.Unsubscribe(AnimatorEventType.END_SWING, OnEndSwing);
+            
+            _input.OnLMBClicked -= OnLMBClicked;
         }
         
         private void Kill()
@@ -104,6 +107,8 @@ namespace Characters.Observers
         
         private async UniTask AttackAsync(CancellationToken token)
         {
+            if(token.IsCancellationRequested == true) return;
+            
             IsAttacking.Value = true;
             _animator.SelectState(AnimatorTag.Attack);
             

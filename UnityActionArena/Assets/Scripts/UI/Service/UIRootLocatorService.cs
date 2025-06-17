@@ -39,21 +39,17 @@ namespace ATG.UI.Service
 
             foreach (var view in alreadyInstanced)
             {
-                if (_instances.ContainsKey(view.Tag) == true)
-                {
-                    throw new Exception($"UI Root View with Tag {view.Tag} already exists: {_instances[view.Tag].transform.name}");
-                }
-                
+                _instances.TryAdd(view.Tag, view);
+
                 view.Initialize(_resolver);
-                _instances.Add(view.Tag, view);
             }
         }
-
+        
         public bool TryShowView(UiTag tag)
         {
-            if (_instances.ContainsKey(tag) == true)
+            if (_instances.TryGetValue(tag, out var instance) == true)
             {
-                _instances[tag].Show();
+                instance.Show();
                 return true;
             }
 
@@ -69,8 +65,26 @@ namespace ATG.UI.Service
 
         public void TryHideView(UiTag tag)
         {
-            if(_instances.ContainsKey(tag) == false) return;
-            _instances[tag].Hide();
+            if(_instances.TryGetValue(tag, out var instance) == false) return;
+            instance.Hide();
+        }
+
+        public bool TryGetView<T>(UiTag tag, out T view) where T : RootUIView
+        {
+            if (_instances.TryGetValue(tag, out var instance) == true)
+            {
+                view = (T)instance;
+                return true;
+            }
+            
+            if (TryInstantiateFromAssets(tag) == true)
+            {
+                view = (T)_instances[tag];
+                return true;
+            }
+
+            view = null;
+            return false;
         }
         
         public void Dispose()
@@ -83,9 +97,8 @@ namespace ATG.UI.Service
 
         private bool TryInstantiateFromAssets(UiTag tag)
         {
-            if(_assets.ContainsKey(tag) == false) return false;
-            
-            var asset = _assets[tag];
+            if(_assets.TryGetValue(tag, out var asset) == false) return false;
+
             var instance = GameObject.Instantiate(asset);
             
             instance.Initialize(_resolver);
