@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ATG.Command
 {
-    public sealed class CommandInvoker: ICommand, IDisposable
+    public sealed class CommandInvoker: ICommand
     {
         private readonly ICommand[] _commands;
         private readonly bool _ignoreIfAlreadyExecuted;

@@ -7,7 +7,6 @@ using ATG.Input;
 using ATG.Observable;
 using ATG.Stamina;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Characters.Observers
 {

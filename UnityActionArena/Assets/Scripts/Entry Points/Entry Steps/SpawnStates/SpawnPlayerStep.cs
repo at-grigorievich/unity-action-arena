@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using ATG.Character;
 using ATG.Command;
 using ATG.Items.Equipment;
