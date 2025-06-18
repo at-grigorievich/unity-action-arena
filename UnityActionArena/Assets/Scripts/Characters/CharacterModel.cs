@@ -5,7 +5,7 @@ namespace ATG.Character
 {
     public class CharacterModel: IDisposable
     {
-        public readonly string Name;
+        public string Name;
         public readonly IObservableVar<int> Health;
         public readonly IObservableVar<float> Stamina;
         public readonly IObservableVar<int> Damage;

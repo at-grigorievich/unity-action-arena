@@ -32,7 +32,7 @@ namespace ATG.Character
                 .AsImplementedInterfaces();
         }
 
-        protected virtual CharacterModel GetModel() => new CharacterModel(string.Empty,0, 100, 0, 3, 0);
+        protected virtual CharacterModel GetModel() => new (string.Empty,0, 100, 0, 3, 0);
         protected IAnimatorWrapper GetAnimator() => animatorCreator.Create();
         protected virtual IMoveableService GetMove(IReadOnlyObservableVar<float> speed) => new TransformMoveService(view.transform);
     }
@@ -68,17 +68,6 @@ namespace ATG.Character
         
         protected IAttackService GetAttack(IReadOnlyObservableVar<float> range) => attackCreator.Create(range);
         protected IStaminaService GetStamina(IObservableVar<float> stamina) => staminaCreator.Create(stamina);
-    }
-    
-    [Serializable]
-    public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter>
-    {
-        protected override CharacterModel GetModel()
-        {
-            string name = "BIG_BOSS";
-            
-            return new CharacterModel(name,0, 100, 0, 3, 0);
-        }
     }
 
     [Serializable]

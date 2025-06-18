@@ -1,4 +1,5 @@
-﻿using ATG.Animator;
+﻿using System;
+using ATG.Animator;
 using ATG.Attack;
 using ATG.Camera;
 using ATG.Health;
@@ -6,10 +7,14 @@ using ATG.Input;
 using ATG.Move;
 using ATG.Observable;
 using ATG.Stamina;
+using ATG.User;
 using Characters.Observers;
 
 namespace ATG.Character
 {
+    [Serializable]
+    public sealed class PlayerCharacterCreator : ArenaCharacterCreator<PlayerPresenter> { }
+    
     public sealed class PlayerPresenter: ArenaCharacterPresenter
     {
         private readonly CinemachineWrapper _cinemachine;
@@ -20,12 +25,14 @@ namespace ATG.Character
         public IHealthRate<int> HealthRate => _health;
         public IStaminaRate StaminaRate => _stamina;
         
-        public PlayerPresenter(ArenaCharacterView view, CharacterModel model,
+        public PlayerPresenter(UserPresenter user, ArenaCharacterView view, CharacterModel model,
             IAnimatorWrapper animator, IMoveableService move, 
             IAttackService attack, CinemachineWrapper cinemachine, 
             IInputable input, IStaminaService stamina) 
             : base(view, model, animator, move, attack, stamina)
         {
+            model.Name = user.Name;
+            
             _cinemachine = cinemachine;
             _moveObserver = new MoveByInputObserver(_view.transform, input, _move, _animator);
             _attackObserver = new AttackByInputObserver(input, _attack, _animator, _stamina);
