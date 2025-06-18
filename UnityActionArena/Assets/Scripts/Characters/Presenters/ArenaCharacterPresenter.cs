@@ -95,6 +95,8 @@ namespace ATG.Character
             _lastDamager = null;
             _health.Reset();
             _stamina.Reset();
+            
+            SetVisible(true);
         }
 
         public override void TakeOnEquipments(params Items.Item[] items)
