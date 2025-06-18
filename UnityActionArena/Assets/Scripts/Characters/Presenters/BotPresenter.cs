@@ -116,6 +116,7 @@ namespace ATG.Character
         public void Stop()
         {
             _animator.SelectState(AnimatorTag.Idle);
+            _animator.SelectState(AnimatorTag.None);
             _move.Stop();
         }
         

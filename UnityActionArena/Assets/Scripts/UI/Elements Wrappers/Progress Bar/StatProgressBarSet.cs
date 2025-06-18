@@ -33,7 +33,7 @@ namespace ATG.UI
             
             for (var i = 0; i < _stats.Length; i++)
             {
-                if (i >= effectList.Count - 1)
+                if (i >= effectList.Count)
                 {
                     _stats[i].Hide();
                     continue;

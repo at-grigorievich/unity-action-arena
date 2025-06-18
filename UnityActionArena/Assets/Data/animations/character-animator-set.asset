@@ -17,9 +17,19 @@ MonoBehaviour:
   - rid: 5624822270889033729
   - rid: 5624822338645393408
   - rid: 5624822354833571840
+  - rid: 3745841928486780928
   references:
     version: 2
     RefIds:
+    - rid: 3745841928486780928
+      type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
+      data:
+        ignoreTimeOffset: 1
+        <Tag>k__BackingField: -1
+        <StateName>k__BackingField: none
+        option:
+          CrossFadeDuration: 0.002
+          AnimatorLayer: 1
     - rid: 5624822270889033728
       type: {class: CrossfadeAnimatorState, ns: ATG.Animator, asm: Assembly-CSharp}
       data:

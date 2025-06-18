@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 1462810784926338347}
+  selectedEditorNode: {fileID: 1238802228587581807}
   repeatOnFinish: 1
   maxExecutionsPerTick: 10000
   parent: {fileID: 0}
@@ -647,8 +647,8 @@ MonoBehaviour:
   title: Stay In Shock After Damage
   rect:
     serializedVersion: 2
-    x: -399
-    y: 340
+    x: -441
+    y: 341
     width: 160
     height: 59
   parent: {fileID: 7407237931972874107}
