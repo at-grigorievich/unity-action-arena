@@ -24,7 +24,7 @@ namespace ATG.Items
     
     public abstract class HeroEffectComponent : IItemComponent
     {
-        public const float MAX_VALUE = 100f;
+        public virtual float MAX_VALUE { get; } = 100f;
 
         public abstract string EffectName { get; }
         public abstract float CurrentValue { get; }
@@ -119,8 +119,9 @@ namespace ATG.Items
     [Serializable]
     public class HeroRangeEffectComponent : HeroEffectComponent
     {
-        [Range(0f, 100f)] public float RangeEffect = 5;
+        [Range(0f, 100f)] public float RangeEffect = 2.5f;
 
+        public override float MAX_VALUE => 2.5f;
         public override string EffectName => "Range";
         public override float CurrentValue => RangeEffect;
 
@@ -146,7 +147,7 @@ namespace ATG.Items
     [Serializable]
     public class HeroStaminaEffectComponent : HeroEffectComponent
     {
-        public float StaminaEffect = 100;
+        [Range(0f, 100f)] public float StaminaEffect = 100;
 
         public override string EffectName => "Stamina";
         public override float CurrentValue => StaminaEffect;

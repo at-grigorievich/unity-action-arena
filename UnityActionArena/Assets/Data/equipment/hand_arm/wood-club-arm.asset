@@ -10,34 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbc6bc906c44982bfdfd01ee7803e11, type: 3}
-  m_Name: base-wood-sword-arm
+  m_Name: wood-club-arm
   m_EditorClassIdentifier: 
   Prototype:
     Id: base-body-arm
     MetaData:
       Name: "\u0411\u0430\u0437\u043E\u0432\u0430\u044F \u0434\u0443\u0431\u0438\u043D\u0430"
-      Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
-        \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
+      Description: "\u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0432\u043D\u0430\u044F
+        \u0434\u0443\u0431\u0438\u043D\u043A\u0430 \u0434\u043B\u044F \u0432\u043E\u0439\u043D\u044B"
       Icon: {fileID: 21300000, guid: d05249a09c6cff04aa218ac0f09c4288, type: 3}
-      Price: 0
+      Price: 10
     Flags: 12
     Components:
     - rid: 7637649362196627461
-    - rid: 7637649362196627456
-    - rid: 7637649362196627457
     - rid: 7637649362196627459
     - rid: 7637649362196627460
   references:
     version: 2
     RefIds:
-    - rid: 7637649362196627456
-      type: {class: HeroHealthEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        HitPointsEffect: 100
-    - rid: 7637649362196627457
-      type: {class: HeroSpeedEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        SpeedEffect: 0
     - rid: 7637649362196627459
       type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
@@ -45,7 +35,7 @@ MonoBehaviour:
     - rid: 7637649362196627460
       type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        RangeEffect: 2
+        RangeEffect: 0.9
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

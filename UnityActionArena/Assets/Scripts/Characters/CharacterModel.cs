@@ -32,6 +32,6 @@ namespace ATG.Character
         }
 
         public float GetRate() =>
-            (Health.Value + Stamina.Value + Damage.Value + Range.Value + Speed.Value) / 5.0f;
+            1.0f;
     }
 }

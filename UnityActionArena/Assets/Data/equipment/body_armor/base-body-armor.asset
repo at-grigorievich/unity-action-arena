@@ -15,18 +15,15 @@ MonoBehaviour:
   Prototype:
     Id: base-body-armor
     MetaData:
-      Name: "\u0421\u0432\u0438\u043D\u0430\u044F \u0445\u0430\u0440\u044F"
-      Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
-        \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
+      Name: "\u041A\u043E\u0441\u0442\u044E\u043C \u043A\u043E\u043B\u0445\u043E\u0437\u043D\u0438\u043A\u0430"
+      Description: "\u0411\u0430\u0437\u043E\u0432\u044B\u0439 \u043A\u043E\u0441\u0442\u044E\u043C
+        \u0441\u0435\u043B\u044E\u043A\u0430"
       Icon: {fileID: 21300000, guid: 810e1e64f331b924a9b0376d701301b0, type: 3}
       Price: 10
     Flags: 12
     Components:
     - rid: 7637649362196627461
     - rid: 7637649362196627456
-    - rid: 7637649362196627457
-    - rid: 7637649362196627459
-    - rid: 7637649362196627460
     - rid: 5624822423718461442
   references:
     version: 2
@@ -34,23 +31,11 @@ MonoBehaviour:
     - rid: 5624822423718461442
       type: {class: HeroStaminaEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        StaminaEffect: 100
+        StaminaEffect: 50
     - rid: 7637649362196627456
       type: {class: HeroHealthEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        HitPointsEffect: 100
-    - rid: 7637649362196627457
-      type: {class: HeroSpeedEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        SpeedEffect: 0
-    - rid: 7637649362196627459
-      type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        DamageEffect: 10
-    - rid: 7637649362196627460
-      type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        RangeEffect: 0
+        HitPointsEffect: 20
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

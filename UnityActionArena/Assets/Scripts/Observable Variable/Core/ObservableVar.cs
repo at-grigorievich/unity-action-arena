@@ -33,7 +33,7 @@ namespace ATG.Observable
         public ObservableVar(T defaultValue, bool ignoreEqualValue = true)
         {
             DefaultValue = defaultValue;
-            Value = DefaultValue;
+            _value = DefaultValue;
 
             _ignoreEqualValue = ignoreEqualValue;
         }

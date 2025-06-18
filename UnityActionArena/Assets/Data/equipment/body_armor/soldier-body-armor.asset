@@ -16,17 +16,14 @@ MonoBehaviour:
     Id: soldier-body-armor
     MetaData:
       Name: "\u0441\u0438\u0433\u043C\u0430 \u0431\u043E\u0435\u0446"
-      Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
-        \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
+      Description: "\u0441\u0430\u043C\u0430\u044F \u0442\u0430\u043A\u0430\u044F
+        \u0431\u0430\u0437\u0430 \u0434\u043B\u044F \u0430\u0440\u0435\u043D\u044B"
       Icon: {fileID: 21300000, guid: 810e1e64f331b924a9b0376d701301b0, type: 3}
-      Price: 100
+      Price: 6500
     Flags: 12
     Components:
     - rid: 7637649362196627461
     - rid: 7637649362196627456
-    - rid: 7637649362196627457
-    - rid: 7637649362196627459
-    - rid: 7637649362196627460
     - rid: 5624822423718461446
   references:
     version: 2
@@ -34,23 +31,11 @@ MonoBehaviour:
     - rid: 5624822423718461446
       type: {class: HeroStaminaEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        StaminaEffect: 100
+        StaminaEffect: 10
     - rid: 7637649362196627456
       type: {class: HeroHealthEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        HitPointsEffect: 100
-    - rid: 7637649362196627457
-      type: {class: HeroSpeedEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        SpeedEffect: 0
-    - rid: 7637649362196627459
-      type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        DamageEffect: 10
-    - rid: 7637649362196627460
-      type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        RangeEffect: 0
+        HitPointsEffect: 65
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

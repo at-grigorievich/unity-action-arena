@@ -32,7 +32,7 @@ namespace ATG.Character
                 .AsImplementedInterfaces();
         }
 
-        protected virtual CharacterModel GetModel() => new CharacterModel(string.Empty,0, 0, 1, 3, 0);
+        protected virtual CharacterModel GetModel() => new CharacterModel(string.Empty,0, 100, 0, 3, 0);
         protected IAnimatorWrapper GetAnimator() => animatorCreator.Create();
         protected virtual IMoveableService GetMove(IReadOnlyObservableVar<float> speed) => new TransformMoveService(view.transform);
     }
@@ -77,7 +77,7 @@ namespace ATG.Character
         {
             string name = "BIG_BOSS";
             
-            return new CharacterModel(name,0, 0, 1, 3, 0);
+            return new CharacterModel(name,0, 100, 0, 3, 0);
         }
     }
 
@@ -101,7 +101,7 @@ namespace ATG.Character
         {
             string viewHash = Mathf.Abs(view.GetHashCode()).ToString()[..3];
             string name = $"Bot_{viewHash}";
-            return new CharacterModel(name,0, 0, 1, 3, 0);
+            return new CharacterModel(name,0, 100, 0, 3, 0);
         }
     }
 }

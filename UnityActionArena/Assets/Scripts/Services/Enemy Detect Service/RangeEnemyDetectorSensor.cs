@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using ATG.Observable;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 namespace ATG.EnemyDetector
 {
     public sealed class RangeEnemyDetectorSensor: IEnemyDetectorSensor
     {
-        private const float RANGE_MULTIPLIER = 2.0f;
+        private const float RANGE_MIN = 3.0f;
         
         private IDetectable _owner;
         private readonly IReadOnlyObservableVar<float> _range;
@@ -92,7 +93,7 @@ namespace ATG.EnemyDetector
         {
             _detectables.Clear();
             
-            int hitCount = OverlapSphereCastPool.Cast(_ownerTransform.position, _range.Value * RANGE_MULTIPLIER, 
+            int hitCount = OverlapSphereCastPool.Cast(_ownerTransform.position, _range.Value + RANGE_MIN, 
                 _mask, out Collider[] colliders);
             
             if (hitCount <= 0) return;

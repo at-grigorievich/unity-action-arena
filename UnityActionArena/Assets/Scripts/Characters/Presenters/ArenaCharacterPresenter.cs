@@ -47,6 +47,9 @@ namespace ATG.Character
             _view.OnAttacked += RequestToGetDamageHandle;
             _attack.OnRequestToDealDamage += RequestToDealDamageHandle;
             _health.OnHealthIsOver += OnHealthIsOverHandle;
+            
+            _health.Initialize();
+            _stamina.Initialize();
         }
 
         public override void SetActive(bool isActive)

@@ -16,36 +16,26 @@ MonoBehaviour:
     Id: spear-arm
     MetaData:
       Name: "\u041E\u0441\u0442\u0440\u043E\u0435 \u043A\u043E\u043F\u044C\u0435"
-      Description: "\u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430
-        \u043F\u043E\u043C\u043E\u0433\u0438\u0442\u0435"
+      Description: "\u041F\u0440\u043E\u0441\u0442\u043E \u043E\u0441\u0442\u0440\u043E\u0435
+        \u043A\u043E\u043F\u044C\u0435"
       Icon: {fileID: 21300000, guid: d05249a09c6cff04aa218ac0f09c4288, type: 3}
-      Price: 0
+      Price: 4200
     Flags: 12
     Components:
     - rid: 7637649362196627461
-    - rid: 7637649362196627456
-    - rid: 7637649362196627457
     - rid: 7637649362196627459
     - rid: 7637649362196627460
   references:
     version: 2
     RefIds:
-    - rid: 7637649362196627456
-      type: {class: HeroHealthEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        HitPointsEffect: 100
-    - rid: 7637649362196627457
-      type: {class: HeroSpeedEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
-      data:
-        SpeedEffect: 0
     - rid: 7637649362196627459
       type: {class: HeroDamageEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        DamageEffect: 10
+        DamageEffect: 35
     - rid: 7637649362196627460
       type: {class: HeroRangeEffectComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:
-        RangeEffect: 2
+        RangeEffect: 1.8
     - rid: 7637649362196627461
       type: {class: HeroEquipmentComponent, ns: ATG.Items, asm: Assembly-CSharp}
       data:

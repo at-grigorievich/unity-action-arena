@@ -42,7 +42,7 @@ namespace ATG.UI
                 HeroEffectComponent effect = effectList[i];
 
                 StatProgressBarRate rate = new StatProgressBarRate(effect.EffectName, effect.CurrentValue,
-                    HeroEffectComponent.MAX_VALUE, true);
+                    effect.MAX_VALUE, true);
                 _stats[i].Show(this, rate);
             }
         }

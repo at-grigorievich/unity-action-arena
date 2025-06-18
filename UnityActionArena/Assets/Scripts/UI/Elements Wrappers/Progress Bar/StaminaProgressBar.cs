@@ -29,6 +29,8 @@ namespace ATG.UI
             _staminaRate = staminaRate;
             
             _bar.Show(this, new ProgressBarRate(_staminaRate.Rate, _withAnimation));
+            _bar.SetAlpha(1f);
+            
             _dis = staminaRate.Current.Subscribe(OnStaminaChanged);
             
             _notEnoughAnimation.AnimateIfNotEnough(_staminaRate.IsEnough, _bar);

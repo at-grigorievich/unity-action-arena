@@ -12,6 +12,6 @@ namespace ATG.Observable
     
     public interface IObservableVar<T>: IReadOnlyObservableVar<T>
     {
-        T Value { get; set; }
+        new T Value { get; set; }
     }
 }

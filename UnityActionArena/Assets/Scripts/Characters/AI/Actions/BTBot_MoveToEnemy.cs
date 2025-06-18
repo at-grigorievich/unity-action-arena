@@ -16,7 +16,7 @@ namespace ATG.Character.AI
         {
             base.OnEnter();
             
-            _rndRangeValue = UnityEngine.Random.Range(0.5f * _bot.AttackRange, _bot.AttackRange);
+            _rndRangeValue = UnityEngine.Random.Range(_bot.AttackRange, 1.5f * _bot.AttackRange);
             _targetEnemy = _bot.TargetDetectedEnemy.GetEnemyData().Transform;
         }
 
@@ -28,7 +28,7 @@ namespace ATG.Character.AI
 
             if (TryReachPoint(targetPosition, out Vector3 resultPosition) == false)
             {
-                resultPosition = CalculateOffsetByDirection();
+                resultPosition = CalculateOffsetInsideCircle();
             }
             
             //Debug.DrawLine(_bot.Position, resultPosition, Color.magenta, 1f);
