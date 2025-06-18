@@ -21,7 +21,7 @@ namespace ATG.Save
             
             _serializableRepository.SetData(DATA_KEY, data);
             
-            Debug.Log($"{typeof(TService)} serialized");
+            //Debug.Log($"{typeof(TService)} serialized");
         }
 
         public void Load()

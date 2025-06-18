@@ -34,6 +34,8 @@ namespace Characters.Observers
             IsAttacking = new ObservableVar<bool>(false);
             
             _attackDurationSec = TimeSpan.FromSeconds(_animator.GetStateLength(AnimatorTag.Attack));
+            
+            _input.OnLMBClicked += OnLMBClicked;
         }
         
         public void SetActive(bool isActive)
@@ -47,8 +49,6 @@ namespace Characters.Observers
             {
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.START_SWING, OnStartSwing);
                 _animator.EventDispatcher.Subscribe(AnimatorEventType.END_SWING, OnEndSwing);
-                
-                _input.OnLMBClicked += OnLMBClicked;
             }
             else
             {

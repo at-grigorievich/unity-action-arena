@@ -58,7 +58,7 @@ namespace ATG.User
         public void AddCurrency(int amount)
         {
             _bank.AddCurrency(amount);
-            _saveService.Save();
+            //_saveService.Save();
         }
 
         public bool TrySpendCurrency(int amount)

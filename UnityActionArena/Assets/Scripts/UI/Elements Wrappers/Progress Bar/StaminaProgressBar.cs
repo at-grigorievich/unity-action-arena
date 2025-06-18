@@ -40,7 +40,8 @@ namespace ATG.UI
             _dis = null;
 
             _staminaRate = null;
-            _notEnoughAnimation.Reset(_bar);
+            
+            _notEnoughAnimation.Dispose();
         }
         
         private void OnStaminaChanged(float _)
@@ -108,7 +109,7 @@ namespace ATG.UI
 
                 while (elapsed < _blinkDuration)
                 {
-                    token.ThrowIfCancellationRequested();
+                    if(token.IsCancellationRequested == true) return;
 
                     elapsed += Time.deltaTime;
                     float t = Mathf.Clamp01(elapsed / _blinkDuration);
