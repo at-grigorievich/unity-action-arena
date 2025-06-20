@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2f045eb8a24380a0f0186c7142bd4a, type: 3}
   m_Name: arena-1-settings
   m_EditorClassIdentifier: 
-  <RespawnDelayInSec>k__BackingField: 10
+  <RespawnDelayInSec>k__BackingField: 5
   <PlayersOnArena>k__BackingField: 25

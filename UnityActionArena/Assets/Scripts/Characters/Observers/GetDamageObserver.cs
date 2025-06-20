@@ -47,7 +47,9 @@ namespace Characters.Observers
             _health.Reduce(damageData.Damage);
             LastReceivedDamage = damageData;
             
-            if(IsDamaged.Value == true) return;
+            //if(IsDamaged.Value == true) return;
+            
+            Kill();
             
             _cts = new CancellationTokenSource();
             ReceiveDamageAsync(_cts.Token).Forget();
@@ -75,7 +77,6 @@ namespace Characters.Observers
         {
             IsDamaged.Value = true;
             
-            _move.Stop();
             _animator.SelectState(AnimatorTag.GetDamage);
             
             await UniTask.Delay(_damagedDurationSec, cancellationToken: token);

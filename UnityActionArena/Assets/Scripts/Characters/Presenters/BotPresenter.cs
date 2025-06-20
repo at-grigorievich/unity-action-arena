@@ -58,12 +58,6 @@ namespace ATG.Character
                     _attackObserver.SetActive(!isDamagedNow);
                     Stop();
                 }).AddTo(_dis);
-                
-                _uiView.Show(this, new ArenaBotUIData(_health));
-            }
-            else
-            {
-                _uiView.Hide();
             }
         }
 
@@ -122,6 +116,12 @@ namespace ATG.Character
         
         public void LookAt(Vector3 position) => _move.LookAt(position);
         #endregion
+
+        protected override void OnHealthIsOverHandle()
+        {
+            base.OnHealthIsOverHandle();
+            _uiView.Hide();
+        }
 
         private void CheckEnemyBySensor()
         {

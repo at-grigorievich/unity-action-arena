@@ -17,5 +17,11 @@ namespace ATG.Character.AI
         {
             return Variable.Value == true;
         }
+
+        protected override void OnVariableChange(bool newValue)
+        {
+            if(newValue == false) return;
+            base.OnVariableChange(newValue);
+        }
     }
 }

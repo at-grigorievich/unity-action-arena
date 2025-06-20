@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressImg: {fileID: 7889353560863213693}
   progress: {fileID: 7889353560873185447}
-  animationSpeed: 1
+  animationSpeed: 15
 --- !u!1 &7889353560853019427
 GameObject:
   m_ObjectHideFlags: 0

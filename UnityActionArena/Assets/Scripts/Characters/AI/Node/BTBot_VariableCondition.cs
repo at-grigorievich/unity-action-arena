@@ -38,7 +38,7 @@ namespace ATG.Character.AI
             }
         }
 
-        private void OnVariableChange(T newValue)
+        protected virtual void OnVariableChange(T newValue)
         {
             EvaluateConditionAndTryAbort(abort);
         }
