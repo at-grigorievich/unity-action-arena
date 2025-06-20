@@ -47,8 +47,6 @@ namespace Characters.Observers
             _health.Reduce(damageData.Damage);
             LastReceivedDamage = damageData;
             
-            //if(IsDamaged.Value == true) return;
-            
             Kill();
             
             _cts = new CancellationTokenSource();
